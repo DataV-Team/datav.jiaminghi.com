@@ -2,8 +2,18 @@
 
 边框的使用尤其方便，对于大部分来说你只需要设置他们的宽高即可
 
+::: tip
+部分边框使用SVG绘制，如果你想要改变此类边框的线条颜色，可以通过CSS去覆盖该边框SVG曲线的stroke属性
+
+```css
+.some-svg-class {
+  stroke: green;
+}
+```
+:::
+
 ## Border-Box-1
-<div class="box-contaier">
+<div class="border-box-contaier">
   <border-box-1 />
 </div>
 
@@ -13,7 +23,7 @@
 <click-to-copy :info="info1" />
 
 ## Border-Box-2
-<div class="box-contaier">
+<div class="border-box-contaier">
   <border-box-2 />
 </div>
 
@@ -24,7 +34,7 @@
 
 
 ## Border-Box-3
-<div class="box-contaier">
+<div class="border-box-contaier">
   <border-box-3 />
 </div>
 
@@ -34,7 +44,7 @@
 <click-to-copy :info="info3" />
 
 ## Border-Box-4
-<div class="box-contaier">
+<div class="border-box-contaier">
   <border-box-4 />
 </div>
 
@@ -44,7 +54,7 @@
 <click-to-copy :info="info4" />
 
 ## Border-Box-4(reverse)
-<div class="box-contaier">
+<div class="border-box-contaier">
   <border-box-4 :reverse="true" />
 </div>
 
@@ -57,7 +67,7 @@
 <click-to-copy :info="info4Reverse" />
 
 ## Border-Box-5
-<div class="box-contaier">
+<div class="border-box-contaier">
   <border-box-5 />
 </div>
 
@@ -67,7 +77,7 @@
 <click-to-copy :info="info5" />
 
 ## Border-Box-5(reverse)
-<div class="box-contaier">
+<div class="border-box-contaier">
   <border-box-5 :reverse="true" />
 </div>
 
@@ -77,7 +87,7 @@
 <click-to-copy :info="info5Reverse" />
 
 ## Border-Box-6
-<div class="box-contaier">
+<div class="border-box-contaier">
   <border-box-6 />
 </div>
 
@@ -87,7 +97,7 @@
 <click-to-copy :info="info6" />
 
 ## Border-Box-7
-<div class="box-contaier">
+<div class="border-box-contaier">
   <border-box-7 />
 </div>
 
@@ -115,7 +125,7 @@ export default {
 </script>
 
 <style lang="less">
-.box-contaier {
+.border-box-contaier {
   height: 300px;
   background-color: #282c34;
   background-size: 100% 100%;
