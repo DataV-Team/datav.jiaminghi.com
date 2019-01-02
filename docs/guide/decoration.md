@@ -115,10 +115,8 @@
   position: relative;
   height: 150px;
   background-color: #282c34;
-  background-size: 100% 100%;
-  display: flex;
   padding: 30px;
-  
+
   .decoration {
     position: absolute;
     top: 50%;

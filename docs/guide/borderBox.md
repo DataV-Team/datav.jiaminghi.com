@@ -128,7 +128,6 @@ export default {
 .border-box-contaier {
   height: 300px;
   background-color: #282c34;
-  background-size: 100% 100%;
   display: flex;
   padding: 30px;
   
