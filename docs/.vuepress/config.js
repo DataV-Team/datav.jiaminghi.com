@@ -44,7 +44,8 @@ module.exports = {
           '/guide/': [
             '',
             'borderBox',
-            'decoration'
+            'decoration',
+            'chart'
           ]
         }
       },
