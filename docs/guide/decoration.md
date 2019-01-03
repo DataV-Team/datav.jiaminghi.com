@@ -113,9 +113,10 @@
 <style lang="less">
 .decoration-contaier {
   position: relative;
-  height: 150px;
+  height: 200px;
   background-color: #282c34;
-  padding: 30px;
+  overflow: hidden;
+  color: #fff;
 
   .decoration {
     position: absolute;

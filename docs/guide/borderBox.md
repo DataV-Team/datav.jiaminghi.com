@@ -14,7 +14,7 @@
 
 ## Border-Box-1
 <div class="border-box-contaier">
-  <border-box-1 />
+  <border-box-1 class="box" />
 </div>
 
 ```html
@@ -24,7 +24,7 @@
 
 ## Border-Box-2
 <div class="border-box-contaier">
-  <border-box-2 />
+  <border-box-2 class="box" />
 </div>
 
 ```html
@@ -35,7 +35,7 @@
 
 ## Border-Box-3
 <div class="border-box-contaier">
-  <border-box-3 />
+  <border-box-3 class="box" />
 </div>
 
 ```html
@@ -45,7 +45,7 @@
 
 ## Border-Box-4
 <div class="border-box-contaier">
-  <border-box-4 />
+  <border-box-4 class="box" />
 </div>
 
 ```html
@@ -55,7 +55,7 @@
 
 ## Border-Box-4(reverse)
 <div class="border-box-contaier">
-  <border-box-4 :reverse="true" />
+  <border-box-4 class="box" :reverse="true" />
 </div>
 
 ```html
@@ -68,7 +68,7 @@
 
 ## Border-Box-5
 <div class="border-box-contaier">
-  <border-box-5 />
+  <border-box-5 class="box" />
 </div>
 
 ```html
@@ -78,7 +78,7 @@
 
 ## Border-Box-5(reverse)
 <div class="border-box-contaier">
-  <border-box-5 :reverse="true" />
+  <border-box-5 class="box" :reverse="true" />
 </div>
 
 ```html
@@ -88,7 +88,7 @@
 
 ## Border-Box-6
 <div class="border-box-contaier">
-  <border-box-6 />
+  <border-box-6 class="box" />
 </div>
 
 ```html
@@ -98,7 +98,7 @@
 
 ## Border-Box-7
 <div class="border-box-contaier">
-  <border-box-7 />
+  <border-box-7 class="box" />
 </div>
 
 ```html
@@ -126,13 +126,18 @@ export default {
 
 <style lang="less">
 .border-box-contaier {
+  position: relative;
   height: 300px;
   background-color: #282c34;
-  display: flex;
-  padding: 30px;
-  
-  div {
-    flex: 1;
+  overflow: hidden;
+
+  .box {
+    position: absolute;
+    width: calc(~"100% - 60px");
+    height: calc(~"100% - 60px");
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 </style>
