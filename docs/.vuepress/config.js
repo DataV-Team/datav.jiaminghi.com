@@ -45,7 +45,8 @@ module.exports = {
             '',
             'borderBox',
             'decoration',
-            'chart'
+            'seniorComponent',
+            'columnChart'
           ]
         }
       },
