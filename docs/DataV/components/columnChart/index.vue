@@ -1,12 +1,12 @@
 <template>
   <div class="column-chart">
-    <loading v-if="!data" />
+    <loading v-if="!status" />
 
     <div class="canvas-container">
       <canvas :ref="ref" />
     </div>
 
-    <label-line :label="data.labelLine" :colors="drawColors" />
+    <label-line :label="labelLine" :colors="drawColors" />
 
     <for-slot><slot></slot></for-slot>
   </div>
@@ -22,10 +22,12 @@ import axisMixin from '../../mixins/axisMixin.js'
 export default {
   name: 'ColumnChart',
   mixins: [colorsMixin, canvasMixin, axisMixin],
-  props: ['data', 'colors'],
+  props: ['data', 'labelLine', 'colors'],
   data () {
     return {
       ref: `radar-chart-${(new Date()).getTime()}`,
+
+      status: false,
 
       // axis base config
       boundaryGap: true,
@@ -52,9 +54,9 @@ export default {
   },
   watch: {
     data (d) {
-      const { draw } = this
+      const { checkData, draw } = this
 
-      d && draw()
+      checkData() && draw()
     }
   },
   methods: {
@@ -65,9 +67,20 @@ export default {
 
       initColors()
 
-      const { data, draw } = this
+      const { checkData, draw } = this
 
-      data && draw()
+      checkData() && draw()
+    },
+    checkData () {
+      const { data } = this
+
+      this.status = false
+
+      if (!data || !data.data) return false
+
+      this.status = true
+
+      return true
     },
     draw () {
       const { clearCanvas } = this
