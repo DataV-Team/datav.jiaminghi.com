@@ -30,8 +30,6 @@ export default {
 </script>
 
 <style lang="less">
-@lineColor: #2862b7;
-
 .dv-border-box-3 {
   position: relative;
   box-sizing: border-box;
@@ -46,16 +44,15 @@ export default {
 
     polyline {
       fill: none;
+      stroke: #2862b7;
     }
   }
 
   .dv-bb3-line1 {
-    stroke: @lineColor;
     stroke-width: 3;
   }
 
   .dv-bb3-line2 {
-    stroke: @lineColor;
     stroke-width: 1;
   }
 }
