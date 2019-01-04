@@ -1,5 +1,5 @@
 <template>
-  <div class="border-box-2">
+  <div class="dv-border-box-2">
     <slot></slot>
   </div>
 </template>
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="less">
-.border-box-2 {
+.dv-border-box-2 {
   box-sizing: border-box;
   border-style: solid;
   border-image: url('./img/border.png') 14 fill;

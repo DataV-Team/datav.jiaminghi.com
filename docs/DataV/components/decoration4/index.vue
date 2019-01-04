@@ -9,6 +9,9 @@
       <template v-else>
         <polyline class="lighter-line" :points="`5, 3 ${width - 5},3`" />
         <polyline class="bolder-line" :points="`5, 3 ${width - 5},3`" />
+
+        <!-- <polyline class="lighter-line" :points="`5, 3 ${width - 5},3`" />
+        <polyline class="bolder-line" :points="`5, 3 ${width - 5},3`" /> -->
       </template>
     </svg>
   </div>
@@ -43,8 +46,9 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .decoration-4 {
+  position: relative;
 
   &.normal {
     width: 6px;
@@ -55,6 +59,7 @@ export default {
   }
 
   .svg-container {
+    position: absolute;
 
     &.ani-height {
       width: 100%;

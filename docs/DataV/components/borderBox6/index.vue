@@ -1,6 +1,6 @@
 <template>
-  <div class="border-box-6" :ref="ref">
-    <svg class="svg-container">
+  <div class="dv-border-box-6" :ref="ref">
+    <svg class="dv-svg-container">
       <circle cx="5" cy="5" r="2"/>
       <circle :cx="width - 5" cy="5" r="2" />
       <circle :cx="width - 5" :cy="height - 5" r="2" />
@@ -52,12 +52,12 @@ export default {
 </script>
 
 <style lang="less">
-.border-box-6 {
+.dv-border-box-6 {
   position: relative;
   box-sizing: border-box;
   padding: 10px;
 
-  .svg-container {
+  .dv-svg-container {
     position: absolute;
     top: 0px;
     left: 0px;

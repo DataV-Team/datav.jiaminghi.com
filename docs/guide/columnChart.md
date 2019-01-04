@@ -8,13 +8,13 @@
 
 ## 基本属性
 
-<!-- <full-width-table>
+<full-width-table>
 属性|是否必须|作用|类型|默认值
 :--:|:--:|:--:|:--:|:--:
 data|是|柱状图数据及相关配置|`Object`|`null`
 labelLine|否|柱状图底部标签数据|`Object`|`null`
 colors|否|柱状图全局配色|`Array`|`default`
-</full-width-table> -->
+</full-width-table>
 
 ## 基本柱状图
 <div class="chart-container">

@@ -1,5 +1,5 @@
 <template>
-  <div class="decoration-5">
+  <div class="dv-decoration-5">
     <img src="./img/decoration.gif" />
   </div>
 </template>
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="less">
-.decoration-5 {
+.dv-decoration-5 {
 
   img {
     width: 100%;

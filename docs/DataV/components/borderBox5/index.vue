@@ -1,14 +1,14 @@
 <template>
-  <div class="border-box-5" :ref="ref">
-    <svg :class="`svg-container  ${reverse && 'reverse'}`">
-      <polyline class="line-1" :points="`8, 5 ${width - 5}, 5 ${width - 5}, ${height - 100}
+  <div class="dv-border-box-5" :ref="ref">
+    <svg :class="`dv-svg-container  ${reverse && 'dv-reverse'}`">
+      <polyline class="dv-bb5-line-1" :points="`8, 5 ${width - 5}, 5 ${width - 5}, ${height - 100}
         ${width - 100}, ${height - 5} 8, ${height - 5} 8, 5`" />
-      <polyline class="line-2" :points="`3, 5 ${width - 20}, 5 ${width - 20}, ${height - 60}
+      <polyline class="dv-bb5-line-2" :points="`3, 5 ${width - 20}, 5 ${width - 20}, ${height - 60}
         ${width - 74}, ${height - 5} 3, ${height - 5} 3, 5`" />
-      <polyline class="line-3" :points="`50, 13 ${width - 35}, 13`" />
-      <polyline class="line-4" :points="`15, 20 ${width - 35}, 20`" />
-      <polyline class="line-5" :points="`15, ${height - 20} ${width - 110}, ${height - 20}`" />
-      <polyline class="line-6" :points="`15, ${height - 13} ${width - 110}, ${height - 13}`" />
+      <polyline class="dv-bb5-line-3" :points="`50, 13 ${width - 35}, 13`" />
+      <polyline class="dv-bb5-line-4" :points="`15, 20 ${width - 35}, 20`" />
+      <polyline class="dv-bb5-line-5" :points="`15, ${height - 20} ${width - 110}, ${height - 20}`" />
+      <polyline class="dv-bb5-line-6" :points="`15, ${height - 13} ${width - 110}, ${height - 13}`" />
     </svg>
 
     <slot></slot>
@@ -45,16 +45,16 @@ export default {
 </script>
 
 <style lang="less">
-.border-box-5 {
+.dv-border-box-5 {
   position: relative;
   box-sizing: border-box;
   padding: 20px;
 
-  .reverse {
+  .dv-reverse {
     transform: rotate(180deg);
   }
 
-  .svg-container {
+  .dv-svg-container {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -66,21 +66,21 @@ export default {
     }
   }
 
-  .line-1 {
+  .dv-bb5-line-1 {
     stroke-width: 1;
     stroke: fade(#fff, 35);
   }
 
-  .line-2 {
+  .dv-bb5-line-2 {
     stroke: fade(#fff, 20);
   }
 
-  .line-3, .line-6 {
+  .dv-bb5-line-3, .dv-bb5-line-6 {
     stroke-width: 5;
     stroke: fade(#fff, 15);
   }
 
-  .line-4, .line-5 {
+  .dv-bb5-line-4, .dv-bb5-line-5 {
     stroke-width: 2;
     stroke: fade(#fff, 15);
   }
