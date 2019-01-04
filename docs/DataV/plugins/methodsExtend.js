@@ -125,6 +125,16 @@ export function getAxisPointPos ([max, min], value, axisOriginPos, axisWH, tagPo
   ]
 }
 
+export function observerDomResize (dom, callback) {
+  const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver
+
+  const observer = new MutationObserver(callback)
+
+  observer.observe(dom, { attributes: true, attributeFilter: ['style'], attributeOldValue: true })
+
+  return observer
+}
+
 export default function (Vue) {
   Vue.prototype.deepClone = deepClone
   Vue.prototype.deleteArrayAllItems = deleteArrayAllItems
@@ -139,4 +149,5 @@ export default function (Vue) {
   Vue.prototype.getArrayMin = getArrayMin
   Vue.prototype.getAxisPointPos = getAxisPointPos
   Vue.prototype.getAxisPointsPos = getAxisPointsPos
+  Vue.prototype.observerDomResize = observerDomResize
 }
