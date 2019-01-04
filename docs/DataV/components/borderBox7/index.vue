@@ -17,29 +17,15 @@
 </template>
 
 <script>
+import borderBoxMixin from '../../mixins/borderBoxMixin.js'
+
 export default {
   name: 'BorderBox7',
+  mixins: [borderBoxMixin],
   data () {
     return {
-      ref: `border-box-7-${(new Date()).getTime()}`,
-      width: 0,
-      height: 0
+      ref: `border-box-7-${(new Date()).getTime()}`
     }
-  },
-  methods: {
-    init () {
-      const { $nextTick, $refs, ref } = this
-
-      $nextTick(e => {
-        this.width = $refs[ref].clientWidth
-        this.height = $refs[ref].clientHeight
-      })
-    }
-  },
-  mounted () {
-    const { init } = this
-
-    init()
   }
 }
 </script>
