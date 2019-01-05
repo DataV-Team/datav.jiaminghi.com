@@ -4,6 +4,7 @@ module.exports = {
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }]
   ],
+  host: '192.168.10.150',
   port: 6686,
   locales: {
     '/': {
@@ -47,7 +48,8 @@ module.exports = {
             'decoration',
             'seniorComponent',
             'columnChart'
-          ]
+          ],
+          '/axis/': ['']
         }
       },
       '/EN/': {
