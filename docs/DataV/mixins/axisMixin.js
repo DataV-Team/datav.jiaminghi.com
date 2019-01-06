@@ -1,18 +1,38 @@
 export default {
   data () {
     return {
-      defaultAxisLineColor: '#666',
-      defaultGridLineColor: '#666',
-      defaultTagColor: '#666',
-
-      defaultGridLineType: 'line',
-      defaultGridLineDash: [5, 5],
-
-      defaultXAxisOffset: 30,
-      defaultAxisLineTagGap: 5,
+      // config able
       defaultAxisFontSize: 10,
       defaultAxisFontFamily: 'Arial',
 
+      defaultAxisLineColor: '#666',
+      defaultGridLineColor: '#666',
+      defaultAxisTagColor: '#666',
+      defaultAxisUnitColor: '#666',
+
+      defaultGridLineDash: [2, 2],
+
+      defaultNoAxisLine: false,
+      defaultNoAxisTag: false,
+
+      defaultXAxisOffset: 30,
+      defaultAxisLineTagGap: 5,
+
+      // after merge
+      axisFontSize: 0,
+      axisFontFamily: '',
+
+      axisLineColor: '',
+      gridLineColor: '',
+      axisTagColor: '',
+      axisUnitColor: '',
+
+      gridLineDash: [],
+
+      noAxisLine: '',
+      noAxisTag: '',
+
+      // calc data
       valueMaxMin: [],
       agValueMaxMin: [],
 
@@ -37,9 +57,6 @@ export default {
       addBAAGLabelAxisTag: [],
 
       axisUnit: [],
-
-      axisFontSize: 0,
-      axisFontFamily: '',
 
       axisOffset: [],
 
@@ -75,9 +92,17 @@ export default {
 
       calcAxisUnit()
 
-      const { calcAxisFontData, calcAxisOffset, calcAxisAreaData } = this
+      const { calcAxisFontData, calcAxisColor, calcGridLineDash } = this
 
       calcAxisFontData()
+
+      calcAxisColor()
+
+      calcGridLineDash()
+
+      const { calcAxisLineTagStatus, calcAxisOffset, calcAxisAreaData } = this
+
+      calcAxisLineTagStatus()
 
       calcAxisOffset()
 
@@ -96,20 +121,20 @@ export default {
       calcTagAlign()
     },
     calcValuesMaxMin () {
-      const { data: { data }, calcValueMaxMin } = this
+      const { data: { series }, calcValueMaxMin } = this
 
-      const valueSeries = data.filter(({ againstAxis }) => !againstAxis)
+      const valueSeries = series.filter(({ againstAxis }) => !againstAxis)
 
       if (valueSeries.length) this.valueMaxMin = calcValueMaxMin(valueSeries)
 
-      const agValueSeries = data.filter(({ againstAxis }) => againstAxis)
+      const agValueSeries = series.filter(({ againstAxis }) => againstAxis)
 
       if (agValueSeries.length) this.agValueMaxMin = calcValueMaxMin(agValueSeries)
     },
-    calcValueMaxMin (data) {
+    calcValueMaxMin (series) {
       const { mulValueAdd, calcMulValueAdd, getArrayMax, getArrayMin } = this
 
-      let valueSeries = data.map(({ data: td }) => td)
+      let valueSeries = series.map(({ value }) => value)
 
       const min = getArrayMin(valueSeries)
 
@@ -145,8 +170,8 @@ export default {
         this.agValueAxisMaxMin = getValueAxisMaxMin(agValueAxisTag)
       }
     },
-    calcValueAxisTag ([vmax, vmin], { max, min, num, fixed, data } = {}) {
-      if (data) return data
+    calcValueAxisTag ([vmax, vmin], { max, min, num, fixed, tags } = {}) {
+      if (tags) return tags
 
       let [trueMax, trueMin] = [max, min]
 
@@ -178,9 +203,9 @@ export default {
 
       const labelAxis = horizon ? [y, ay] : [x, ax]
 
-      if (labelAxis[0] && labelAxis[0].data) this.labelAxisTag = labelAxis[0].data
+      if (labelAxis[0] && labelAxis[0].tags) this.labelAxisTag = labelAxis[0].tags
 
-      if (labelAxis[1] && labelAxis[1].data) this.agLabelAxisTag = labelAxis[1].data
+      if (labelAxis[1] && labelAxis[1].tags) this.agLabelAxisTag = labelAxis[1].tags
     },
     calcTagBA () {
       const { data: { x, ax, y, ay } } = this
@@ -223,13 +248,46 @@ export default {
       if (ay && ay.unit) this.axisUnit[3] = ay.unit
     },
     calcAxisFontData () {
-      const { defaultAxisFontSize, defaultAxisFontFamily } = this
+      const { defaultAxisFontSize, defaultAxisFontFamily, data } = this
 
-      const { data: { axisFontSize, axisFontFamily } } = this
+      const { fontSize, fontFamily, axisFontSize, axisFontFamily }= data
 
-      this.axisFontSize = axisFontSize || defaultAxisFontSize
+      this.axisFontSize = axisFontSize || fontSize || defaultAxisFontSize
 
-      this.axisFontFamily = axisFontFamily || defaultAxisFontFamily
+      this.axisFontFamily = axisFontFamily || fontFamily || defaultAxisFontFamily
+    },
+    calcAxisColor () {
+      const { data, defaultAxisTagColor, defaultAxisLineColor, defaultGridLineColor } = this
+
+      const { axisTagColor, axisLineColor, gridLineColor } = data
+
+      this.axisTagColor = axisTagColor || defaultAxisTagColor
+
+      this.axisLineColor = axisLineColor || defaultAxisLineColor
+
+      this.gridLineColor = gridLineColor || defaultGridLineColor
+    },
+    calcGridLineDash () {
+      const { data, defaultGridLineDash } = this
+
+      const { gridLineDash } = data
+
+      if (gridLineDash instanceof Array) {
+        this.gridLineDash = gridLineDash
+      } else if (gridLineDash) {
+        this.gridLineDash = defaultGridLineDash
+      } else {
+        this.gridLineDash = [10, 0]
+      }
+    },
+    calcAxisLineTagStatus () {
+      const { defaultNoAxisLine, defaultNoAxisTag, data } = this
+
+      const { noAxisLine, noAxisTag } = data
+
+      this.noAxisLine = noAxisLine || defaultNoAxisLine
+
+      this.noAxisTag = noAxisTag || defaultNoAxisTag
     },
     calcAxisOffset () {
       const { horizon, axisUnit, defaultXAxisOffset } = this
@@ -370,16 +428,20 @@ export default {
       drawAxisGrid()
     },
     drawAxisLine () {
+      const { noAxisLine } = this
+
+      if (noAxisLine) return
+
       const { ctx, horizon, axisOriginPos, axisAnglePos } = this
 
-      const { defaultAxisLineColor, agValueAxisTag, agLabelAxisTag } = this
+      const { axisLineColor, agValueAxisTag, agLabelAxisTag } = this
 
       const { data: { x, ax, y, ay } } = this
 
       ctx.lineWidth = 1
 
       if (!x || !x.noAxisLine) {
-        ctx.strokeStyle = (x && x.axisLineColor) || defaultAxisLineColor
+        ctx.strokeStyle = (x && x.axisLineColor) || axisLineColor
         ctx.beginPath()
         ctx.moveTo(...axisOriginPos)
         ctx.lineTo(...axisAnglePos.rightBottom)
@@ -387,7 +449,7 @@ export default {
       }
 
       if (!y || !y.noAxisLine) {
-        ctx.strokeStyle = (y && y.axisLineColor) || defaultAxisLineColor
+        ctx.strokeStyle = (y && y.axisLineColor) || axisLineColor
         ctx.beginPath()
         ctx.moveTo(...axisOriginPos)
         ctx.lineTo(...axisAnglePos.leftTop)
@@ -397,7 +459,7 @@ export default {
       const agValueAxis = horizon ? ay : ax
 
       if (agValueAxisTag.length && (!agValueAxis || !agValueAxis.noAxisLine)) {
-        ctx.strokeStyle = (agValueAxis && agValueAxis.axisLineColor) || defaultAxisLineColor
+        ctx.strokeStyle = (agValueAxis && agValueAxis.axisLineColor) || axisLineColor
         ctx.beginPath()
         ctx.moveTo(...(horizon ? axisAnglePos.leftTop : axisAnglePos.rightTop))
         ctx.lineTo(...(horizon ? axisAnglePos.rightTop : axisAnglePos.rightBottom))
@@ -407,7 +469,7 @@ export default {
       const agLebalAxis = horizon ? ax : ay
 
       if (agLabelAxisTag.length && (!agLebalAxis || !agLebalAxis.noAxisLine)) {
-        ctx.strokeStyle = (agLebalAxis && agLebalAxis.axisLineColor) || defaultAxisLineColor
+        ctx.strokeStyle = (agLebalAxis && agLebalAxis.axisLineColor) || axisLineColor
         ctx.beginPath()
         ctx.moveTo(...(horizon ? axisAnglePos.rightTop : axisAnglePos.leftTop))
         ctx.lineTo(...(horizon ? axisAnglePos.rightBottom : axisAnglePos.rightTop))
@@ -415,6 +477,10 @@ export default {
       }
     },
     drawAxisTag () {
+      const { noAxisTag } = this
+
+      if (noAxisTag) return
+
       const { horizon, tagAlign, defaultAxisLineTagGap: offset } = this
 
       const { data: { x, ax, y, ay }, drawAxisSeriesTag } = this
@@ -430,9 +496,9 @@ export default {
       if (!ay || !ay.noAxisTag) drawAxisSeriesTag(...agYAxis.map(td => this[td]), ay, tagAlign.ay, [offset, 0])
     },
     drawAxisSeriesTag (tags, tagPos, { fontSize, fontFamily, tagColor } = {}, align, offset, rotate = false) {
-      const { ctx, defaultAxisFontSize, defaultAxisFontFamily, defaultTagColor, drawColors } = this
+      const { ctx, axisFontSize, axisFontFamily, axisTagColor, drawColors } = this
 
-      let color = tagColor || defaultTagColor
+      let color = tagColor || axisTagColor
 
       color === 'colors' && (color = drawColors)
 
@@ -440,7 +506,7 @@ export default {
 
       const mulColor = color instanceof Array
 
-      ctx.font = `${fontSize || defaultAxisFontSize}px ${fontFamily || defaultAxisFontFamily}`
+      ctx.font = `${fontSize || axisFontSize}px ${fontFamily || axisFontFamily}`
 
       !mulColor && (ctx.fillStyle = color)
 
@@ -469,6 +535,10 @@ export default {
       })
     },
     drawAxisUnit () {
+      const { noAxisTag } = this
+
+      if (noAxisTag) return
+
       const { axisOriginPos, canvasWH, drawUnit, defaultAxisLineTagGap } = this
 
       const { data: { x, ax, y, ay }, axisAnglePos } = this
@@ -494,15 +564,15 @@ export default {
       }
     },
     drawUnit ({ unit, unitColor, fontSize, fontFamily }, pos, align) {
-      const { defaultTagColor, defaultAxisFontSize, defaultAxisFontFamily } = this
+      const { axisTagColor, axisFontSize, axisFontFamily } = this
 
       const { ctx } = this
 
       if (!unit) return
 
-      ctx.font = `${fontSize || defaultAxisFontSize}px ${fontFamily || defaultAxisFontFamily}`
+      ctx.font = `${fontSize || axisFontSize}px ${fontFamily || axisFontFamily}`
 
-      ctx.fillStyle = unitColor || defaultTagColor
+      ctx.fillStyle = unitColor || axisTagColor
 
       ctx.textAlign = align[0]
       ctx.textBaseline = align[1]
@@ -518,15 +588,15 @@ export default {
 
       const xAxis = horizon ? [valueAxisTag, valueAxisTagPos] : [labelAxisTag, labelAxisTagPos]
 
-      let xLLLineStatus = [false, false]
+      let xBELineStatus = [false, false]
 
       if (horizon) {
-        xLLLineStatus = [true, false]
+        xBELineStatus = [true, false]
       } else {
-        xLLLineStatus = boundaryGap ? [false, false] : [true, true]
+        xBELineStatus = boundaryGap ? [false, false] : [true, true]
       }
 
-      if (xAxis[0].length) drawGrid(x, ...xAxis, false, false, true, ...xLLLineStatus)
+      if (xAxis[0].length) drawGrid(x, ...xAxis, false, false, true, ...xBELineStatus)
 
       const yAxis = horizon ? [labelAxisTag, labelAxisTagPos] : [valueAxisTag, valueAxisTagPos]
 
@@ -541,20 +611,25 @@ export default {
       if (agYAxis[0].length) drawGrid(ay, ...agYAxis, true, false, false, true)
     },
     drawGrid (axis = {}, gridTag, gridPos, horizon = true, right = true, top = true, noFirst = false, noLast = false) {
-      const { grid, gridLineColor, gridLineType, gridLineDash } = axis
+      const { grid, gridLineColor: cGLC, gridLineDash: cGLD } = axis
 
       if (!grid) return
 
-      const { defaultGridLineType, defaultGridLineColor, defaultGridLineDash } = this
+      const { gridLineColor, gridLineDash, defaultGridLineDash } = this
 
       const { ctx, drawColors, axisWH } = this
 
-      const trueGridLineType = gridLineType || defaultGridLineType
-      const trueGridLineDash = trueGridLineType === 'dashed' ? (gridLineDash || defaultGridLineDash) : [10, 0]
+      let trueGridLineDash = gridLineDash
+
+      if (cGLD instanceof Array) {
+        trueGridLineDash = cGLD
+      } else if (cGLD === true) {
+        trueGridLineDash = defaultGridLineDash
+      }
 
       ctx.setLineDash(trueGridLineDash)
 
-      let color = gridLineColor || defaultGridLineColor
+      let color = cGLC || gridLineColor
 
       color === 'colors' && (color = drawColors)
 
