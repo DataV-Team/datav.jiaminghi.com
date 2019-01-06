@@ -1,15 +1,15 @@
 export default {
-  data: [
+  series: [
     {
-      data: [175, 125, 90, 130, 45, 65, 65, 47, 50, 52, 45, 37],
+      value: [175, 125, 90, 130, 45, 65, 65, 47, 50, 52, 45, 37],
       fillColor: ['#247efc', '#ff2fdb']
     },
     {
-      data: [210, 142, 128, 142, 63, 72, 68, 57, 54, 60, 49, 42],
+      value: [210, 142, 128, 142, 63, 72, 68, 57, 54, 60, 49, 42],
       fillColor: ['#00BAFF', '#3DE7C9']
     },
     {
-      data: [23, 18, 16, 14, 10, 8, 6, 6, 6, 6, 6, 5],
+      value: [23, 18, 16, 14, 10, 8, 6, 6, 6, 6, 6, 5],
       type: 'polyline',
       againstAxis: true,
       lineColor: '#ff2fdb',
@@ -17,7 +17,7 @@ export default {
     }
   ],
   x: {
-    data: [
+    tags: [
       '一月份', '二月份',
       '三月份', '四月份',
       '五月份', '六月份',
@@ -30,8 +30,7 @@ export default {
   },
   y: {
     grid: true,
-    gridLineType: 'dashed',
-    gridLineDash: [2, 2],
+    gridLineDash: true,
     min: 0,
     max: 250,
     num: 6,

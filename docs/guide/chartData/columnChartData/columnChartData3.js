@@ -1,11 +1,11 @@
 export default {
-  data: [
+  series: [
     {
-      data: [100, 150, 200, 250, 300, 350],
+      value: [100, 150, 200, 250, 300, 350],
       fillColor: '#247efc'
     },
     {
-      data: [
+      value: [
         [20, 35,  60], [30,  45,  70],
         [40, 55,  85], [50,  75, 105],
         [60, 95, 125], [70, 115, 145]
@@ -14,13 +14,12 @@ export default {
     }
   ],
   x: {
-    data: ['西峡', '周口', '南阳', '驻马店', '郑州', '洛阳']
+    tags: ['西峡', '周口', '南阳', '驻马店', '郑州', '洛阳']
   },
   y: {
     unit: '万元',
     grid: true,
-    gridLineType: 'dashed',
-    gridLineDash: [2, 2],
+    gridLineDash: true,
     min: 0,
     max: 450
   },

@@ -1,11 +1,11 @@
 export default {
-  data: [
+  series: [
     {
-      data: [330, 290, 330, 400, 330, 290, 330],
+      value: [330, 290, 330, 400, 330, 290, 330],
       fillColor: ['rgba(0, 186, 255, 0.3)', 'rgba(0, 186, 255, 0)']
     },
     {
-      data: [260, 265, 280, 450, 280, 265, 260],
+      value: [260, 265, 280, 450, 280, 265, 260],
       type: 'smoothline',
       lineType: 'dashed',
       againstAxis: true,
@@ -14,13 +14,12 @@ export default {
     }
   ],
   x: {
-    data: ['西峡', '周口', '南阳', '驻马店', '郑州', '洛阳', '漯河']
+    tags: ['西峡', '周口', '南阳', '驻马店', '郑州', '洛阳', '漯河']
   },
   y: {
     unit: '辆',
     grid: true,
-    gridLineType: 'dashed',
-    gridLineDash: [2, 2],
+    gridLineDash: true,
     num: 6,
     min: 0,
     max: 500
