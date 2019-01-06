@@ -17,12 +17,20 @@ x|否|x轴数据|`Object`|`null`
 y|否|y轴数据|`Object`|`null`
 rx|否|x轴对侧数据|`Object`|`null`
 ry|否|y轴对侧数据|`Object`|`null`
+axisFontSize|否|坐标轴全局fontSize<sup>[1]</sup>|`Int`|`default`
+axisFontFamily|否|坐标轴全局fontFamily<sup>[1]</sup>|`String`|`default`
+axisTagColor|否|坐标轴全局刻度标签颜色|`String|Array`|`default`
+axisLineColor|否|坐标轴全局轴线颜色|`String`|`default`
+gridLineColor|否|坐标轴全局网格颜色|`String|Array`|`default`
+gridLineDash|否|坐标轴全局网格Dash|`Boolean|Array`<sup>[2]</sup>|`default`
+noAxisLine|否|不绘制所有轴线|`Boolean`|`false`
+noAxisTag|否|不绘制所有刻度标签|`Boolean`|`false`
 horizon|否|水平模式|`Boolean`|`false`
 </full-width-table>
 
 ::: warning
-上述五个基本属性只是在相对情况下不是必须的，这不意味着你都不需要配置。
-通常来说，你至少需要配置一项标签刻度
+上述基本属性只是在相对情况下不是必须的，这不意味着你都不需要配置。
+通常来说，你需要配置至少一项标签刻度
 :::
 
 ## 轴位置
@@ -71,11 +79,11 @@ data: {
 <full-width-table>
 属性|是否必须|作用|类型|默认值
 :--:|:--:|:--:|:--:|:--:
-tags|否|数值刻度数据|`Array`|`null`
-max|否|数值刻度最大值|`Int`|`null`
-min|否|数值刻度最小值|`Int`|`null`
+tags|否|数值刻度数据|`Array`|`auto`
+max|否|数值刻度最大值|`Int`|`auto`
+min|否|数值刻度最小值|`Int`|`auto`
 num|否|数值刻度个数|`Int`|`10`
-fixed|否|数值刻度精度位数|`Int`|`null`
+fixed|否|数值刻度精度位数|`Int`|`0`
 </full-width-table>
 
 ::: tip
@@ -125,14 +133,18 @@ data: {
 :--:|:--:|:--:|:--:|:--:
 unit|否|该轴单位|`String`|`null`
 grid|否|该轴是否绘制网格|`Boolean`|`false`
-gridColor|否|网格颜色|`String`|`null`
-gridLineType|否|网格类型|`String`|`line`
-gridLineDash|否|网格Dash|`[Int, Int]`|`[5, 5]`
-noAxisLine|否|不绘制轴线|`Boolean`|`false`
-noAxisTag|否|不绘制刻度标签|`Boolean`|`false`
-tagBefore|否|刻度标签前缀|`String`|`null`
-tagAfter|否|刻度标签后缀|`String`|`null`
-offset|否|该轴偏移量|`Int`|`null`
+gridLineDash|否|该轴网格Dash|`Boolean|Array`<sup>[3]</sup>|`inherit`
+gridLineColor|否|该轴网格颜色|`String|Array`|`inherit`
+axisLineColor|否|该轴轴线颜色|`String`|`inherit`
+tagColor|否|该轴刻度标签颜色|`String|Array`|`inherit`
+unitColor|否|该轴单位标签颜色|`String`|`inherit`
+noAxisLine|否|不绘制该轴轴线|`Boolean`|`false`
+noAxisTag|否|不绘制该轴刻度标签|`Boolean`|`false`
+fontSize|否|该轴fontSize|`Int`|`inherit`
+fontFamily|否|该轴fontFamily|`String`|`inherit`
+tagBefore|否|该轴刻度标签前缀|`String`|`null`
+tagAfter|否|该轴刻度标签后缀|`String`|`null`
+offset|否|该轴偏移量|`Int`|`auto`
 </full-width-table>
 
 ## 水平模式
@@ -144,6 +156,24 @@ offset|否|该轴偏移量|`Int`|`null`
 
 示例 [水平柱状图](/guide/columnChart.html#水平柱状图)
 
+## colors指定
+
+下列几个属性可以用`colors`关键字指代全局`colors`
+
+- `tagColor`
+- `axisTagColor`
+- `gridLineColor`
+
+## 注释
+
+[1] 组件`data`中可能会设置一级属性`fontSize`及`fontFamily`，这时其优先级顺序为
+`axisFontSize|axisFontFamily`>`fontSize|fontFamily`>`默认fontSize|默认fontFamily`
+
+[2] `gridLineDash`为`true`时，将自动设置全局网格为虚线，Dash值为默认值。
+也可配置为`[Int, Int]`形式，将自动设置全局网格Dash
+
+[3] 轴属性下的`gridLineDash`将默认继承组件`data`的一级属性`gridLineDash`或`默认值`。
+当设置为`true`时，强制为默认值
 
 <style lang="less">
 .axis-show-container {
