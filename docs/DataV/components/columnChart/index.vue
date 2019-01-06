@@ -38,7 +38,7 @@ export default {
       defaultColumnBGColor: 'rgba(100, 100, 100, 0.2)',
 
       defaultValueFontSize: 10,
-      defaultValueColor: '#999',
+      defaultValueColor: '#666',
 
       columnData: [],
       columnItemSeriesNum: 0,
@@ -76,7 +76,7 @@ export default {
 
       this.status = false
 
-      if (!data || !data.data) return false
+      if (!data || !data.series) return false
 
       this.status = true
 
@@ -129,9 +129,9 @@ export default {
       drawValueText()
     },
     calcColumnConfig () {
-      const { data: { data, spaceBetween }, labelAxisTagPos, axisOriginPos, horizon } = this
+      const { data: { series, spaceBetween }, labelAxisTagPos, axisOriginPos, horizon } = this
 
-      const columnData = this.columnData = data.filter(({ type }) =>
+      const columnData = this.columnData = series.filter(({ type }) =>
         !(type === 'polyline' || type === 'smoothline'))
 
       const columnItemSeriesNum = this.columnItemSeriesNum = columnData.length
@@ -153,7 +153,7 @@ export default {
     calcColumnItemOffset () {
       const { columnItemSeriesNum, columnItemAllWidth, columnItemWidth } = this
 
-      const { data: { spaceBetween, data } } = this
+      const { data: { spaceBetween, series } } = this
 
       const halfColumnWidth = columnItemWidth / 2
 
@@ -173,7 +173,7 @@ export default {
           columnItemWidth * (i + 1) - halfColumnItemAllWidth)
       }
 
-      this.columnItemOffset = data.map(({ type }) =>
+      this.columnItemOffset = series.map(({ type }) =>
         (type === 'polyline' || type === 'smoothline')
           ? 0
           : columnItemOffset.shift())
@@ -183,24 +183,24 @@ export default {
 
       const { labelAxisTagPos, deepClone, filterNull, multipleSum } = this
 
-      const { data: { data }, axisOriginPos, axisWH, horizon } = this
+      const { data: { series }, axisOriginPos, axisWH, horizon } = this
 
-      const dealAfterData = deepClone(data).map(({ data, againstAxis }) => {
-        if (!(data[0] instanceof Array)) return { data, againstAxis }
+      const dealAfterData = deepClone(series).map(({ value, againstAxis }) => {
+        if (!(value[0] instanceof Array)) return { value, againstAxis }
 
-        const td = data.map(series => series.map((v, i) => {
+        const valueData = value.map(valueSeries => valueSeries.map((v, i) => {
           if (!v && v !== 0) return false
 
-          return multipleSum(...filterNull(series.slice(0, i + 1)))
+          return multipleSum(...filterNull(valueSeries.slice(0, i + 1)))
         }))
 
-        return { data: td, againstAxis }
+        return { value: valueData, againstAxis }
       })
 
-      this.valuePointPos = dealAfterData.map(({ data, againstAxis }) =>
+      this.valuePointPos = dealAfterData.map(({ value, againstAxis }) =>
         getAxisPointsPos(
           againstAxis ? agValueAxisMaxMin : valueAxisMaxMin,
-          data,
+          value,
           axisOriginPos,
           axisWH,
           labelAxisTagPos,
@@ -241,21 +241,21 @@ export default {
       })
     },
     drawFigure () {
-      const { data: { data }, valuePointPos } = this
+      const { data: { series }, valuePointPos } = this
 
       const { drawColumn, drawEchelon, drawline } = this
 
-      data.forEach((series, i) => {
-        switch (series.type) {
+      series.forEach((valueSeries, i) => {
+        switch (valueSeries.type) {
           case 'leftEchelon':
-          case 'rightEchelon': drawEchelon(series, valuePointPos[i], i)
+          case 'rightEchelon': drawEchelon(valueSeries, valuePointPos[i], i)
             break
 
           case 'polyline':
-          case 'smoothline': drawline(series, valuePointPos[i], i)
+          case 'smoothline': drawline(valueSeries, valuePointPos[i], i)
             break
 
-          default: drawColumn(series, valuePointPos[i], i)
+          default: drawColumn(valueSeries, valuePointPos[i], i)
             break
         }
       })
@@ -532,7 +532,7 @@ export default {
 
       if (!showValueText) return
 
-      const { data: { valueTextFontSize, valueTextOffset, data } } = this
+      const { data: { valueTextFontSize, valueTextOffset, series } } = this
 
       const { ctx, defaultValueFontSize } = this
 
@@ -547,9 +547,9 @@ export default {
 
       const { drawSeriesTextValue } = this
 
-      data.forEach((series, i) => drawSeriesTextValue(series, i, trueOffset))
+      series.forEach((seriesItem, i) => drawSeriesTextValue(seriesItem, i, trueOffset))
     },
-    drawSeriesTextValue ({ data, valueTextColor, fillColor, lineColor }, i, trueOffset) {
+    drawSeriesTextValue ({ value, valueTextColor, fillColor, lineColor }, i, trueOffset) {
       const { ctx, valuePointPos, columnItemOffset, drawTexts, getOffsetPoints, drawColors } = this
 
       const { data: { valueTextColor: outerValueTC }, defaultValueColor } = this
@@ -564,10 +564,10 @@ export default {
       const currentPos = valuePointPos[i]
       const currentOffset = columnItemOffset[i]
 
-      const mulSeries = data[0] instanceof Array
+      const mulSeries = value[0] instanceof Array
 
       if (mulSeries) {
-        data.forEach((item, j) => {
+        value.forEach((item, j) => {
           const pointPos = getOffsetPoints(currentPos[j], currentOffset)
 
           item.forEach((v, l) => {
@@ -582,7 +582,7 @@ export default {
         mulColor && (currentColor = currentColor[0])
 
         ctx.fillStyle = currentColor || outerValueTC || defaultValueColor
-        drawTexts(ctx, data, getOffsetPoints(currentPos, currentOffset), trueOffset)
+        drawTexts(ctx, value, getOffsetPoints(currentPos, currentOffset), trueOffset)
       }
     },
     drawTexts (ctx, values, points, [x, y] = [0, 0]) {
