@@ -44,7 +44,7 @@ export default {
 
       setTimeout(() => {
         this.copyAni = false
-      }, 2000)
+      }, 1000)
     }
   }
 }
@@ -87,7 +87,7 @@ export default {
       stroke: #46bd87;
       stroke-width: 3;
       stroke-dasharray: 0 30;
-      transition: all 1s;
+      transition: all 0.5s;
     }
   }
 }
