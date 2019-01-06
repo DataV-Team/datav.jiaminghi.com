@@ -49,7 +49,8 @@ module.exports = {
             'seniorComponent',
             'columnChart'
           ],
-          '/axis/': ['']
+          '/axis/': [''],
+          '/config/': ['']
         }
       },
       '/EN/': {
