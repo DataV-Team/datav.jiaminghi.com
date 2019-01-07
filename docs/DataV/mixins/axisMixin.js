@@ -15,7 +15,7 @@ export default {
       defaultNoAxisLine: false,
       defaultNoAxisTag: false,
 
-      defaultXAxisOffset: 30,
+      defaultXAxisOffset: 20,
       defaultAxisLineTagGap: 5,
 
       // after merge
