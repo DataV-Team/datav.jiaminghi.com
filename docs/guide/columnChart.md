@@ -116,6 +116,7 @@ showValueText|否|是否显示柱值|`Boolean`|`false`
 valueTextColor|否|全局柱值色彩|`String`|`default`
 valueTextOffset|否|柱值偏移量|`[Int, Int]`|`default`
 horizon|否|柱状图是否为水平模式|`Boolean`|`false`
+-|否|[坐标轴基本属性](/axis/#基本属性)|`-`|`-`
 </full-width-table>
 
 ## Series属性表
