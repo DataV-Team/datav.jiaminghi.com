@@ -118,7 +118,7 @@ valueTextOffset|否|柱值偏移量|`[Int, Int]`|`default`
 horizon|否|柱状图是否为水平模式|`Boolean`|`false`
 </full-width-table>
 
-## Series元素属性表
+## Series属性表
 <full-width-table>
 属性|是否必须|作用|类型|默认值
 :--:|:--:|:--:|:--:|:--:

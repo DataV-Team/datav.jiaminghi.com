@@ -47,7 +47,10 @@ module.exports = {
             'borderBox',
             'decoration',
             'seniorComponent',
-            'columnChart'
+            'columnChart',
+            'polylineChart',
+            'pointChart',
+            'radarChart'
           ],
           '/axis/': [''],
           '/config/': ['']
