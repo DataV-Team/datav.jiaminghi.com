@@ -1,5 +1,5 @@
 # 柱状图
-柱状图是数据可视化的重要手段之一，它具有多种形态，通过配置不同的data可以达到不同的展示效果，使用方法如下
+柱状图具有多种形态，使用方法如下
 
 ```html
 <column-chart :data="data" :labelLine="labelLine" :colors="colors" />
