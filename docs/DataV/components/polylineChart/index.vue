@@ -1,12 +1,12 @@
 <template>
   <div class="polyline-chart">
-    <loading v-if="!data" />
+    <loading v-if="!status" />
 
     <div class="canvas-container">
       <canvas :ref="ref" />
     </div>
 
-    <label-line :label="data.labelLine" :colors="drawColors" />
+    <label-line :label="labelLine" :colors="drawColors" />
 
     <for-slot><slot></slot></for-slot>
   </div>
@@ -22,17 +22,19 @@ import axisMixin from '../../mixins/axisMixin.js'
 export default {
   name: 'PolylineChart',
   mixins: [colorsMixin, canvasMixin, axisMixin],
-  props: ['data', 'colors'],
+  props: ['data', 'labelLine', 'colors'],
   data () {
     return {
       ref: `polyline-chart-${(new Date()).getTime()}`,
+
+      status: false,
 
       // axis base config
       boundaryGap: false,
       mulValueAdd: false,
       horizon: false,
 
-      defaultLineDash: [10, 5],
+      defaultLineDash: [2, 2],
       defaultPointRadius: 2,
 
       defaultValueFontSize: 10,
@@ -43,9 +45,9 @@ export default {
   },
   watch: {
     data (d) {
-      const { draw } = this
+      const { checkData, draw } = this
 
-      d && draw()
+      checkData() && draw()
     }
   },
   methods: {
@@ -56,9 +58,20 @@ export default {
 
       initColors()
 
-      const { data, draw } = this
+      const { checkData, draw } = this
 
-      data && draw()
+      checkData() && draw()
+    },
+    checkData () {
+      const { data } = this
+
+      this.status = false
+
+      if (!data || !data.series) return false
+
+      this.status = true
+
+      return true
     },
     draw () {
       const { clearCanvas } = this
@@ -95,12 +108,12 @@ export default {
     calcValuePointPos () {
       const { valueAxisMaxMin, axisOriginPos, axisWH, labelAxisTagPos, horizon } = this
 
-      const { data: { data }, getAxisPointsPos } = this
+      const { data: { series }, getAxisPointsPos } = this
 
-      this.valuePointPos = data.map(({ data, againstAxis }) =>
+      this.valuePointPos = series.map(({ value, againstAxis }) =>
         getAxisPointsPos(
           valueAxisMaxMin,
-          data,
+          value,
           axisOriginPos,
           axisWH,
           labelAxisTagPos,
@@ -108,9 +121,9 @@ export default {
         ))
     },
     drawLines () {
-      const { data: { data }, valuePointPos, drawLine } = this
+      const { data: { series }, valuePointPos, drawLine } = this
 
-      data.forEach((line, i) => drawLine(line, valuePointPos[i], i))
+      series.forEach((line, i) => drawLine(line, valuePointPos[i], i))
     },
     drawLine ({ type, lineType, lineDash, lineColor }, points, i) {
       const { ctx, drawColors, defaultLineDash } = this
@@ -131,11 +144,11 @@ export default {
       drawLineFun(ctx, points, 1, color, false, tureLineDash, true, true)
     },
     drawFills () {
-      const { data: { data }, valuePointPos, drawFill } = this
+      const { data: { series }, valuePointPos, drawFill } = this
 
-      data.forEach((line, i) => drawFill(line, valuePointPos[i]))
+      series.forEach((line, i) => drawFill(line, valuePointPos[i]))
     },
-    drawFill ({ fillColor, type, data }, points) {
+    drawFill ({ fillColor, type, value }, points) {
       if (!fillColor) return
 
       const { canvas: { drawPolylinePath, drawSmoothlinePath } } = this
@@ -145,8 +158,8 @@ export default {
       let drawLineFun = drawPolylinePath
       type === 'smoothline' && (drawLineFun = drawSmoothlinePath)
 
-      const maxValue = Math.max(...filterNull(data))
-      const maxValueIndex = data.findIndex(v => v === maxValue)
+      const maxValue = Math.max(...filterNull(value))
+      const maxValueIndex = value.findIndex(v => v === maxValue)
 
       const color = getGradientColor(points[maxValueIndex], fillColor)
 
@@ -183,9 +196,9 @@ export default {
       }
     },
     drawPoints () {
-      const { data: { data }, valuePointPos, drawPoint } = this
+      const { data: { series }, valuePointPos, drawPoint } = this
 
-      data.forEach((line, i) => drawPoint(line, valuePointPos[i], i))
+      series.forEach((line, i) => drawPoint(line, valuePointPos[i], i))
     },
     drawPoint ({ pointColor }, points, i) {
       const { ctx, drawColors, defaultPointRadius } = this
@@ -197,7 +210,7 @@ export default {
       drawPFun(ctx, points, defaultPointRadius, color)
     },
     drawValues () {
-      const { ctx, data: { data, showValueText, valueTextOffset, valueTextFontSize } } = this
+      const { ctx, data: { series, showValueText, valueTextOffset, valueTextFontSize } } = this
 
       if (!showValueText) return
 
@@ -210,9 +223,9 @@ export default {
       ctx.textAlign = 'center'
       ctx.textBaseline = 'bottom'
 
-      data.forEach((line, i) => drawValue(line, i, offset))
+      series.forEach((line, i) => drawValue(line, i, offset))
     },
-    drawValue ({ data, valueTextColor, lineColor, pointColor, fillColor }, i, offset) {
+    drawValue ({ value, valueTextColor, lineColor, pointColor, fillColor }, i, offset) {
       const { ctx, getOffsetPoints, valuePointPos, drawColors, defaultValueColor } = this
 
       const { data: { valueTextColor: outerValueTC } } = this
@@ -228,9 +241,9 @@ export default {
       const pointsPos = valuePointPos[i]
 
       getOffsetPoints(pointsPos, offset).forEach((pos, i) => {
-        if (!data[i] && data[i] !== 0) return
+        if (!value[i] && value[i] !== 0) return
 
-        ctx.fillText(data[i], ...pos)
+        ctx.fillText(value[i], ...pos)
       })
     },
     getOffsetPoint ([x, y], [ox, oy]) {

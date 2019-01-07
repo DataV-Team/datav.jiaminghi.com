@@ -53,7 +53,7 @@ export default {
     }
   },
   watch: {
-    data (d) {
+    data () {
       const { checkData, draw } = this
 
       checkData() && draw()
