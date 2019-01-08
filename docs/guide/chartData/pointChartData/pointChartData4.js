@@ -14,7 +14,9 @@ const value1 = new Array(50).fill('')
 export default {
   series: [
     {
-      value: value1
+      value: value1,
+      edgeColor: '#e8308c',
+      fillColor: '#ee6d66'
     }
   ],
   x: {
@@ -24,5 +26,5 @@ export default {
     min: 0,
     max: 2000
   },
-  radius: 3.5
+  radius: 4
 }

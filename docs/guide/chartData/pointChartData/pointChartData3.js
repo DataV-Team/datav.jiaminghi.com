@@ -14,7 +14,8 @@ const value1 = new Array(50).fill('')
 export default {
   series: [
     {
-      value: value1
+      value: value1,
+      opacity: true
     }
   ],
   x: {
@@ -24,5 +25,5 @@ export default {
     min: 0,
     max: 2000
   },
-  radius: 3.5
+  radius: 4
 }
