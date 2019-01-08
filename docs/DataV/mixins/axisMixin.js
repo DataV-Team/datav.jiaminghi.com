@@ -175,6 +175,8 @@ export default {
 
       let [trueMax, trueMin] = [max, min]
 
+      if (vmax === 0 && vmin === 0) vmax = 8
+
       const thirdValueMinus = parseInt((vmax - vmin) / 3)
 
       !max && (max !== 0) && (trueMax = vmax + thirdValueMinus)

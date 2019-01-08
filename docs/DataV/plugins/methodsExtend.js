@@ -83,7 +83,9 @@ export function getArrayMin (array) {
 }
 
 export function getAxisPointsPos ([max, min], values, axisOriginPos, axisWH, tagPos, horizon) {
-  const minus = max - min
+  let minus = max - min
+
+  minus === 0 && (minus = 1)
 
   return values.map((value, i) => {
     if (!value && value !== 0) return false
