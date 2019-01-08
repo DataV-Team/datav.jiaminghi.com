@@ -6,7 +6,7 @@
       <canvas :ref="ref" />
     </div>
 
-    <label-line :label="data.labelLine" :colors="drawColors" />
+    <label-line :label="labelLine" :colors="drawColors" />
 
     <for-slot><slot></slot></for-slot>
   </div>
@@ -22,7 +22,7 @@ import axisMixin from '../../mixins/axisMixin.js'
 export default {
   name: 'PointChart',
   mixins: [canvasMixin, colorsMixin, axisMixin],
-  props: ['data', 'colors'],
+  props: ['data', 'labelLine', 'colors'],
   data () {
     return {
       ref: `point-chart-${(new Date()).getTime()}`,
@@ -37,15 +37,35 @@ export default {
       valuePointPos: []
     }
   },
+  watch: {
+    data () {
+      const { checkData, draw } = this
+
+      checkData() && draw()
+    }
+  },
   methods: {
     async init () {
-      const { initCanvas, initColors, data, draw } = this
+      const { initCanvas, initColors } = this
 
       await initCanvas()
 
       initColors()
 
-      data && draw()
+      const { checkData, draw } = this
+
+      checkData() && draw()
+    },
+    checkData () {
+      const { data } = this
+
+      this.status = false
+
+      if (!data || !data.series) return false
+
+      this.status = true
+
+      return true
     },
     draw () {
       const { clearCanvas } = this
@@ -65,14 +85,14 @@ export default {
       drawPoints()
     },
     calcValuePointPos () {
-      const { data: { data }, valueAxisMaxMin, getAxisPointsPos } = this
+      const { data: { series }, valueAxisMaxMin, getAxisPointsPos } = this
 
       const { axisOriginPos, axisWH, labelAxisTagPos } = this
 
-      this.valuePointPos = data.map(({ data: td }, i) =>
+      this.valuePointPos = series.map(({ value }, i) =>
         getAxisPointsPos(
           valueAxisMaxMin,
-          td,
+          value,
           axisOriginPos,
           axisWH,
           labelAxisTagPos,
@@ -80,11 +100,11 @@ export default {
         ))
     },
     drawPoints () {
-      const { data: { data }, drawSeriesPoint, ctx } = this
+      const { data: { series }, drawSeriesPoint, ctx } = this
 
       ctx.setLineDash([10, 0])
 
-      data.forEach((series, i) => drawSeriesPoint(series, i))
+      series.forEach((seriesItem, i) => drawSeriesPoint(seriesItem, i))
     },
     drawSeriesPoint ({ color: cr, edgeColor, fillColor, radius, opacity }, i) {
       const { drawColors, defaultPointRadius, valuePointPos, drawPoint } = this
