@@ -1,17 +1,17 @@
 export default {
-  data: [
+  series: [
     {
-      data: [450, 50, 450, 50, 450, 50],
+      value: [450, 50, 450, 50, 450, 50],
       dashed: true
     },
     {
-      data: [50, 450, 50, 450, 50, 450],
+      value: [50, 450, 50, 450, 50, 450],
       lineColor: '#9cf4df',
       fillColor: 'rgba(238, 233, 108, 0.5)'
     }
   ],
   label: {
-    data: ['西峡', '周口', '南阳', '驻马店', '郑州', '洛阳'],
+    tags: ['西峡', '周口', '南阳', '驻马店', '郑州', '洛阳'],
     color: 'colors',
     fontSize: 10
   },
