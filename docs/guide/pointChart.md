@@ -16,7 +16,7 @@ labelLine|否|散点图底部标签数据|`Object`|`null`
 colors|否|散点图全局配色|`Array`|`default`
 </full-width-table>
 
-## 散点图
+## 基本散点图
 <div class="chart-container">
   <point-chart :data="pointChartData1" :labelLine="labelLine" :colors="colors" class="chart" />
 </div>
