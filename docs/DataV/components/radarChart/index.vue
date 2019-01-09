@@ -65,23 +65,34 @@ export default {
   },
   watch: {
     data (d) {
-      const { reDraw } = this
+      const { checkData, reDraw } = this
 
-      reDraw(d)
+      checkData && reDraw(d)
     },
     color (d) {
-      const { reDraw } = this
+      const { checkData, reDraw } = this
 
-      reDraw(d)
+      checkData && reDraw(d)
     }
   },
   methods: {
     async init () {
-      const { initCanvas, data, draw } = this
+      const { initCanvas, checkData, draw } = this
 
       await initCanvas()
 
-      data && draw()
+      checkData() && draw()
+    },
+    checkData () {
+      const { data } = this
+
+      this.status = false
+
+      if (!data || !data.series) return false
+
+      this.status = true
+
+      return true
     },
     draw () {
       const { ctx, canvasWH } = this
@@ -153,15 +164,15 @@ export default {
     calcRayLineRadianData () {
       const { data: { label, rayLineOffset }, defaultRayLineOffset } = this
 
-      const { data } = label
+      const { tags } = label
 
       const fullRadian = Math.PI * 2
 
-      const radianGap = fullRadian / data.length
+      const radianGap = fullRadian / tags.length
 
       const radianOffset = rayLineOffset || defaultRayLineOffset
 
-      this.rayLineRadianData = data.map((t, i) => radianGap * i + radianOffset)
+      this.rayLineRadianData = tags.map((t, i) => radianGap * i + radianOffset)
     },
     calcRingRadiusData () {
       const { data: { ringNum }, defaultRingNum, radius } = this
@@ -414,7 +425,7 @@ export default {
     drawLable () {
       const { ctx, centerPos: [x], labelPosData, labelColor, labelFontSize, labelMultipleColor } = this
 
-      const { data: { label: { data } } } = this
+      const { data: { label: { tags } } } = this
 
       ctx.font = `${labelFontSize}px Arial`
 
@@ -431,27 +442,27 @@ export default {
 
         labelMultipleColor && (ctx.fillStyle = labelColor[i % colorNum])
 
-        ctx.fillText(data[i], ...pos)
+        ctx.fillText(tags[i], ...pos)
       })
     },
     caclValuePointData () {
-      const { data: { data, max }, centerPos, radius, rayLineRadianData } = this
+      const { data: { series, max }, centerPos, radius, rayLineRadianData } = this
 
       const { canvas: { getCircleRadianPoint } } = this
 
-      const maxValue = max || Math.max(...data.map(({ data: td }) => Math.max(...td)))
+      const maxValue = max || Math.max(...series.map(({ value }) => Math.max(...value)))
 
-      const valueRadius = data.map(({ data: td }) =>
-        td.map(value =>
-          Number.isFinite(value)
-            ? value / maxValue * radius : false))
+      const valueRadius = series.map(({ value }) =>
+        value.map(v =>
+          Number.isFinite(v)
+            ? v / maxValue * radius : false))
 
       this.valuePointData = valueRadius.map(td =>
         td.map((r, i) =>
           r ? getCircleRadianPoint(...centerPos, r, rayLineRadianData[i]) : false))
     },
     fillRadar () {
-      const { ctx, data: { data }, valuePointData, drawColors, filterNull } = this
+      const { ctx, data: { series }, valuePointData, drawColors, filterNull } = this
 
       const { canvas: { drawPolylinePath } } = this
 
@@ -462,10 +473,10 @@ export default {
       valuePointData.forEach((line, i) => {
         const currentColor = drawColors[i % colorNum]
 
-        const lineColor = data[i].lineColor
-        const fillColor = data[i].fillColor
+        const lineColor = series[i].lineColor
+        const fillColor = series[i].fillColor
 
-        data[i].dashed ? ctx.setLineDash([5, 5]) : ctx.setLineDash([10, 0])
+        series[i].dashed ? ctx.setLineDash([5, 5]) : ctx.setLineDash([10, 0])
 
         drawPolylinePath(ctx, filterNull(line), 1, true, true)
 
@@ -479,7 +490,7 @@ export default {
       })
     },
     fillValueText () {
-      const { data: { data, showValueText, valueTextFontSize } } = this
+      const { data: { series, showValueText, valueTextFontSize } } = this
 
       if (!showValueText) return
 
@@ -489,9 +500,9 @@ export default {
 
       const { fillSeriesText } = this
 
-      data.forEach((item, i) => fillSeriesText(item, i))
+      series.forEach((item, i) => fillSeriesText(item, i))
     },
-    fillSeriesText ({ valueTextColor, lineColor, fillColor, data }, i) {
+    fillSeriesText ({ valueTextColor, lineColor, fillColor, value }, i) {
       const { ctx, drawColors, valuePointData, drawTexts } = this
 
       const { data: { valueTextOffset, valueTextColor: outerValueTC }, defaultValueColor } = this
@@ -506,7 +517,7 @@ export default {
 
       ctx.fillStyle = currentColor || outerValueTC || defaultValueColor
 
-      drawTexts(ctx, data, valuePointData[i], trueOffset)
+      drawTexts(ctx, value, valuePointData[i], trueOffset)
     },
     drawTexts (ctx, values, points, [x, y] = [0, 0]) {
       values.forEach((v, i) => {
