@@ -7,7 +7,7 @@
       <canvas :ref="ref" />
     </div>
 
-    <label-line :label="data.labelLine" :colors="drawColors" />
+    <label-line :label="labelLine" :colors="drawColors" />
   </div>
 </template>
 
@@ -19,6 +19,7 @@ import canvasMixin from '../../mixins/canvasMixin.js'
 export default {
   name: 'RadarChart',
   mixins: [canvasMixin, colorsMixin],
+  props: ['data', 'labelLine', 'colors'],
   data () {
     return {
       ref: `radar-chart-${(new Date()).getTime()}`,
@@ -62,7 +63,6 @@ export default {
       valuePointData: []
     }
   },
-  props: ['data', 'colors'],
   watch: {
     data (d) {
       const { reDraw } = this
