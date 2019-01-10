@@ -459,7 +459,7 @@ export default {
 
       this.valuePointData = valueRadius.map(td =>
         td.map((r, i) =>
-          r ? getCircleRadianPoint(...centerPos, r, rayLineRadianData[i]) : false))
+          (r || r === 0) ? getCircleRadianPoint(...centerPos, r, rayLineRadianData[i]) : false))
     },
     fillRadar () {
       const { ctx, data: { series }, valuePointData, drawColors, filterNull } = this
