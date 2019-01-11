@@ -70,7 +70,7 @@ export default {
       ...radarChartData,
 
       labelLine: {
-        data: ['标签1'],
+        labels: ['标签1'],
         color: ['#526df5', '#fc30db'],
         type: 'rectangle'
       },

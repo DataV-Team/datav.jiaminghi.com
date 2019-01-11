@@ -61,7 +61,7 @@ export default {
       ...pointChartData,
 
       labelLine: {
-        data: ['标签1'],
+        labels: ['标签1'],
         color: ['#3de7c9'],
         type: 'rectangle'
       },

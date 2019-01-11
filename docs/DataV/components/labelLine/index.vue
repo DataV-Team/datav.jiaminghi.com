@@ -39,11 +39,11 @@ export default {
 
       if (!label) return
 
-      const { data, color, type } = label
+      const { labels, color, type } = label
 
-      if (!data) return
+      if (!labels) return
 
-      this.labelData = data
+      this.labelData = labels
 
       let trueColor = color || colors
 
