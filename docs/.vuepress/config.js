@@ -50,7 +50,8 @@ module.exports = {
             'columnChart',
             'polylineChart',
             'pointChart',
-            'radarChart'
+            'radarChart',
+            'ringChart'
           ],
           '/axis/': [''],
           '/config/': ['']
