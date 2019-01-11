@@ -1,45 +1,38 @@
 <template>
   <div class="ring-chart">
-    <canvas :ref="ref" />
+    <loading v-if="!status" />
 
-    <loading v-if="!data" />
+    <div class="canvas-container">
+      <canvas :ref="ref" />
 
-    <template v-else>
       <div class="center-info" v-if="data.active">
         <div class="percent-show">{{percent}}</div>
-        <div class="current-label" :ref="labelRef">{{data.data[activeIndex].title}}</div>
+        <div class="current-label" :ref="labelRef">{{data.series[activeIndex].title}}</div>
       </div>
+    </div>
 
-      <div class="label-line">
-        <div class="label-container">
-
-          <div class="label" v-for="(label, index) in data.data" :key="label.title">
-            <div :style="`background-color: ${data.color[index % data.data.length]}`" />
-            <div>{{ label.title }}</div>
-          </div>
-
-        </div>
-      </div>
-    </template>
+    <label-line :label="dealAfterLabelLine" :colors="drawColors" />
   </div>
 </template>
 
 <script>
+import colorsMixin from '../../mixins/colorsMixin.js'
+import canvasMixin from '../../mixins/canvasMixin.js'
+
 export default {
   name: 'RingChart',
-  props: ['data'],
+  props: ['data', 'labelLine', 'colors'],
+  mixins: [colorsMixin, canvasMixin],
   data () {
     return {
       ref: `ring-chart-${(new Date()).getTime()}`,
-      canvasDom: '',
-      canvasWH: [0, 0],
-      ctx: '',
+
+      status: false,
 
       labelRef: `label-ref-${(new Date()).getTime()}`,
       labelDom: '',
 
       ringRadius: '',
-      ringOriginPos: [0, 0],
       ringLineWidth: '',
       maxRingWidthP: 1.15,
 
@@ -58,6 +51,8 @@ export default {
 
       offsetAngle: Math.PI * 0.5 * -1,
 
+      dealAfterLabelLine: [],
+
       percent: 0,
       totalValue: 0,
 
@@ -67,11 +62,9 @@ export default {
   },
   watch: {
     data (d) {
-      const { reDraw } = this
+      const { checkData, reDraw } = this
 
-      if (!d) return
-
-      reDraw()
+      checkData() && reDraw()
     },
     activeIndex () {
       const { doPercentAnimation, doLabelTextAnimation } = this
@@ -82,46 +75,41 @@ export default {
     }
   },
   methods: {
-    init () {
-      const { $nextTick, initCanvas, calcRingConfig, data, draw } = this
+    async init () {
+      const { initCanvas, initColors, calcRingConfig, checkData, draw } = this
 
-      $nextTick(e => {
-        initCanvas()
+      await initCanvas()
 
-        calcRingConfig()
+      initColors()
 
-        data && draw()
-      })
-    },
-    initCanvas () {
-      const { $refs, ref, labelRef, canvasWH } = this
+      calcRingConfig()
 
-      const canvas = this.canvasDom = $refs[ref]
-
-      this.labelDom = $refs[labelRef]
-
-      canvasWH[0] = canvas.clientWidth
-      canvasWH[1] = canvas.clientHeight
-
-      canvas.setAttribute('width', canvasWH[0])
-      canvas.setAttribute('height', canvasWH[1])
-
-      this.ctx = canvas.getContext('2d')
+      checkData() && draw()
     },
     calcRingConfig () {
-      const { canvasWH, ringOriginPos } = this
-
-      ringOriginPos[0] = canvasWH[0] / 2
-      ringOriginPos[1] = (canvasWH[1] - 30) / 2
+      const { canvasWH } = this
 
       const ringRadius = this.ringRadius = Math.min(...canvasWH) * 0.6 / 2
 
       this.ringLineWidth = ringRadius * 0.3
     },
-    draw () {
-      const { ctx, canvasWH } = this
+    checkData () {
+      const { data } = this
 
-      ctx.clearRect(0, 0, ...canvasWH)
+      this.status = false
+
+      if (!data || !data.series) return false
+
+      this.status = true
+
+      return true
+    },
+    draw () {
+      const { clearCanvas, calcLabelLineData } = this
+
+      clearCanvas()
+
+      calcLabelLineData()
 
       const { caclArcData, data: { active }, drawActive, drwaStatic } = this
 
@@ -129,8 +117,17 @@ export default {
 
       active ? drawActive() : drwaStatic()
     },
+    calcLabelLineData () {
+      const { labelLine, deepClone, data: { series } } = this
+
+      if (!labelLine) return
+
+      const dealAfterLabelLine = this.dealAfterLabelLine = deepClone(labelLine)
+
+      if (labelLine.labels === 'inherit') dealAfterLabelLine.labels = series.map(({ title }) => title)
+    },
     caclArcData () {
-      const { data: { data } } = this
+      const { data: { series } } = this
 
       const { getTotalValue, offsetAngle } = this
 
@@ -138,13 +135,13 @@ export default {
 
       const full = 2 * Math.PI
 
-      const aveAngle = full / data.length
+      const aveAngle = full / series.length
 
       let currentPercent = offsetAngle
 
       this.arcData = []
 
-      data.forEach(({ value }) => {
+      series.forEach(({ value }) => {
         const valueAngle = totalValue === 0 ? aveAngle : value / totalValue * full
 
         this.arcData.push([
@@ -154,11 +151,11 @@ export default {
       })
     },
     getTotalValue () {
-      const { data: { data } } = this
+      const { data: { series } } = this
 
       let totalValue = 0
 
-      data.forEach(({ value }) => (totalValue += value))
+      series.forEach(({ value }) => (totalValue += value))
 
       this.totalValue = totalValue
 
@@ -215,30 +212,30 @@ export default {
       this.activeAddStatus = true
     },
     drawRing () {
-      const { arcData, ctx, ringOriginPos, radiusData } = this
+      const { arcData, ctx, centerPos, radiusData } = this
 
-      const { ringLineWidth, data: { color } } = this
+      const { ringLineWidth, drawColors } = this
 
       const arcNum = arcData.length
 
       arcData.forEach((arc, i) => {
         ctx.beginPath()
 
-        ctx.arc(...ringOriginPos, radiusData[i], ...arc)
+        ctx.arc(...centerPos, radiusData[i], ...arc)
 
         ctx.lineWidth = ringLineWidth
 
-        ctx.strokeStyle = color[i % arcNum]
+        ctx.strokeStyle = drawColors[i % arcNum]
 
         ctx.stroke()
       })
     },
     doPercentAnimation () {
-      const { totalValue, percent, activeIndex, data: { data }, doPercentAnimation } = this
+      const { totalValue, percent, activeIndex, data: { series }, doPercentAnimation } = this
 
       if (!totalValue) return
 
-      const currentValue = data[activeIndex].value
+      const currentValue = series[activeIndex].value
 
       let currentPercent = Math.trunc(currentValue / totalValue * 100)
 
@@ -283,7 +280,7 @@ export default {
       drawRing()
     },
     calcAroundLineData () {
-      const { arcData, ringRadius, ringLineWidth, ringOriginPos: [x, y], data: { data }, canvas, totalValue } = this
+      const { arcData, ringRadius, ringLineWidth, centerPos: [x, y], data: { series }, canvas, totalValue } = this
 
       const { getCircleRadianPoint } = canvas
 
@@ -296,7 +293,7 @@ export default {
       const lineLength = 35
 
       this.aroundLineData = aroundLineData.map(([bx, by], i) => {
-        if (!data[i].value && totalValue) return [false, false]
+        if (!series[i].value && totalValue) return [false, false]
 
         const lineEndXPos = (bx > x ? bx + lineLength : bx - lineLength)
 
@@ -307,26 +304,26 @@ export default {
       })
     },
     drawAroundLine () {
-      const { aroundLineData, data: { color }, ctx, canvas: { drawLine } } = this
+      const { aroundLineData, drawColors, ctx, canvas: { drawLine } } = this
 
-      const colorNum = color.length
+      const colorNum = drawColors.length
 
       aroundLineData.forEach(([lineBegin, lineEnd], i) =>
         lineBegin !== false &&
-        drawLine(ctx, lineBegin, lineEnd, 1, color[i % colorNum]))
+        drawLine(ctx, lineBegin, lineEnd, 1, drawColors[i % colorNum]))
     },
     calcAroundTextData () {
-      const { data: { data, fixed }, totalValue } = this
+      const { data: { series, fixed }, totalValue } = this
 
       const aroundTextData = this.aroundTextData = []
 
       if (!totalValue) return data.forEach(({ v, title }, i) => aroundTextData.push([0, title]))
 
-      const dataLast = data.length - 1
+      const dataLast = series.length - 1
 
       let totalPercent = 0
 
-      data.forEach(({ value, title }, i) => {
+      series.forEach(({ value, title }, i) => {
         if (!value) return aroundTextData.push([false, false])
 
         let percent = Number((value / totalValue * 100).toFixed(fixed || 1))
@@ -341,7 +338,7 @@ export default {
       })
     },
     drawAroundText () {
-      const { ctx, aroundTextData, aroundTextFont, aroundLineData, ringOriginPos: [x] } = this
+      const { ctx, aroundTextData, aroundTextFont, aroundLineData, centerPos: [x] } = this
 
       ctx.font = aroundTextFont
       ctx.fillStyle = '#fff'
@@ -381,6 +378,14 @@ export default {
 <style lang="less">
 .ring-chart {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+
+  .canvas-container {
+    position: relative;
+    flex: 1;
+  }
 
   canvas {
     width: 100%;
@@ -392,7 +397,6 @@ export default {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    margin-top: -20px;
     text-align: center;
     font-family: "Microsoft Yahei", Arial, sans-serif;
     max-width: 25%;
@@ -423,39 +427,6 @@ export default {
     @keyframes transform-text {
       to {
         transform: rotateY(360deg);
-      }
-    }
-  }
-
-  .label-line {
-    position: absolute;
-    width: 100%;
-    height: 30px;
-    bottom: 0px;
-    font-size: 12px;
-    line-height: 30px;
-    color: rgba(255, 255, 255, 0.6);
-    display: flex;
-    justify-content: space-around;
-
-    .label-container {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .label {
-      display: flex;
-      flex-direction: row;
-      margin: 0 3px;
-      height: 20px;
-
-      :nth-child(1) {
-        width: 10px;
-        height: 10px;
-        margin-top: 10px;
-        margin-right: 3px;
       }
     }
   }
