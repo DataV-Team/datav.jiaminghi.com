@@ -1,21 +1,26 @@
 <template>
   <div class="concentric-arc-chart">
-    <loading v-if="!data" />
+    <loading v-if="!status" />
 
-    <canvas :ref="ref" />
+    <div class="canvas-container">
+      <canvas :ref="ref" />
+    </div>
   </div>
 </template>
 
 <script>
+import colorsMixin from '../../mixins/colorsMixin.js'
+import canvasMixin from '../../mixins/canvasMixin.js'
+
 export default {
   name: 'ConcentricArcChart',
-  props: ['data'],
+  props: ['data', 'colors'],
+  mixins: [colorsMixin, canvasMixin],
   data () {
     return {
       ref: `concentric-arc-chart-${(new Date()).getTime()}`,
-      canvasDom: '',
-      canvasWH: [0, 0],
-      ctx: '',
+
+      status: false,
 
       arcOriginPos: [],
 
@@ -30,49 +35,37 @@ export default {
     }
   },
   watch: {
-    data (d) {
-      const { draw } = this
+    data () {
+      const { checkData, draw } = this
 
-      d && draw()
+      checkData() && draw()
     }
   },
   methods: {
-    init () {
-      const { $nextTick, initCanvas, calcArcConfig, data, draw } = this
+    async init () {
+      const { initCanvas, initColors, checkData, draw } = this
 
-      $nextTick(e => {
-        initCanvas()
+      await initCanvas()
 
-        calcArcConfig()
+      initColors()
 
-        data && draw()
-      })
+      checkData() && draw()
     },
-    initCanvas () {
-      const { $refs, ref, labelRef, canvasWH } = this
+    checkData () {
+      const { data } = this
 
-      const canvas = this.canvasDom = $refs[ref]
+      this.status = false
 
-      this.labelDom = $refs[labelRef]
+      if (!data || !data.series) return false
 
-      canvasWH[0] = canvas.clientWidth
-      canvasWH[1] = canvas.clientHeight
+      this.status = true
 
-      canvas.setAttribute('width', canvasWH[0])
-      canvas.setAttribute('height', canvasWH[1])
-
-      this.ctx = canvas.getContext('2d')
-    },
-    calcArcConfig () {
-      const { canvasWH, arcOriginPos } = this
-
-      arcOriginPos[0] = canvasWH[0] / 2
-      arcOriginPos[1] = canvasWH[1] / 2
+      return true
     },
     draw () {
-      const { ctx, canvasWH, calcArcRadius, calcArcRadian, calcArcColor, drawArc, drawTitle } = this
+      const { clearCanvas, calcArcRadius, calcArcRadian, calcArcColor, drawArc, drawTitle } = this
 
-      ctx.clearRect(0, 0, ...canvasWH)
+      clearCanvas()
 
       calcArcRadius()
 
@@ -85,11 +78,11 @@ export default {
       drawTitle()
     },
     calcArcRadius () {
-      const { data: { data, arcArea, arcGap }, arcOriginPos, defaultArcRadiusArea, defaultArcGap } = this
+      const { data: { series, arcArea, arcGap }, centerPos, defaultArcRadiusArea, defaultArcGap } = this
 
-      const arcNum = data.length
+      const arcNum = series.length
 
-      const fullRadius = (arcOriginPos[0] > arcOriginPos[1] ? arcOriginPos[1] : arcOriginPos[0])
+      const fullRadius = (centerPos[0] > centerPos[1] ? centerPos[1] : centerPos[0])
 
       const currentArcArea = arcArea || defaultArcRadiusArea
 
@@ -106,27 +99,27 @@ export default {
       this.arcRadius = new Array(arcNum).fill(0).map((t, i) => maxRadius - halfArcLineWidth - fullArcLineWidth * i)
     },
     calcArcRadian () {
-      const { data: { data } } = this
+      const { data: { series } } = this
 
       const fullRadian = Math.PI / 2 * 3
 
       const offsetRadian = Math.PI * 0.5
 
-      this.arcRadian = new Array(data.length).fill(0).map((t, i) => data[i].value * fullRadian - offsetRadian)
+      this.arcRadian = new Array(series.length).fill(0).map((t, i) => series[i].value * fullRadian - offsetRadian)
     },
     calcArcColor () {
       const { ctx, arcLineWidth, defaultArcColor, canvas: { getLinearGradientColor } } = this
 
-      const { data: { color }, arcRadius: [ radius ], arcOriginPos: [x, y] } = this
+      const { drawColors, arcRadius: [ radius ], centerPos: [x, y] } = this
 
-      const colors = color || defaultArcColor
+      const colors = drawColors || defaultArcColor
 
       this.arcColor = getLinearGradientColor(ctx,
         [x, y - radius - arcLineWidth],
         [x, y + radius + arcLineWidth], colors)
     },
     drawArc () {
-      const { ctx, arcRadius, arcRadian, arcOriginPos, arcLineWidth, arcColor } = this
+      const { ctx, arcRadius, arcRadian, centerPos, arcLineWidth, arcColor } = this
 
       const offsetRadian = Math.PI / -2
 
@@ -136,13 +129,13 @@ export default {
       arcRadius.forEach((radius, i) => {
         ctx.beginPath()
 
-        ctx.arc(...arcOriginPos, radius, offsetRadian, arcRadian[i])
+        ctx.arc(...centerPos, radius, offsetRadian, arcRadian[i])
 
         ctx.stroke()
       })
     },
     drawTitle () {
-      const { ctx, data: { data, fontSize }, arcRadius, arcOriginPos: [ x, y ], arcLineWidth } = this
+      const { ctx, data: { series, fontSize }, arcRadius, centerPos: [ x, y ], arcLineWidth } = this
 
       const textEndX = x - 10
 
@@ -153,7 +146,7 @@ export default {
 
       ctx.beginPath()
 
-      data.forEach(({ title }, i) => {
+      series.forEach(({ title }, i) => {
         ctx.fillText(title, textEndX, y - arcRadius[i])
       })
     }
@@ -169,6 +162,14 @@ export default {
 <style lang="less">
 .concentric-arc-chart {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+
+  .canvas-container {
+    position: relative;
+    flex: 1;
+  }
 
   canvas {
     width: 100%;

@@ -1,30 +1,28 @@
 <template>
   <div class="arc-ring-chart">
-    <loading v-if="!data" />
+    <loading v-if="!status" />
 
-    <div class="label-line" v-else>
-      <div class="label-item" v-for="(label, i) in data.data" :key="label.title">
-        <div :style="`background-color: ${data.color[i % data.color.length]};`"></div>
-        <div>{{ label.title }}</div>
-      </div>
+    <div class="canvas-container">
+      <canvas :ref="ref" />
     </div>
 
-    <canvas :ref="ref" />
+    <label-line :label="dealAfterLabelLine" :colors="drawColors" />
   </div>
 </template>
 
 <script>
+import colorsMixin from '../../mixins/colorsMixin.js'
+import canvasMixin from '../../mixins/canvasMixin.js'
+
 export default {
   name: 'ArcRingChart',
-  props: ['data'],
+  props: ['data', 'labelLine', 'colors'],
+  mixins: [colorsMixin, canvasMixin],
   data () {
     return {
       ref: `concentric-arc-chart-${(new Date()).getTime()}`,
-      canvasDom: '',
-      canvasWH: [0, 0],
-      ctx: '',
 
-      arcOriginPos: [],
+      status: false,
 
       defaultDecorationCircleRadius: 0.65,
       defaultArcRadiusArea: [0.3, 0.4],
@@ -41,53 +39,45 @@ export default {
       arcRadian: [],
       arcWidth: [],
 
-      labelLinePoints: []
+      labelLinePoints: [],
+
+      dealAfterLabelLine: []
     }
   },
   watch: {
     data (d) {
-      const { draw } = this
+      const { checkData, draw } = this
 
-      d && draw()
+      checkData() && draw()
     }
   },
   methods: {
-    init () {
-      const { $nextTick, initCanvas, calcArcConfig, data, draw } = this
+    async init () {
+      const { initCanvas, initColors, checkData, draw } = this
 
-      $nextTick(e => {
-        initCanvas()
+      await initCanvas()
 
-        calcArcConfig()
+      initColors()
 
-        data && draw()
-      })
+      checkData() && draw()
     },
-    initCanvas () {
-      const { $refs, ref, labelRef, canvasWH } = this
+    checkData () {
+      const { data } = this
 
-      const canvas = this.canvasDom = $refs[ref]
+      this.status = false
 
-      this.labelDom = $refs[labelRef]
+      if (!data || !data.series) return false
 
-      canvasWH[0] = canvas.clientWidth
-      canvasWH[1] = canvas.clientHeight
+      this.status = true
 
-      canvas.setAttribute('width', canvasWH[0])
-      canvas.setAttribute('height', canvasWH[1])
-
-      this.ctx = canvas.getContext('2d')
-    },
-    calcArcConfig () {
-      const { canvasWH, arcOriginPos } = this
-
-      arcOriginPos[0] = canvasWH[0] / 2
-      arcOriginPos[1] = canvasWH[1] / 2
+      return true
     },
     draw () {
-      const { ctx, canvasWH, drawDecorationCircle } = this
+      const { clearCanvas, calcLabelLineData, drawDecorationCircle } = this
 
-      ctx.clearRect(0, 0, ...canvasWH)
+      clearCanvas()
+
+      calcLabelLineData()
 
       drawDecorationCircle()
 
@@ -109,10 +99,19 @@ export default {
 
       drawLabelText()
     },
-    drawDecorationCircle () {
-      const { ctx, data: { decorationCircleRadius }, defaultDecorationCircleRadius, arcOriginPos } = this
+    calcLabelLineData () {
+      const { labelLine, deepClone, data: { series } } = this
 
-      const radius = this.decorationRadius = Math.min(...arcOriginPos) * (decorationCircleRadius || defaultDecorationCircleRadius)
+      if (!labelLine) return
+
+      const dealAfterLabelLine = this.dealAfterLabelLine = deepClone(labelLine)
+
+      if (labelLine.labels === 'inherit') dealAfterLabelLine.labels = series.map(({ title }) => title)
+    },
+    drawDecorationCircle () {
+      const { ctx, data: { decorationCircleRadius }, defaultDecorationCircleRadius, centerPos } = this
+
+      const radius = this.decorationRadius = Math.min(...centerPos) * (decorationCircleRadius || defaultDecorationCircleRadius)
 
       ctx.beginPath()
 
@@ -120,7 +119,7 @@ export default {
 
       ctx.lineWidth = 4
 
-      ctx.arc(...arcOriginPos, radius, 0, Math.PI * 2)
+      ctx.arc(...centerPos, radius, 0, Math.PI * 2)
 
       ctx.stroke()
 
@@ -128,62 +127,62 @@ export default {
 
       ctx.lineWidth = 1
 
-      ctx.arc(...arcOriginPos, radius - 7, 0, Math.PI * 2)
+      ctx.arc(...centerPos, radius - 7, 0, Math.PI * 2)
 
       ctx.closePath()
 
       ctx.stroke()
     },
     calcArcRadius () {
-      const { data: { data, arcRadiusArea }, defaultArcRadiusArea, arcOriginPos, randomExtend } = this
+      const { data: { series, arcRadiusArea }, defaultArcRadiusArea, centerPos, randomExtend } = this
 
-      const fullRadius = Math.min(...arcOriginPos)
+      const fullRadius = Math.min(...centerPos)
 
       const currentArcRaidusArea = arcRadiusArea || defaultArcRadiusArea
 
       const maxRadius = fullRadius * Math.max(...currentArcRaidusArea)
       const minRadius = fullRadius * Math.min(...currentArcRaidusArea)
 
-      this.arcRadius = data.map(t => randomExtend(minRadius, maxRadius))
+      this.arcRadius = series.map(t => randomExtend(minRadius, maxRadius))
     },
     calcArcRadian () {
-      const { data: { data }, multipleSum, radianOffset } = this
+      const { data: { series }, multipleSum, radianOffset } = this
 
-      const valueSum = this.totalValue = multipleSum(...data.map(({ value }) => value))
+      const valueSum = this.totalValue = multipleSum(...series.map(({ value }) => value))
 
       let radian = radianOffset
 
       const fullRadian = Math.PI * 2
 
-      const avgRadian = fullRadian / data.length
+      const avgRadian = fullRadian / series.length
 
-      this.arcRadian = data.map(({ value }) => {
+      this.arcRadian = series.map(({ value }) => {
         const valueRadian = valueSum === 0 ? avgRadian : value / valueSum * fullRadian
 
         return [radian, (radian += valueRadian)]
       })
     },
     calcArcWidth () {
-      const { data: { data, arcWidthArea }, defaultArcWidthArea, randomExtend } = this
+      const { data: { series, arcWidthArea }, defaultArcWidthArea, randomExtend } = this
 
       const currentArea = arcWidthArea || defaultArcWidthArea
 
       const maxWidth = Math.max(...currentArea)
       const minWidth = Math.min(...currentArea)
 
-      this.arcWidth = data.map(t => randomExtend(minWidth, maxWidth))
+      this.arcWidth = series.map(t => randomExtend(minWidth, maxWidth))
     },
     drawArc () {
-      const { ctx, arcRadius, arcRadian, arcWidth, data: { color }, arcOriginPos } = this
+      const { ctx, arcRadius, arcRadian, arcWidth, drawColors, centerPos } = this
 
-      const colorNum = color.length
+      const colorNum = drawColors.length
 
       arcRadius.forEach((radius, i) => {
         ctx.beginPath()
 
-        ctx.arc(...arcOriginPos, radius, ...arcRadian[i])
+        ctx.arc(...centerPos, radius, ...arcRadian[i])
 
-        ctx.strokeStyle = color[i % colorNum]
+        ctx.strokeStyle = drawColors[i % colorNum]
 
         ctx.lineWidth = arcWidth[i]
 
@@ -191,9 +190,9 @@ export default {
       })
     },
     calcLableLinePoints () {
-      const { arcRadian, arcRadius, arcOriginPos: [x, y], totalValue } = this
+      const { arcRadian, arcRadius, centerPos: [x, y], totalValue } = this
 
-      const { canvas: { getCircleRadianPoint }, data: { data } } = this
+      const { canvas: { getCircleRadianPoint }, data: { series } } = this
 
       let [leftlabelLineNum, rightLabelLineNum] = [0, 0]
 
@@ -202,8 +201,8 @@ export default {
 
         const point = getCircleRadianPoint(x, y, arcRadius[i], middleRadian)
 
-        point[0] > x && (data[i].value || !totalValue) && rightLabelLineNum++
-        point[0] <= x && (data[i].value || !totalValue) && leftlabelLineNum++
+        point[0] > x && (series[i].value || !totalValue) && rightLabelLineNum++
+        point[0] <= x && (series[i].value || !totalValue) && leftlabelLineNum++
 
         return point
       })
@@ -226,7 +225,7 @@ export default {
       const rightNearRadiusX = x + maxRadius + 8
 
       this.labelLinePoints = arcMiddlePoints.map(([px, py], i) => {
-        if (!data[i].value && totalValue) return [false, false, false, false]
+        if (!series[i].value && totalValue) return [false, false, false, false]
 
         if (px > x) {
           const yPos = rightYPos.shift()
@@ -267,15 +266,15 @@ export default {
       }
     },
     drawLabelLine () {
-      const { ctx, labelLinePoints, canvas: { drawPolyline }, data: { color } } = this
+      const { ctx, labelLinePoints, canvas: { drawPolyline }, drawColors } = this
 
-      const colorNum = color.length
+      const colorNum = drawColors.length
 
       labelLinePoints.forEach((polyline, i) =>
-        polyline[0] && drawPolyline(ctx, polyline, 2, color[i % colorNum], false, [10, 0], true))
+        polyline[0] && drawPolyline(ctx, polyline, 2, drawColors[i % colorNum], false, [10, 0], true))
     },
     drawLabelText () {
-      const { ctx, labelLinePoints, data: { data, labelFontSize, fixed }, totalValue, defaultLabelFontSize, arcOriginPos: [x] } = this
+      const { ctx, labelLinePoints, data: { series, labelFontSize, fixed }, totalValue, defaultLabelFontSize, centerPos: [x] } = this
 
       ctx.font = `${labelFontSize || defaultLabelFontSize}px Arial`
 
@@ -283,9 +282,9 @@ export default {
 
       let totalPercent = 0
 
-      const dataLast = data.length - 1
+      const dataLast = series.length - 1
 
-      data.forEach(({ value, title }, i) => {
+      series.forEach(({ value, title }, i) => {
         if (!value && totalValue) return
 
         let currentPercent = (value / totalValue * 100).toFixed(fixed || 1)
@@ -323,36 +322,18 @@ export default {
 <style lang="less">
 .arc-ring-chart {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+
+  .canvas-container {
+    position: relative;
+    flex: 1;
+  }
 
   canvas {
     width: 100%;
     height: 100%;
-  }
-
-  .label-line {
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    font-size: 10px;
-
-    .label-item {
-      display: flex;
-      flex-direction: row;
-      margin: 0px 3px;
-      height: 20px;
-      align-items: center;
-
-      :nth-child(1) {
-        width: 10px;
-        height: 10px;
-        margin-right: 5px;
-      }
-    }
   }
 }
 </style>
