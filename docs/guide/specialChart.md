@@ -16,9 +16,9 @@ sidebarDepth: 2
 <full-width-table>
 属性|是否必须|作用|类型|默认值
 :--:|:--:|:--:|:--:|:--:
-data|是|环状图数据及相关配置|`Object`|`null`
-labelLine|否|环状图底部标签数据|`Object`|`null`
-colors|否|环状图全局配色|`Array`|`default`
+data|是|错位环状图数据及相关配置|`Object`|`null`
+labelLine|否|错位环状图底部标签数据|`Object`|`null`
+colors|否|错位环状图全局配色|`Array`|`default`
 </full-width-table>
 
 <div class="chart-container">
@@ -26,7 +26,7 @@ colors|否|环状图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/specialChartData/specialChartData1.js
+<<< @/docs/guide/codeData/specialChartData/specialChartData1.js
 </fold-box>
 
 ## 同心环状图
@@ -41,8 +41,8 @@ colors|否|环状图全局配色|`Array`|`default`
 <full-width-table>
 属性|是否必须|作用|类型|默认值
 :--:|:--:|:--:|:--:|:--:
-data|是|环状图数据及相关配置|`Object`|`null`
-colors|否|环状图全局配色|`Array`|`default`
+data|是|同心环状图数据及相关配置|`Object`|`null`
+colors|否|同心环状图全局配色|`Array`|`default`
 </full-width-table>
 
 <div class="chart-container">
@@ -50,11 +50,35 @@ colors|否|环状图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/specialChartData/specialChartData2.js
+<<< @/docs/guide/codeData/specialChartData/specialChartData2.js
+</fold-box>
+
+## 简易胶囊图
+
+```html
+<capsule-chart :data="data" :colors="colors" />
+```
+<click-to-copy :info="capsuleChartTag" />
+
+### 基本属性
+
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+data|是|胶囊图图数据及相关配置|`Object`|`null`
+colors|否|胶囊图全局配色|`Array`|`default`
+</full-width-table>
+
+<div class="chart-container">
+  <capsule-chart :data="specialChartData3" :colors="colors" class="chart" />
+</div>
+
+<fold-box>
+<<< @/docs/guide/codeData/specialChartData/specialChartData3.js
 </fold-box>
 
 <script>
-import specialChartData from './chartData/specialChartData'
+import specialChartData from './codeData/specialChartData'
 
 export default {
   data () {

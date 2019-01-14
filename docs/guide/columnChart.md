@@ -22,7 +22,7 @@ colors|否|柱状图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/columnChartData/columnChartData1.js
+<<< @/docs/guide/codeData/columnChartData/columnChartData1.js
 </fold-box>
 
 ## 阴影柱状图
@@ -31,7 +31,7 @@ colors|否|柱状图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/columnChartData/columnChartData2.js
+<<< @/docs/guide/codeData/columnChartData/columnChartData2.js
 </fold-box>
 
 ## 多组柱状图
@@ -40,7 +40,7 @@ colors|否|柱状图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/columnChartData/columnChartData3.js
+<<< @/docs/guide/codeData/columnChartData/columnChartData3.js
 </fold-box>
 
 ## 圆角柱状图
@@ -49,7 +49,7 @@ colors|否|柱状图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/columnChartData/columnChartData4.js
+<<< @/docs/guide/codeData/columnChartData/columnChartData4.js
 </fold-box>
 
 ## 梯形柱状图
@@ -58,7 +58,7 @@ colors|否|柱状图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/columnChartData/columnChartData5.js
+<<< @/docs/guide/codeData/columnChartData/columnChartData5.js
 </fold-box>
 
 ## 折线柱状图
@@ -67,7 +67,7 @@ colors|否|柱状图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/columnChartData/columnChartData6.js
+<<< @/docs/guide/codeData/columnChartData/columnChartData6.js
 </fold-box>
 
 ## 折线柱状图(折线填充)
@@ -76,7 +76,7 @@ colors|否|柱状图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/columnChartData/columnChartData7.js
+<<< @/docs/guide/codeData/columnChartData/columnChartData7.js
 </fold-box>
 
 ## 水平柱状图
@@ -85,7 +85,7 @@ colors|否|柱状图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/columnChartData/columnChartData8.js
+<<< @/docs/guide/codeData/columnChartData/columnChartData8.js
 </fold-box>
 
 ## 极简柱状图
@@ -94,7 +94,7 @@ colors|否|柱状图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/columnChartData/columnChartData9.js
+<<< @/docs/guide/codeData/columnChartData/columnChartData9.js
 </fold-box>
 
 ## Data属性表
@@ -151,7 +151,7 @@ valueTextColor|否|本组柱值颜色|`String`|`null`
 数组颜色将循环应用于构成多组柱的单柱
 
 <script>
-import columnChartData from './chartData/columnChartData/index.js'
+import columnChartData from './codeData/columnChartData/index.js'
 
 export default {
   data () {

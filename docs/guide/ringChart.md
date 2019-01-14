@@ -22,7 +22,7 @@ colors|否|环状图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/ringChartData/ringChartData1.js
+<<< @/docs/guide/codeData/ringChartData/ringChartData1.js
 </fold-box>
 
 ## 动态环状图
@@ -31,11 +31,11 @@ colors|否|环状图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/ringChartData/ringChartData2.js
+<<< @/docs/guide/codeData/ringChartData/ringChartData2.js
 </fold-box>
 
 <script>
-import ringChartData from './chartData/ringChartData'
+import ringChartData from './codeData/ringChartData'
 
 export default {
   data () {

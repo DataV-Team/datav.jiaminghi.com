@@ -22,7 +22,7 @@ colors|否|折线图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/polylineChartData/polylineChartData1.js
+<<< @/docs/guide/codeData/polylineChartData/polylineChartData1.js
 </fold-box>
 
 ## 折线图（曲线）
@@ -31,7 +31,7 @@ colors|否|折线图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/polylineChartData/polylineChartData2.js
+<<< @/docs/guide/codeData/polylineChartData/polylineChartData2.js
 </fold-box>
 
 ## 折线图（虚线）
@@ -40,7 +40,7 @@ colors|否|折线图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/polylineChartData/polylineChartData3.js
+<<< @/docs/guide/codeData/polylineChartData/polylineChartData3.js
 </fold-box>
 
 ## 折线图（填充）
@@ -49,7 +49,7 @@ colors|否|折线图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/polylineChartData/polylineChartData4.js
+<<< @/docs/guide/codeData/polylineChartData/polylineChartData4.js
 </fold-box>
 
 ## 折线图（边界间隔）
@@ -58,7 +58,7 @@ colors|否|折线图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/polylineChartData/polylineChartData5.js
+<<< @/docs/guide/codeData/polylineChartData/polylineChartData5.js
 </fold-box>
 
 ## 折线图（混合）
@@ -67,11 +67,11 @@ colors|否|折线图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/polylineChartData/polylineChartData6.js
+<<< @/docs/guide/codeData/polylineChartData/polylineChartData6.js
 </fold-box>
 
 <script>
-import polylineChartData from './chartData/polylineChartData'
+import polylineChartData from './codeData/polylineChartData'
 
 export default {
   data () {
