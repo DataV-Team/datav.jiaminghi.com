@@ -54,7 +54,8 @@ module.exports = {
             'ringChart',
             'specialChart',
             'percent',
-            'carousel'
+            'carousel',
+            'other'
           ],
           '/axis/': [''],
           '/config/': ['']
