@@ -22,7 +22,7 @@ colors|否|雷达图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/radarChartData/radarChartData1.js
+<<< @/docs/guide/codeData/radarChartData/radarChartData1.js
 </fold-box>
 
 ## 雷达图（多边形）
@@ -31,7 +31,7 @@ colors|否|雷达图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/radarChartData/radarChartData2.js
+<<< @/docs/guide/codeData/radarChartData/radarChartData2.js
 </fold-box>
 
 ## 雷达图（平铺背景色）
@@ -40,7 +40,7 @@ colors|否|雷达图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/radarChartData/radarChartData3.js
+<<< @/docs/guide/codeData/radarChartData/radarChartData3.js
 </fold-box>
 
 ## 雷达图（层叠背景色）
@@ -49,7 +49,7 @@ colors|否|雷达图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/radarChartData/radarChartData4.js
+<<< @/docs/guide/codeData/radarChartData/radarChartData4.js
 </fold-box>
 
 ## 雷达图（环形背景色）
@@ -58,11 +58,11 @@ colors|否|雷达图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/radarChartData/radarChartData5.js
+<<< @/docs/guide/codeData/radarChartData/radarChartData5.js
 </fold-box>
 
 <script>
-import radarChartData from './chartData/radarChartData/index.js'
+import radarChartData from './codeData/radarChartData/index.js'
 
 export default {
   data () {

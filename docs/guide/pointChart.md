@@ -22,7 +22,7 @@ colors|否|散点图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/pointChartData/pointChartData1.js
+<<< @/docs/guide/codeData/pointChartData/pointChartData1.js
 </fold-box>
 
 ## 散点图（点半径）
@@ -31,7 +31,7 @@ colors|否|散点图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/pointChartData/pointChartData2.js
+<<< @/docs/guide/codeData/pointChartData/pointChartData2.js
 </fold-box>
 
 ## 散点图（点透明）
@@ -40,7 +40,7 @@ colors|否|散点图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/pointChartData/pointChartData3.js
+<<< @/docs/guide/codeData/pointChartData/pointChartData3.js
 </fold-box>
 
 ## 散点图（点颜色）
@@ -49,11 +49,11 @@ colors|否|散点图全局配色|`Array`|`default`
 </div>
 
 <fold-box>
-<<< @/docs/guide/chart/pointChartData/pointChartData4.js
+<<< @/docs/guide/codeData/pointChartData/pointChartData4.js
 </fold-box>
 
 <script>
-import pointChartData from './chartData/pointChartData'
+import pointChartData from './codeData/pointChartData'
 
 export default {
   data () {
