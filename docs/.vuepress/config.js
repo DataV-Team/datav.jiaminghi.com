@@ -52,7 +52,9 @@ module.exports = {
             'pointChart',
             'radarChart',
             'ringChart',
-            'specialChart'
+            'specialChart',
+            'percent',
+            'carousel'
           ],
           '/axis/': [''],
           '/config/': ['']
