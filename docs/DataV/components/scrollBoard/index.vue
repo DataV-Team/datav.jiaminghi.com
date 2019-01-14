@@ -42,7 +42,7 @@
 <script>
 export default {
   name: 'scroll-board',
-  props: ['data', 'index', 'html', 'rowNum', 'titleBG', 'waitTime', 'oddBG', 'evenBG', 'columnWidth', 'textAlign', 'carousel'],
+  props: ['data', 'index', 'rowNum', 'titleBG', 'waitTime', 'oddBG', 'evenBG', 'columnWidth', 'textAlign', 'carousel'],
   data () {
     return {
       ref: `scroll-board-${(new Date()).getTime()}`,
@@ -108,11 +108,11 @@ export default {
       this.containerWH[1] = container.clientHeight
     },
     dealData () {
-      const { data: { data, title }, index, deepClone } = this
+      const { data: { series, title }, index, deepClone } = this
 
       if (title) (this.titleData = index ? ['', ...title] : [...title])
 
-      this.allRowData = deepClone(data).map((row, i) =>
+      this.allRowData = deepClone(series).map((row, i) =>
         ({ index: i + 1, data: index ? [i + 1, ...row] : row }))
     },
     calcConfig () {
@@ -137,11 +137,11 @@ export default {
       calcTextAlign()
     },
     calcAllRowColumnNum () {
-      const { data: { data }, index } = this
+      const { data: { series }, index } = this
 
-      this.allRowNum = data.length
+      this.allRowNum = series.length
 
-      this.allColumnNum = data[0].length + (index ? 1 : 0)
+      this.allColumnNum = series[0].length + (index ? 1 : 0)
     },
     calcRowNum () {
       const { rowNum, defaultRowNum } = this
@@ -275,6 +275,7 @@ export default {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  color: #fff;
 
   .title-container {
     height: 35px;

@@ -1,17 +1,17 @@
 <template>
   <div class="capsule-chart">
 
-    <loading v-if="!data" />
+    <loading v-if="!status" />
 
     <template v-else>
       <div class="label-column">
-        <div v-for="item in data.data" :key="item.title">{{ item.title }}</div>
+        <div v-for="item in data.series" :key="item.title">{{ item.title }}</div>
         <div>&nbsp;</div>
       </div>
 
       <div class="capsule-container">
         <div class="capsule-item" v-for="(capsule, index) in capsuleData" :key="index">
-          <div :style="`width: ${capsule * 100}%; background-color: ${data.color[index % data.data.length]};`"></div>
+          <div :style="`width: ${capsule * 100}%; background-color: ${drawColors[index % drawColors.length]};`"></div>
         </div>
         <div class="unit-label">
           <div class="unit-container">
@@ -29,11 +29,16 @@
 </template>
 
 <script>
+import colorsMixin from '../../mixins/colorsMixin.js'
+
 export default {
   name: 'CapsuleChart',
-  props: ['data'],
+  props: ['data', 'colors'],
+  mixins: [colorsMixin],
   data () {
     return {
+      status: false,
+
       capsuleData: [],
       unitData: []
     }
@@ -47,16 +52,27 @@ export default {
   },
   methods: {
     init () {
-      const { data, calcCapsuleAndUnitData } = this
+      const { checkData, initColors, calcCapsuleAndUnitData } = this
 
-      if (!data) return
+      initColors()
 
-      calcCapsuleAndUnitData()
+      checkData() && calcCapsuleAndUnitData()
+    },
+    checkData () {
+      const { data } = this
+
+      this.status = false
+
+      if (!data || !data.series) return false
+
+      this.status = true
+
+      return true
     },
     calcCapsuleAndUnitData () {
-      const { data: { data } } = this
+      const { data: { series } } = this
 
-      const capsuleData = data.map(({ value }) => value)
+      const capsuleData = series.map(({ value }) => value)
 
       const maxValue = Math.max(...capsuleData)
 
@@ -82,6 +98,7 @@ export default {
   flex-direction: row;
   box-sizing: border-box;
   padding: 10px;
+  color: #fff;
 
   .label-column {
     display: flex;
