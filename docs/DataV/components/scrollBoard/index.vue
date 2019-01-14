@@ -1,7 +1,7 @@
 <template>
   <div class="scroll-board" :ref="ref">
 
-    <loading v-if="!data" />
+    <loading v-if="!status" />
 
     <template v-else>
       <div class="title-container"
@@ -49,6 +49,8 @@ export default {
       container: '',
       containerWH: [],
 
+      status: false,
+
       reAnimationTimer: '',
       doFadeTimer: '',
 
@@ -77,19 +79,19 @@ export default {
     }
   },
   watch: {
-    data (d) {
-      const { init } = this
+    data () {
+      const { checkData, init } = this
 
-      d && init()
+      checkData() && init()
     }
   },
   methods: {
     init () {
-      const { data, initDom, stopAnimation, dealData, calcConfig, getCurrentScrollData } = this
+      const { checkData, initDom, stopAnimation, dealData, calcConfig, getCurrentScrollData } = this
 
       initDom()
 
-      if (!data) return
+      if (!checkData()) return
 
       stopAnimation()
 
@@ -106,6 +108,17 @@ export default {
 
       this.containerWH[0] = container.clientWidth
       this.containerWH[1] = container.clientHeight
+    },
+    checkData () {
+      const { data } = this
+
+      this.status = false
+
+      if (!data || !data.series) return false
+
+      this.status = true
+
+      return true
     },
     dealData () {
       const { data: { series, title }, index, deepClone } = this
