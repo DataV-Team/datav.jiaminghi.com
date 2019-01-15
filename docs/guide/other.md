@@ -8,6 +8,13 @@ sidebarDepth: 2
 
 ## 全屏容器
 
+全屏容器将根据屏幕比例，自动进行等比缩放，浏览器全屏后，全屏容器将充满屏幕
+
+```html
+<full-screen-container>content</full-screen-container>
+```
+<click-to-copy :info="fullScreenContainerTag" />
+
 ## 标签行
 主要用于图表类组件底部标签展示（图表类组件多已内置）
 
@@ -75,6 +82,8 @@ import labelLineData from './codeData/labelLineData/index.js'
 export default {
   data () {
     return {
+      fullScreenContainerTag: `<full-screen-container>content</full-screen-container>`,
+
       ...labelLineData,
 
       numberShowTag: `<number-show :number="9999" />`,

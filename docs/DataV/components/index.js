@@ -30,6 +30,7 @@ import percentArc from './percentArc/index.vue'
 import waterLevelPond from './waterLevelPond/index.vue'
 import scrollBoard from './scrollBoard/index.vue'
 
+import fullScreenContainer from './fullScreenContainer'
 import labelLine from './labelLine'
 import forSlot from './forSlot'
 
@@ -66,6 +67,7 @@ export default function (Vue) {
   Vue.component('waterLevelPond', waterLevelPond)
   Vue.component('scrollBoard', scrollBoard)
 
+  Vue.component('fullScreenContainer', fullScreenContainer)
   Vue.component('labelLine', labelLine)
   Vue.component('forSlot', forSlot)
 }
