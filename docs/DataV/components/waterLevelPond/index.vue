@@ -1,5 +1,7 @@
 <template>
   <div class="water-level-pond">
+    <loading v-if="!status" />
+
     <svg class="svg-container">
       <defs>
         <linearGradient :id="id" x1="0%" y1="100%" x2="0%" y2="0%">
@@ -11,14 +13,14 @@
 
       <text :stroke="`url(#${id})`"
         :fill="`url(#${id})`"
-        :x="arcOriginPos[0] + 8"
-        :y="arcOriginPos[1] + 8">
+        :x="centerPos[0] + 8"
+        :y="centerPos[1] + 8">
         {{ (level && Math.max(...level)) || 0 }}%
       </text>
 
       <ellipse v-if="!type || type === 'circle'"
-        :cx="arcOriginPos[0] + 8"
-        :cy="arcOriginPos[1] + 8"
+        :cx="centerPos[0] + 8"
+        :cy="centerPos[1] + 8"
         :rx="canvasWH[0] / 2 + 5"
         :ry="canvasWH[1] / 2 + 5"
         :stroke="`url(#${id})`" />
@@ -35,14 +37,16 @@
 </template>
 
 <script>
+import canvasMixin from '../../mixins/canvasMixin.js'
+
 export default {
   name: 'WaterLevelPond',
+  mixins: [canvasMixin],
   data () {
     return {
       ref: `water-level-pond-${(new Date()).getTime()}`,
-      canvasDom: '',
-      canvasWH: [0, 0],
-      ctx: '',
+
+      status: false,
 
       id: `water-level-pond-${(new Date()).getTime()}`,
 
@@ -54,7 +58,6 @@ export default {
 
       waveAdded: 0.7,
 
-      arcOriginPos: [0, 0],
       drawColor: '',
       linearGradient: [],
       waveTrueNum: '',
@@ -68,6 +71,13 @@ export default {
     }
   },
   props: ['level', 'type', 'colors', 'waveNum', 'waveHeight', 'borderColor', 'noGradient'],
+  watch: {
+    level () {
+      const { checkData, draw } = this
+
+      checkData() && draw()
+    }
+  },
   computed: {
     radius () {
       const { type } = this
@@ -82,42 +92,30 @@ export default {
     }
   },
   methods: {
-    init () {
-      const { $nextTick, initCanvas, calcOriginPos, level, draw } = this
+    async init () {
+      const { initCanvas, checkData, draw } = this
 
-      $nextTick(e => {
-        initCanvas()
+      await initCanvas()
 
-        calcOriginPos()
-
-        level && draw()
-      })
+      checkData() && draw()
     },
-    initCanvas () {
-      const { $refs, ref, labelRef, canvasWH } = this
+    checkData () {
+      const { level } = this
 
-      const canvas = this.canvasDom = $refs[ref]
+      this.status = false
 
-      this.labelDom = $refs[labelRef]
+      if (!level || !level.length) return false
 
-      canvasWH[0] = canvas.clientWidth
-      canvasWH[1] = canvas.clientHeight
+      this.status = true
 
-      canvas.setAttribute('width', canvasWH[0])
-      canvas.setAttribute('height', canvasWH[1])
-
-      this.ctx = canvas.getContext('2d')
-    },
-    calcOriginPos () {
-      const { canvasWH, arcOriginPos } = this
-
-      arcOriginPos[0] = canvasWH[0] / 2
-      arcOriginPos[1] = canvasWH[1] / 2
+      return true
     },
     draw () {
-      const { ctx, canvasWH } = this
+      const { stopAnimation, clearCanvas } = this
 
-      ctx.clearRect(0, 0, ...canvasWH)
+      stopAnimation()
+
+      clearCanvas()
 
       const { initColor, calcBorderLinearColor, calcWaveData } = this
 
@@ -198,9 +196,9 @@ export default {
       this.overXPos = width + waveTrueWidth
     },
     drawWaveAnimation () {
-      const { ctx, canvasWH, drawWaveAnimation } = this
+      const { clearCanvas, drawWaveAnimation } = this
 
-      ctx.clearRect(0, 0, ...canvasWH)
+      clearCanvas()
 
       const { getCurrentPoints, drawCurrentWave, calcNextFramePoints } = this
 
@@ -268,7 +266,7 @@ export default {
     stopAnimation () {
       const { animationHandler } = this
 
-      cancelAnimationFrame(animationHandler)
+      animationHandler && cancelAnimationFrame(animationHandler)
     }
   },
   mounted () {
