@@ -33,15 +33,6 @@ sidebarDepth: 2
 如果想要设置不同的值，可以在**label**内配置**colors**属性
 :::
 
-### 基本属性
-
-<full-width-table>
-属性|是否必须|作用|类型|默认值
-:--:|:--:|:--:|:--:|:--:
-label|是|标签行数据及相关配置|`Object`|`null`
-colors|否|标签行全局配色|`[String]`|`null`
-</full-width-table>
-
 ### 基本标签行
 
 <div class="chart-container">
@@ -61,6 +52,15 @@ colors|否|标签行全局配色|`[String]`|`null`
 <fold-box>
 <<< @/docs/guide/codeData/labelLineData/labelLineData2.js
 </fold-box>
+
+### 基本属性
+
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+label|是|标签行数据及相关配置|`Object`|`null`
+colors|否|标签行全局配色|`[String]`|`null`
+</full-width-table>
 
 ### label属性表
 <full-width-table>
