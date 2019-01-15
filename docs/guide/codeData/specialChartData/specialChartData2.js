@@ -21,7 +21,10 @@ export default {
       title: '漯河'
     }
   ],
+  // 环区域范围区间
   arcArea: [0.3, 0.7],
+  // 环间距
   arcGap: 5,
+  // 标题文字大小
   fontSize: 12
 }

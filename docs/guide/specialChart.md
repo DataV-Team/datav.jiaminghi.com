@@ -11,15 +11,7 @@ sidebarDepth: 2
 ```
 <click-to-copy :info="arcRingChartTag" />
 
-### 基本属性
-
-<full-width-table>
-属性|是否必须|作用|类型|默认值
-:--:|:--:|:--:|:--:|:--:
-data|是|错位环状图数据及相关配置|`Object`|`null`
-labelLine|否|错位环状图底部标签数据|`Object`|`null`
-colors|否|错位环状图全局配色|`Array`|`default`
-</full-width-table>
+### 示例
 
 <div class="chart-container">
   <arc-ring-chart :data="specialChartData1" :labelLine="specialLabelLine" :colors="colors" class="chart" />
@@ -29,6 +21,31 @@ colors|否|错位环状图全局配色|`Array`|`default`
 <<< @/docs/guide/codeData/specialChartData/specialChartData1.js
 </fold-box>
 
+### 基本属性
+
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+data|是|数据及相关配置|`Object`|`null`
+labelLine|否|底部标签数据|`Object`|`null`
+colors|否|全局配色|`Array`|`default`
+</full-width-table>
+
+### data属性表
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+series|是|数据|`[Object]`|`null`
+</full-width-table>
+
+### series元素属性表
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+value|是|单位数据值|`Int`|`null`
+title|是|单位数据标题|`String`|`null`
+</full-width-table>
+
 ## 同心环状图
 
 ```html
@@ -36,14 +53,7 @@ colors|否|错位环状图全局配色|`Array`|`default`
 ```
 <click-to-copy :info="concentricArcRingChartTag" />
 
-### 基本属性
-
-<full-width-table>
-属性|是否必须|作用|类型|默认值
-:--:|:--:|:--:|:--:|:--:
-data|是|同心环状图数据及相关配置|`Object`|`null`
-colors|否|同心环状图全局配色|`Array`|`default`
-</full-width-table>
+### 示例
 
 <div class="chart-container">
   <concentric-arc-chart :data="specialChartData2" :colors="['#00c0ff', '#3de7c9']" class="chart" />
@@ -53,6 +63,33 @@ colors|否|同心环状图全局配色|`Array`|`default`
 <<< @/docs/guide/codeData/specialChartData/specialChartData2.js
 </fold-box>
 
+### 基本属性
+
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+data|是|数据及相关配置|`Object`|`null`
+colors|否|全局配色|`Array`|`default`
+</full-width-table>
+
+### data属性表
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+series|是|数据|`Object`|`null`
+arcArea|否|环区域范围区间|`[Int, Int]`|`default`
+arcGap|否|环间距|`Int`|`default`
+fontSize|否|标题文字大小|`Int`|`default`
+</full-width-table>
+
+### series元素属性表
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+value|是|单位数据值|`Int`|`null`
+title|是|单位数据标题|`String`|`null`
+</full-width-table>
+
 ## 简易胶囊图
 
 ```html
@@ -60,14 +97,7 @@ colors|否|同心环状图全局配色|`Array`|`default`
 ```
 <click-to-copy :info="capsuleChartTag" />
 
-### 基本属性
-
-<full-width-table>
-属性|是否必须|作用|类型|默认值
-:--:|:--:|:--:|:--:|:--:
-data|是|胶囊图图数据及相关配置|`Object`|`null`
-colors|否|胶囊图全局配色|`Array`|`default`
-</full-width-table>
+### 示例
 
 <div class="chart-container">
   <capsule-chart :data="specialChartData3" :colors="colors" class="chart" />
@@ -76,6 +106,30 @@ colors|否|胶囊图全局配色|`Array`|`default`
 <fold-box>
 <<< @/docs/guide/codeData/specialChartData/specialChartData3.js
 </fold-box>
+
+### 基本属性
+
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+data|是|数据及相关配置|`Object`|`null`
+colors|否|全局配色|`Array`|`default`
+</full-width-table>
+
+### data属性表
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+series|是|数据|`[Object]`|`null`
+</full-width-table>
+
+### series元素属性表
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+value|是|单位数据值|`Int`|`null`
+title|是|单位数据标题|`String`|`null`
+</full-width-table>
 
 <script>
 import specialChartData from './codeData/specialChartData'

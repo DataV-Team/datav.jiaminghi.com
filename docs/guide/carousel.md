@@ -83,16 +83,16 @@ sidebarDepth: 2
 <full-width-table>
 属性|是否必须|作用|类型|默认值
 :--:|:--:|:--:|:--:|:--:
-data|是|轮播表数据及相关配置|`Object`|`null`
-index|否|轮播表行索引展示|`Boolean`|`false`
-columnWidth|否|轮播表单列宽度|`[Int]`|`null`
-textAlign|否|轮播表单列对齐方式|`[String]`|`null`
-rowNum|否|轮播表固定行数|`Int`|`5`
-oddBG|否|轮播表奇数行背景色|`String`|`default`
-evenBG|否|轮播表偶数行背景色|`String`|`default`
-titBG|否|轮播表表头背景色|`String`|`default`
-carousel|否|轮播表轮播方式|`String`|`single`
-waitTime|否|轮播表轮播等待时间|`Int(ms)`|`default`
+data|是|数据及相关配置|`Object`|`null`
+index|否|行索引展示|`Boolean`|`false`
+columnWidth|否|表单列宽度|`[Int]`|`null`
+textAlign|否|表单列对齐方式|`[String]`|`null`
+rowNum|否|表固定行数|`Int`|`5`
+oddBG|否|奇数行背景色|`String`|`default`
+evenBG|否|偶数行背景色|`String`|`default`
+titBG|否|表头背景色|`String`|`default`
+carousel|否|轮播方式|`String`|`single`
+waitTime|否|轮播等待时间|`Int(ms)`|`default`
 </full-width-table>
 
 ::: tip
@@ -103,8 +103,8 @@ waitTime|否|轮播表轮播等待时间|`Int(ms)`|`default`
 <full-width-table>
 属性|是否必须|作用|类型|默认值
 :--:|:--:|:--:|:--:|:--:
-series|是|轮播表展示数据|`[Array]`|`null`
-title|否|轮播表表头数据|`[String]`|`null`
+series|是|行数据|`[Array]`|`null`
+title|否|表头数据|`[String]`|`null`
 </full-width-table>
 
 ### 事件表

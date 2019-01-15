@@ -17,5 +17,6 @@ export default {
       title: '驻马店'
     }
   ],
+  // 启用动态效果
   active: true
 }

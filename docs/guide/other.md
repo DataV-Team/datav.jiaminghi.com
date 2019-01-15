@@ -58,17 +58,17 @@ sidebarDepth: 2
 <full-width-table>
 属性|是否必须|作用|类型|默认值
 :--:|:--:|:--:|:--:|:--:
-label|是|标签行数据及相关配置|`Object`|`null`
-colors|否|标签行全局配色|`[String]`|`null`
+label|是|数据及相关配置|`Object`|`null`
+colors|否|全局配色|`[String]`|`null`
 </full-width-table>
 
 ### label属性表
 <full-width-table>
 属性|是否必须|作用|类型|默认值
 :--:|:--:|:--:|:--:|:--:
-labels|是|标签行标签数据|`[String]`|`null`
+labels|是|标签数据|`[String]`|`null`
 type|否|标签行色块形状|`String`|`rect`
-colors|否|标签行全局配色|`[String]`|`null`
+colors|否|全局配色|`[String]`|`null`
 </full-width-table>
 
 ::: warning
