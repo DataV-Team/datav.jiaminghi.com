@@ -12,7 +12,7 @@ export function hexToRgb (hex, opacity) {
   hex = hex.toLowerCase().replace('#', '')
 
   // deal 3bit hex color to 6bit hex color
-  hex.length === 3 && (hex = Array.from(hex).map(hexNum => hexNum + hexNum).join())
+  hex.length === 3 && (hex = Array.from(hex).map(hexNum => hexNum + hexNum).join(''))
 
   let rgb = []
 
