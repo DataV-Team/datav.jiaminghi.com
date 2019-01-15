@@ -14,15 +14,9 @@ sidebarDepth: 2
 ```
 <click-to-copy :info="scrollBoardTag" />
 
-### 基本属性
-
-<full-width-table>
-属性|是否必须|作用|类型|默认值
-:--:|:--:|:--:|:--:|:--:
-data|是|错位环状图数据及相关配置|`Object`|`null`
-labelLine|否|错位环状图底部标签数据|`Object`|`null`
-colors|否|错位环状图全局配色|`Array`|`default`
-</full-width-table>
+::: tip
+展示数据使用**v-html**渲染，因此你可以传递标签，定制个性化元素
+:::
 
 ### 基本轮播表
 
@@ -83,6 +77,55 @@ colors|否|错位环状图全局配色|`Array`|`default`
 <fold-box>
 <<< @/docs/guide/codeData/scrollBoardData/scrollBoardData2.js
 </fold-box>
+
+### 基本属性
+
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+data|是|轮播表数据及相关配置|`Object`|`null`
+index|否|轮播表行索引展示|`Boolean`|`false`
+columnWidth|否|轮播表单列宽度|`[Int]`|`null`
+textAlign|否|轮播表单列对齐方式|`[String]`|`null`
+rowNum|否|轮播表固定行数|`Int`|`5`
+oddBG|否|轮播表奇数行背景色|`String`|`default`
+evenBG|否|轮播表偶数行背景色|`String`|`default`
+titBG|否|轮播表表头背景色|`String`|`default`
+carousel|否|轮播表轮播方式|`String`|`single`
+waitTime|否|轮播表轮播等待时间|`Int(ms)`|`default`
+</full-width-table>
+
+::: tip
+**columnWidth**与**textAlign**允许插入空串占位，占位自动使用默认值
+:::
+
+### data属性表
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+series|是|轮播表展示数据|`[Array]`|`null`
+title|否|轮播表表头数据|`[String]`|`null`
+</full-width-table>
+
+### 事件表
+<full-width-table>
+事件|触发|回调数据
+:--:|:--:|:--:
+click|点击表内元素|`Object`
+</full-width-table>
+
+#### click事件回调数据属性表
+<full-width-table>
+属性|作用|类型
+:--:|:--:|:--:
+data|点击行的数据|`Array`
+rowIndex|点击行的行索引|`Int`
+columnIndex|点击列的列索引|`Int`
+</full-width-table>
+
+::: tip
+行列索引从**1**开始。使用**index: true**展示行索引时，行索引占一列
+:::
 
 <script>
 import scrollBoardData from './codeData/scrollBoardData/index.js'
