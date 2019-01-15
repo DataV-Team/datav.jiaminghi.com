@@ -4,7 +4,7 @@ export default {
       canvasDom: '',
       canvasWH: [0, 0],
       ctx: '',
-      centerPos: []
+      centerPos: [0, 0]
     }
   },
   methods: {
