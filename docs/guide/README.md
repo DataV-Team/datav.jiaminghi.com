@@ -101,5 +101,4 @@ injectConfig({
 ```js
 Vue.prototype.color
 Vue.prototype.canvas
-Vue.prototype.color
 ```
