@@ -10,5 +10,6 @@ export default {
   label: {
     tags: ['西峡', '周口', '南阳', '驻马店', '郑州', '洛阳']
   },
+  // 设置雷达图为为多边形状态
   ringType: 'polyline'
 }

@@ -15,14 +15,19 @@ export default {
     color: 'colors',
     fontSize: 10
   },
+  // 径向射线为虚线
   rayLineType: 'dashed',
+  // 径向射线颜色应用全局配色
   rayLineColor: 'colors',
+  // 指定雷达环数目
   ringNum: 5,
   ringType: 'polyline',
+  // 雷达图背景色填充方式
   ringFillType: 'cover',
   ringFillColor: ['rgba(61, 231, 201, 0.3)', 'rgba(61, 231, 201, 0.1)'],
   ringLineType: 'line',
   ringLineColor: 'rgba(156, 244, 233, 0.2)',
+  // 雷达图旋转角度
   rayLineOffset: Math.PI * -1.5,
   radius: 0.8,
   max: 550
