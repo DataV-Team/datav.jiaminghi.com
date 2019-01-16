@@ -18,11 +18,24 @@
 进度条/轮播表/...
 
 ## 使用
+
 * 你可以使用javascript包管理工具例如：**npm**、**yarn**直接安装组件库
 
 * 亦或者手动下载他们然后置入你的项目中
 
 * 最后在**main.js**中引入即可
+
+::: tip
+组件库依赖less，使用前请确保已安装less
+* npm安装
+```sh
+npm install less less-loader --save
+```
+* yarn安装
+```sh
+yarn add less less-loader --save
+```
+:::
 
 ## 安装
 
