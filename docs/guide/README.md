@@ -58,7 +58,7 @@ yarn add @jiaminghi/data-view -D
 
 * 官网下载
 
-从官网[下载地址](http://datav.jiaminghi.com)去下载
+从官网[下载地址](http://datav.jiaminghi.com/download/datav.zip)去下载
 
 下载完成后将下载后的压缩包进行解压，然后放入你的项目中
 
