@@ -4,6 +4,21 @@
 
 ## Vue Large screen data display component library
 
+## Project setup
+```
+yarn
+```
+
+## Compiles and hot-reloads for development
+```
+yarn dev
+```
+
+## Compiles and minifies for production
+```
+yarn build
+```
+
 [文档官网](http://datav.jiaminghi.com/)
 
 [Document of official website](http://datav.jiaminghi.com/)
