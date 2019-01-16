@@ -132,7 +132,19 @@ arcColor|否|内环颜色|`String|[String]`<sup>[2]</sup>|`default`
 
 [1] **arcColor**为`[String]`时，内环将应用其渐变色
 
+## 进度池
 
+进度池只有一个属性，具体使用示例如下
+
+```html
+<percent-pond :percent="66" />
+```
+<click-to-copy :info="percentPondTag" />
+
+### 示例
+<div class="chart-container" style="height: 150px;">
+  <percent-pond :percent="66" class="chart3" />
+</div>
 
 <script>
 export default {
@@ -145,7 +157,8 @@ export default {
       percentArcTag: `<percent-arc :percent="66" />`,
       percentArcTag1: `<percent-arc :percent="66">66</percent-arc>`,
       percentArcTag2: `<percent-arc :percent="66" arcType="round" :ringLineWidth="8" :arcLineWidth="15"
-        ringColor="#8537e7" :arcColor="['#2755fe', '#ff12cb']">66</percent-arc>`
+        ringColor="#8537e7" :arcColor="['#2755fe', '#ff12cb']">66</percent-arc>`,
+      percentPondTag: `<percent-pond :percent="66" />`
     }
   }
 }
@@ -182,6 +195,16 @@ export default {
     color: #37e3cd;
     font-size: 50px;
     font-weight: bold;
+  }
+
+  .chart3 {
+    position: absolute;
+    height: 100px;
+    width: 200px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #37e3cd;
   }
 }
 </style>

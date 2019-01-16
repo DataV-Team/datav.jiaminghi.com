@@ -72,7 +72,7 @@ rayLineType|否|径向射线线条类型|`String`|`line`
 rayLineColor|否|径向射线颜色|`String`|`default`
 ringNum|否|雷达环数量|`Int`|`default`
 ringType|否|雷达环类型|`Object`|`default`
-ringFillType|否|雷达环色渲染类型|`String`|`default`
+ringFillType|否|雷达环色渲染类型|`String`|`null`
 ringFillColor|否|雷达环渲染颜色|`String|[String]`|`null`
 ringLineType|否|雷达环线条类型|`String`|`dashed`
 ringLineColor|否|雷达环线条颜色|`String|[String]`|`dashed`
@@ -80,10 +80,14 @@ rayLineOffset|否|雷达图旋转角度|`Int`|`default`
 radius|否|雷达环最大半径|`Int`|`default`
 max|否|指定最大值|`Int`|`auto`
 showValueText|否|是否显示数值|`Boolean`|`false`
-valueTextFontSize|否|数值文字大小|`Boolean`|`false`
-valueTextOffset|否|数值文字位置偏移|`Boolean`|`false`
-valueTextColor|否|数值文字颜色|`Boolean`|`false`
+valueTextFontSize|否|数值文字大小|`Int`|`default`
+valueTextOffset|否|数值文字位置偏移|`[Int, Int]`|`default`
+valueTextColor|否|数值文字颜色|`String`|`default`
 </full-width-table>
+
+::: tip
+**ringFillType**的可选值有`cover`、`mulCover`、`ring`
+:::
 
 ## series元素属性表
 
@@ -97,6 +101,26 @@ fillColor|否|指定本组区域填充颜色|`String`|`inherit`
 valueTextColor|否|指定本组数值颜色|`String`|`default`
 </full-width-table>
 
+## label属性表
+
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+tags|是|标题数据|`[String]`|`null`
+color|否|标题颜色|`String|[String]`|`default`
+fontSize|否|标题文字大小|`Int`|`default`
+</full-width-table>
+
+## colors指代
+::: tip
+**rayLineColor**、**ringFillColor**及**label**下属属性**color**都可以使用`colors`作为关键字指代为全局配色
+:::
+
+## inherit继承
+::: tip
+**series**元素中**valueTextColor**可以使用`inherit`关键字指定为继承，
+继承顺序为**lineColor** > **fillColor** > **default**
+:::
 
 <script>
 import radarChartData from './codeData/radarChartData/index.js'

@@ -6,16 +6,6 @@
 ```
 <click-to-copy :info="polylineChartTag" />
 
-## 基本属性
-
-<full-width-table>
-属性|是否必须|作用|类型|默认值
-:--:|:--:|:--:|:--:|:--:
-data|是|折线图数据及相关配置|`Object`|`null`
-labelLine|否|折线图底部标签数据|`Object`|`null`
-colors|否|折线图全局配色|`Array`|`default`
-</full-width-table>
-
 ## 基本折线图
 <div class="chart-container">
   <polyline-chart :data="polylineChartData1" :labelLine="labelLine" :colors="colors" class="chart" />
@@ -69,6 +59,51 @@ colors|否|折线图全局配色|`Array`|`default`
 <fold-box>
 <<< @/docs/guide/codeData/polylineChartData/polylineChartData6.js
 </fold-box>
+
+## 基本属性
+
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+data|是|数据及相关配置|`Object`|`null`
+labelLine|否|底部标签数据|`Object`|`null`
+colors|否|全局配色|`Array`|`default`
+</full-width-table>
+
+## data属性表
+
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+series|是|数据及相关配置|`Object`|`null`
+x|是|x轴数据|`Object`|`null`
+y|否|y轴数据|`Object`|`null`
+boundaryGap|否|启用两端间隙|`Boolean`|`false`
+localGradient|否|启用局部填充渐变|`Boolean`|`false`
+showValueText|否|是否显示数值|`Boolean`|`false`
+valueTextFontSize|否|数值文字大小|`Int`|`default`
+valueTextOffset|否|数值文字位置偏移|`[Int, Int]`|`default`
+valueTextColor|否|数值文字颜色|`String`|`default`
+-|否|[坐标轴基本属性](/axis/#基本属性)|`-`|`-`
+</full-width-table>
+
+## Series元素属性表
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+value|是|单组数据|`[Int]`|`null`
+type|否|设置线条类型（折线/曲线）|`String`<sup>[1]</sup>|`polyline`
+lineType|否|线条类型（实线/虚线）|`String`<sup>[2]</sup>|`line`
+lineColor|否|指定本组线条颜色|`String`|`inherit`
+pointColor|否|指定本组点颜色|`String`|`inherit`
+fillColor|否|指定本组填充颜色|`String|[String]`|`null`
+</full-width-table>
+
+## 注释
+
+[1] **type**可选值有`polyline`和`smoothline`
+
+[2] **lineType**可选值有`line`和`dashed`
 
 <script>
 import polylineChartData from './codeData/polylineChartData'

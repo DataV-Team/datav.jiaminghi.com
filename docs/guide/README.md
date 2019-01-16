@@ -59,7 +59,7 @@ import dataV from '@jiaminghi/data-view'
 Vue.use(dataV)
 ```
 
-## 按需引入
+## 按需引入<Badge text="alpha" type="warn"/>
 你也可以根据需要仅引入部分你需要的组件
 
 ```js
@@ -74,7 +74,7 @@ Vue.use(columnChart)
 // Vue.component(columnChart.name, columnChart)
 ```
 
-## 注入配置
+## 注入配置<Badge text="alpha" type="warn"/>
 如果想要更改某些默认配置，可以进行配置注入
 
 ```js

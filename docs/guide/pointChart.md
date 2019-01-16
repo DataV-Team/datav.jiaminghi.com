@@ -6,16 +6,6 @@
 ```
 <click-to-copy :info="pointChartTag" />
 
-## 基本属性
-
-<full-width-table>
-属性|是否必须|作用|类型|默认值
-:--:|:--:|:--:|:--:|:--:
-data|是|散点图数据及相关配置|`Object`|`null`
-labelLine|否|散点图底部标签数据|`Object`|`null`
-colors|否|散点图全局配色|`Array`|`default`
-</full-width-table>
-
 ## 基本散点图
 <div class="chart-container">
   <point-chart :data="pointChartData1" :labelLine="labelLine" :colors="colors" class="chart" />
@@ -51,6 +41,38 @@ colors|否|散点图全局配色|`Array`|`default`
 <fold-box>
 <<< @/docs/guide/codeData/pointChartData/pointChartData4.js
 </fold-box>
+
+## 基本属性
+
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+data|是|数据及相关配置|`Object`|`null`
+labelLine|否|底部标签数据|`Object`|`null`
+colors|否|全局配色|`Array`|`default`
+</full-width-table>
+
+## data属性表
+
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+series|是|数据及相关配置|`Object`|`null`
+x|是|x轴数据|`Object`|`null`
+y|否|y轴数据|`Object`|`null`
+radius|否|散点半径|`Int`|`default`
+-|否|[坐标轴基本属性](/axis/#基本属性)|`-`|`-`
+</full-width-table>
+
+## Series元素属性表
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+value|是|单组数据|`[Int]`|`null`
+opacity|否|指定本组散点透明效果|`Boolean`|`false`
+edgeColor|否|指定本组散点边线颜色|`String`|`inherit`
+fillColor|否|指定本组散点填充颜色|`String`|`inherit`
+</full-width-table>
 
 <script>
 import pointChartData from './codeData/pointChartData'

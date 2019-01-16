@@ -6,16 +6,6 @@
 ```
 <click-to-copy :info="columnChartTag" />
 
-## 基本属性
-
-<full-width-table>
-属性|是否必须|作用|类型|默认值
-:--:|:--:|:--:|:--:|:--:
-data|是|柱状图数据及相关配置|`Object`|`null`
-labelLine|否|柱状图底部标签数据|`Object`|`null`
-colors|否|柱状图全局配色|`Array`|`default`
-</full-width-table>
-
 ## 基本柱状图
 <div class="chart-container">
   <column-chart :data="columnChartData1" :labelLine="labelLine" :colors="colors" class="chart" />
@@ -97,16 +87,26 @@ colors|否|柱状图全局配色|`Array`|`default`
 <<< @/docs/guide/codeData/columnChartData/columnChartData9.js
 </fold-box>
 
-## Data属性表
+## 基本属性
 
 <full-width-table>
 属性|是否必须|作用|类型|默认值
 :--:|:--:|:--:|:--:|:--:
-series|是|柱状图绘制数据|`[Object]`|`null`
-x|否|柱状图x轴数据|`Object`|`null`
-y|否|柱状图y轴数据|`Object`|`null`
-rx|否|柱状图x轴对侧数据|`Object`|`null`
-ry|否|柱状图y轴对侧数据|`Object`|`null`
+data|是|数据及相关配置|`Object`|`null`
+labelLine|否|底部标签数据|`Object`|`null`
+colors|否|全局配色|`Array`|`default`
+</full-width-table>
+
+## data属性表
+
+<full-width-table>
+属性|是否必须|作用|类型|默认值
+:--:|:--:|:--:|:--:|:--:
+series|是|数据|`[Object]`|`null`
+x|否|x轴数据|`Object`|`null`
+y|否|y轴数据|`Object`|`null`
+rx|否|x轴对侧数据|`Object`|`null`
+ry|否|y轴对侧数据|`Object`|`null`
 showColumnBG|否|是否显示柱背景|`boolean`|`false`
 columnBGColor|否|柱背景色|`String`|`default`
 roundColumn|否|是否设置圆角柱|`Boolean`|`false`
@@ -119,11 +119,11 @@ horizon|否|柱状图是否为水平模式|`Boolean`|`false`
 -|否|[坐标轴基本属性](/axis/#基本属性)|`-`|`-`
 </full-width-table>
 
-## Series属性表
+## Series元素属性表
 <full-width-table>
 属性|是否必须|作用|类型|默认值
 :--:|:--:|:--:|:--:|:--:
-value|是|柱状图单组数据|`Array`|`null`
+value|是|单组数据|`Array`|`null`
 type|否|本组数据展示状态|`String`<sup>[2]</sup>|`default`
 fillColor|否|本组柱填充颜色|`String|Array`<sup>[3]</sup>|`null`
 lineColor|否|线条颜色(柱状形态无效)|`String`|`default`
