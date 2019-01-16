@@ -37,6 +37,19 @@ module.exports = {
             link: '/config/'
           },
           {
+            text: 'Demo',
+            items: [
+              {
+                text: '机电运维管理台',
+                link: 'http://datav.jiaminghi.com/demo/manage-desk/index.html'
+              },
+              {
+                text: '机电设备电子档案',
+                link: 'http://datav.jiaminghi.com/demo/electronic-file/index.html'
+              }
+            ]
+          },
+          {
             text: 'GitHub',
             link: 'https://github.com/jiaming743/DataV'
           }
