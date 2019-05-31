@@ -642,6 +642,37 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
+"@jiaminghi/bezier-curve@*":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@jiaminghi/bezier-curve/-/bezier-curve-0.0.4.tgz#2cc24cc47de00a670b18b83595d93f264cfc48c8"
+  integrity sha512-Q38f9OqOclvsZRCoJ6r32GicshbEjZtpfS0QzWwZbRNK0CDZNkdsUAeSOBGBrd9eOTw+xSu1g24uH6sAB9dH3g==
+
+"@jiaminghi/c-render@*":
+  version "0.2.11"
+  resolved "https://registry.yarnpkg.com/@jiaminghi/c-render/-/c-render-0.2.11.tgz#5d9ec51ce7aac687ceaded74586e71c7e4d719d8"
+  integrity sha512-tuy31LRtrbbYJIIfhSbrYqirlXGhj7MdXNnyn9wYxrtdcHk47mlWPwAJD1OW8dcDxqa40iCz7jt8m7QBT2tfZw==
+  dependencies:
+    "@jiaminghi/bezier-curve" "*"
+    "@jiaminghi/color" "*"
+    "@jiaminghi/transition" "*"
+
+"@jiaminghi/charts@*":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@jiaminghi/charts/-/charts-0.0.1.tgz#edb83237a0e0e9fce7d6a7aa5caa6da8e391ab20"
+  integrity sha512-/J5AZi6/3X2K/PBsgMCs4MayTV+EJlTmdbW6GVy5ueJ6TKAUL4Yt09vcGQ5JP4wG+VJNu0q0ZZ34rLRlYhhWCA==
+  dependencies:
+    "@jiaminghi/c-render" "*"
+
+"@jiaminghi/color@*":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@jiaminghi/color/-/color-0.0.4.tgz#bad2fbdb284c44e7ebac5ca247eb1f4b0e791013"
+  integrity sha512-13gfWzgHVPyyNIX50oYlNcBq1VNfFrK5j6XmxxxwnMCOUQAJpLjJPb/34N5EfngSn3Fn71fsptF/eQSas1l/Kw==
+
+"@jiaminghi/transition@*":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@jiaminghi/transition/-/transition-1.1.6.tgz#ea50db2cd6b7389e9bd0dee94a96650f29092a6c"
+  integrity sha512-bWtFK2obbKWoDp5WY/xluQJvwT2GJ3PsjNY6Z7p8DzAK13OdgUmFTEtMCupqKzjiFaFa7XJ2W7PQSEemR8bTSQ==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"

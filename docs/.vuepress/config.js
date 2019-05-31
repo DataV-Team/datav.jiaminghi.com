@@ -5,7 +5,7 @@ module.exports = {
     ['link', { rel: 'icon', href: '/favicon.ico' }]
   ],
   host: '192.168.10.150',
-  port: 6686,
+  port: 5000,
   locales: {
     '/': {
       lang: 'zh-CN',
@@ -55,23 +55,24 @@ module.exports = {
           }
         ],
         sidebar: {
-          '/guide/': [
-            '',
-            'borderBox',
-            'decoration',
-            'seniorComponent',
-            'columnChart',
-            'polylineChart',
-            'pointChart',
-            'radarChart',
-            'ringChart',
-            'specialChart',
-            'percent',
-            'carousel',
-            'other'
-          ],
-          '/axis/': [''],
-          '/config/': ['']
+          // '/guide/': [
+          //   '',
+          //   'borderBox',
+          //   'decoration',
+          //   'seniorComponent',
+          //   'columnChart',
+          //   'polylineChart',
+          //   'pointChart',
+          //   'radarChart',
+          //   'ringChart',
+          //   'specialChart',
+          //   'percent',
+          //   'carousel',
+          //   'other'
+          // ],
+          // '/axis/': [''],
+          // '/config/': [''],
+          '/dev/': ['']
         }
       },
       '/EN/': {
