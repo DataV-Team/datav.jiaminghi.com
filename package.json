@@ -11,7 +11,8 @@
   "keywords": [
     "vue",
     "dataview",
-    "charts"],
+    "charts"
+  ],
   "author": "JiaMing <743192023@qq.com>",
   "license": "MIT",
   "devDependencies": {
