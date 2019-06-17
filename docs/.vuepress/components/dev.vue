@@ -1,5 +1,6 @@
 <template>
   <div id="dev-container">
+    <decoration-8 class="dev" />
   </div>
 </template>
 
@@ -20,8 +21,9 @@ export default {
   background-color: #282c34;
 
   .dev {
-    width: 100%;
-    height: 100%;
+    width: 500px;
+    height: 70px;
+    box-shadow: 0 0 3px red;
   }
 }
 </style>

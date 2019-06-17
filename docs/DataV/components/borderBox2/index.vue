@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import borderBoxMixin from '../../mixins/borderBoxMixin.js'
+import autoResize from '../../mixins/autoResize.js'
 
 export default {
   name: 'BorderBox2',
-  mixins: [borderBoxMixin],
+  mixins: [autoResize],
   data () {
     return {
       ref: `border-box-2-${(new Date()).getTime()}`

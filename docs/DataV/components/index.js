@@ -13,6 +13,7 @@ import decoration4 from './decoration4/index'
 import decoration5 from './decoration5/index'
 import decoration6 from './decoration6/index'
 import decoration7 from './decoration7/index'
+import decoration8 from './decoration8/index'
 import loading from './loading/index.vue'
 
 import capsuleChart from './capsuleChart/index.vue'
@@ -37,13 +38,13 @@ import forSlot from './forSlot'
 import dvCaugeChart from './caugeChart'
 
 export default function (Vue) {
-  Vue.component('borderBox1', borderBox1)
-  Vue.component('borderBox2', borderBox2)
-  Vue.component('borderBox3', borderBox3)
-  Vue.component('borderBox4', borderBox4)
-  Vue.component('borderBox5', borderBox5)
-  Vue.component('borderBox6', borderBox6)
-  Vue.component('borderBox7', borderBox7)
+  Vue.component('dvBorderBox1', borderBox1)
+  Vue.component('dvBorderBox2', borderBox2)
+  Vue.component('dvBorderBox3', borderBox3)
+  Vue.component('dvBorderBox4', borderBox4)
+  Vue.component('dvBorderBox5', borderBox5)
+  Vue.component('dvBorderBox6', borderBox6)
+  Vue.component('dvBorderBox7', borderBox7)
 
   Vue.component('decoration1', decoration1)
   Vue.component('decoration2', decoration2)
@@ -52,6 +53,8 @@ export default function (Vue) {
   Vue.component('decoration5', decoration5)
   Vue.component('decoration6', decoration6)
   Vue.component('decoration7', decoration7)
+  Vue.component('decoration8', decoration8)
+
   Vue.component('loading', loading)
 
   Vue.component('capsuleChart', capsuleChart)

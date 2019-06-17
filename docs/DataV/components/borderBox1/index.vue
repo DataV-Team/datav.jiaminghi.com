@@ -50,11 +50,8 @@
 </template>
 
 <script>
-import borderBoxMixin from '../../mixins/borderBoxMixin.js'
-
 export default {
   name: 'BorderBox1',
-  mixins: [borderBoxMixin],
   data () {
     return {
       ref: `border-box-1-${(new Date()).getTime()}`,

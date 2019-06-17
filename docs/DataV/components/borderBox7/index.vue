@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import borderBoxMixin from '../../mixins/borderBoxMixin.js'
+import autoResize from '../../mixins/autoResize.js'
 
 export default {
   name: 'BorderBox7',
-  mixins: [borderBoxMixin],
+  mixins: [autoResize],
   data () {
     return {
       ref: `border-box-7-${(new Date()).getTime()}`
