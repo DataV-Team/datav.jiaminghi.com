@@ -1,94 +1,98 @@
 # 装饰
 
-你可以使用装饰去点缀你的页面，以增强视觉效果，类似于边框组件，大部分装饰组件也只需要设置宽高即可
+你可以使用装饰去点缀你的页面，以增强视觉效果，与边框组件相同，他们也是用**SVG**元素绘制的。
 
-## Decoration-1
+::: warning
+设置装饰组件的宽高是必须的，因为他们没有默认宽高。
+:::
+
+## dv-decoration-1
 <div class="decoration-contaier">
-  <decoration-1 class="decoration width" />
+  <dv-decoration-1 class="decoration" style="width:200px;height:50px;" />
 </div>
 
 ```html
-<decoration-1 />
+<dv-decoration-1 style="width:200px;height:50px;" />
 ```
 <click-to-copy :info="info1" />
 
-## Decoration-2
+## dv-decoration-2
 <div class="decoration-contaier">
-  <decoration-2 class="decoration width" />
+  <dv-decoration-2 class="decoration" style="width:200px;height:5px;" />
 </div>
 
 ```html
-<decoration-2 />
+<dv-decoration-2 style="width:200px;height:5px;" />
 ```
 <click-to-copy :info="info2" />
 
-## Decoration-2(reverse)
+## dv-decoration-2(reverse)
 <div class="decoration-contaier">
-  <decoration-2 :reverse="true" class="decoration height" />
+  <dv-decoration-2 :reverse="true" class="decoration" style="width:5px;height:150px;" />
 </div>
 
 ```html
-<decoration-2 :reverse="true" />
+<dv-decoration-2 :reverse="true" style="width:5px;height:150px;" />
 ```
 <click-to-copy :info="info2r" />
 
-## Decoration-3
+## dv-decoration-3
 <div class="decoration-contaier">
-  <decoration-3 class="decoration width" />
+  <dv-decoration-3 class="decoration" style="width:250px;height:30px;" />
 </div>
 
 ```html
-<decoration-3 />
+<decoration-3 style="width:250px;height:30px;" />
 ```
 <click-to-copy :info="info3" />
 
-## Decoration-4
+## dv-decoration-4
 <div class="decoration-contaier">
-  <decoration-4 class="decoration height" />
+  <dv-decoration-4 class="decoration" style="width:5px;height:150px;" />
 </div>
 
 ```html
-<decoration-4 />
+<dv-decoration-4 style="width:5px;height:150px;" />
 ```
 <click-to-copy :info="info4" />
 
-## Decoration-4(reverse)
+## dv-decoration-4(reverse)
 <div class="decoration-contaier">
-  <decoration-4 :reverse="true" class="decoration width" />
+  <dv-decoration-4 :reverse="true" class="decoration" style="width:250px;height:5px;" />
 </div>
 
 ```html
-<decoration-4 :reverse="true" />
+<dv-decoration-4 :reverse="true" style="width:250px;height:5px;" />
 ```
 <click-to-copy :info="info4r" />
 
-## Decoration-5
+## dv-decoration-5
 <div class="decoration-contaier">
-  <decoration-5 class="decoration width" />
+  <dv-decoration-5 class="decoration" style="width:300px;height:40px;" />
 </div>
 
 ```html
-<decoration-5 />
+<dv-decoration-5 style="width:300px;height:40px;" />
 ```
 <click-to-copy :info="info5" />
 
-## Decoration-6
+## dv-decoration-6
 <div class="decoration-contaier">
-  <decoration-6 class="decoration width" />
+  <dv-decoration-6 class="decoration" style="width:300px;height:30px;" />
 </div>
 
 ```html
-<decoration-6 />
+<dv-decoration-6 style="width:300px;height:30px;" />
 ```
 <click-to-copy :info="info6" />
 
-## Decoration-7
+## dv-decoration-7
 <div class="decoration-contaier">
-  <decoration-7 class="decoration width">Decoration</decoration-7>
+  <dv-decoration-7 class="decoration" style="width:150px;height:30px;">Decoration</dv-decoration-7>
 </div>
 
 ```html
-<decoration-7>Decoration</decoration-7>
+<dv-decoration-7 style="width:150px;height:30px;">Decoration</dv-decoration-7>
 ```
 <click-to-copy :info="info7" />
 
@@ -96,15 +100,15 @@
   export default {
     data () {
       return {
-        info1: `<decoration-1 />`,
-        info2: `<decoration-2 />`,
-        info2r: `<decoration-2 :reverse="true" />`,
-        info3: `<decoration-3 />`,
-        info4: `<decoration-4 />`,
-        info4r: `<decoration-4 :reverse="true" />`,
-        info5: `<decoration-5 />`,
-        info6: `<decoration-6 />`,
-        info7: `<decoration-7>Decoration</decoration-7>`,
+        info1: `<dv-decoration-1 style="width:200px;height:50px;" />`,
+        info2: `<dv-decoration-2 style="width:200px;height:5px;" />`,
+        info2r: `<dv-decoration-2 :reverse="true" style="width:5px;height:150px;" />`,
+        info3: `<decoration-3 style="width:250px;height:30px;" />`,
+        info4: `<dv-decoration-4 style="width:5px;height:150px;" />`,
+        info4r: `<dv-decoration-4 :reverse="true" style="width:250px;height:5px;" />`,
+        info5: `<dv-decoration-5 style="width:300px;height:40px;" />"`,
+        info6: `<dv-decoration-6 style="width:300px;height:30px;" />`,
+        info7: `<dv-decoration-7 style="width:150px;height:30px;">Decoration</dv-decoration-7>`,
       }
     }
   }
@@ -123,14 +127,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-
-  .width {
-    width: 300px;
-  }
-
-  .height {
-    height: 130px;
+    color: #7ec699;
+    font-weight: bold;
   }
 }
 </style>

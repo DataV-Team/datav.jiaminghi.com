@@ -1,108 +1,102 @@
 # 边框
 
-边框的使用尤其方便，对于大部分来说你只需要设置他们的宽高即可
+边框均由**SVG**元素绘制，体积轻量不失真，它们的使用极为方便。
 
-::: tip
-大部分边框使用SVG绘制，如果你想要改变此类边框的线条颜色，可以通过CSS去覆盖该边框SVG曲线的stroke属性
-
-```css
-.some-svg-class {
-  stroke: green;
-}
-```
+::: warning
+设置边框组件的宽高是必须的，因为他们没有默认宽高。
 :::
 
-## Border-Box-1
+## dv-border-Box-1
 <div class="border-box-contaier">
-  <border-box-1 class="box" />
+  <dv-border-box-1 class="box">dv-border-box-1</dv-border-box-1>
 </div>
 
 ```html
-<border-box-1></border-box-1>
+<dv-border-box-1>dv-border-box-1</dv-border-box-1>
 ```
 <click-to-copy :info="info1" />
 
-## Border-Box-2
+## dv-border-box-2
 <div class="border-box-contaier">
-  <border-box-2 class="box" />
+  <dv-border-box-2 class="box">dv-border-box-2</dv-border-box-2>
 </div>
 
 ```html
-<border-box-2></border-box-2>
+<dv-border-box-2>dv-border-box-2</dv-border-box-2>
 ```
 <click-to-copy :info="info2" />
 
 
-## Border-Box-3
+## dv-border-box-3
 <div class="border-box-contaier">
-  <border-box-3 class="box" />
+  <dv-border-box-3 class="box">dv-border-box-3</dv-border-box-3>
 </div>
 
 ```html
-<border-box-3></border-box-3>
+<dv-border-box-3>dv-border-box-3</dv-border-box-3>
 ```
 <click-to-copy :info="info3" />
 
-## Border-Box-4
+## dv-border-box-4
 <div class="border-box-contaier">
-  <border-box-4 class="box" />
+  <dv-border-box-4 class="box">dv-border-box-4</dv-border-box-4>
 </div>
 
 ```html
-<border-box-4></border-box-4>
+<dv-border-box-4>dv-border-box-4</dv-border-box-4>
 ```
 <click-to-copy :info="info4" />
 
-## Border-Box-4(reverse)
+## dv-border-box-4(reverse)
 <div class="border-box-contaier">
-  <border-box-4 class="box" :reverse="true" />
+  <dv-border-box-4 :reverse="true" class="box">dv-border-box-4</dv-border-box-4>
 </div>
 
 ```html
-<border-box-4 :reverse="true"></border-box-4>
+<dv-border-box-4 :reverse="true">dv-border-box-4</dv-border-box-4>
 ```
 
-与上边的边框组件略有不同的是，该组件具有旋转形态，你只需要设置reverse属性为true即可
+与上边的边框组件略有不同的是，该组件具有翻转形态，你只需要设置reverse属性为true即可
 
 <click-to-copy :info="info4Reverse" />
 
-## Border-Box-5
+## dv-border-box-5
 <div class="border-box-contaier">
-  <border-box-5 class="box" />
+  <dv-border-box-5 class="box">dv-border-box-5</dv-border-box-5>
 </div>
 
 ```html
-<border-box-5></border-box-5>
+<dv-border-box-5>dv-border-box-5</dv-border-box-5>
 ```
 <click-to-copy :info="info5" />
 
-## Border-Box-5(reverse)
+## dv-border-box-5(reverse)
 <div class="border-box-contaier">
-  <border-box-5 class="box" :reverse="true" />
+  <dv-border-box-5 :reverse="true" class="box">dv-border-box-5</dv-border-box-5>
 </div>
 
 ```html
-<border-box-5 :reverse="true"></border-box-5>
+<dv-border-box-5 :reverse="true">dv-border-box-5</dv-border-box-5>
 ```
 <click-to-copy :info="info5Reverse" />
 
-## Border-Box-6
+## dv-border-box-6
 <div class="border-box-contaier">
-  <border-box-6 class="box" />
+  <dv-border-box-6 class="box">dv-border-box-6</dv-border-box-6>
 </div>
 
 ```html
-<border-box-6></border-box-6>
+<dv-border-box-6>dv-border-box-6</dv-border-box-6>
 ```
 <click-to-copy :info="info6" />
 
-## Border-Box-7
+## dv-border-box-7
 <div class="border-box-contaier">
-  <border-box-7 class="box" />
+  <dv-border-box-7 class="box">dv-border-box-7</dv-border-box-7>
 </div>
 
 ```html
-<border-box-7></border-box-7>
+<dv-border-box-7>dv-border-box-7</dv-border-box-7>
 ```
 <click-to-copy :info="info7" />
 
@@ -110,15 +104,15 @@
 export default {
   data () {
     return {
-      info1: `<border-box-1></border-box-1>`,
-      info2: `<border-box-2></border-box-2>`,
-      info3: `<border-box-3></border-box-3>`,
-      info4: `<border-box-4></border-box-4>`,
-      info4Reverse: `<border-box-4 :reverse="true"></border-box-4>`,
-      info5: `<border-box-5></border-box-5>`,
-      info5Reverse: `<border-box-5 :reverse="true"></border-box-5>`,
-      info6: `<border-box-6></border-box-6>`,
-      info7: `<border-box-7></border-box-7>`
+      info1: `<dv-border-box-1>dv-border-box-1</dv-border-box-1>`,
+      info2: `<dv-border-box-2>dv-border-box-2</dv-border-box-2>`,
+      info3: `<dv-border-box-3>dv-border-box-3</dv-border-box-3>`,
+      info4: `<dv-border-box-4>dv-border-box-4</dv-border-box-4>`,
+      info4Reverse: `<border-box-4 :reverse="true">dv-border-box-4</dv-border-box-4>`,
+      info5: `<dv-border-box-5>dv-border-box-5</dv-border-box-5>`,
+      info5Reverse: `<border-box-5 :reverse="true">dv-border-box-5</dv-border-box-5>`,
+      info6: `<dv-border-box-6>dv-border-box-6</dv-border-box-6>`,
+      info7: `<dv-border-box-7>dv-border-box-7</dv-border-box-7>`
     }
   }
 }
@@ -138,6 +132,14 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    .border-box-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #46bd87;
+      font-weight: bold;
+    }
   }
 }
 </style>

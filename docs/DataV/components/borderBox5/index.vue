@@ -11,7 +11,9 @@
       <polyline class="dv-bb5-line-6" :points="`15, ${height - 13} ${width - 110}, ${height - 13}`" />
     </svg>
 
-    <slot></slot>
+    <div class="border-box-content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -34,7 +36,6 @@ export default {
 .dv-border-box-5 {
   position: relative;
   box-sizing: border-box;
-  padding: 20px;
 
   .dv-reverse {
     transform: rotate(180deg);
@@ -71,5 +72,10 @@ export default {
     stroke: fade(#fff, 15);
   }
 
+  .border-box-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>

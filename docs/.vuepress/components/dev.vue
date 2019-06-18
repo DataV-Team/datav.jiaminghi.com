@@ -1,12 +1,22 @@
 <template>
   <div id="dev-container">
-    <decoration-8 class="dev" />
+    <devcmp class="dev" :config="config" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'dev'
+  name: 'dev',
+  data () {
+    return {
+      config: {
+        shape: 'roundRect',
+        data: [66, 50]
+      }
+    }
+  },
+  created () {
+  }
 }
 </script>
 
@@ -21,9 +31,9 @@ export default {
   background-color: #282c34;
 
   .dev {
-    width: 500px;
-    height: 70px;
-    box-shadow: 0 0 3px red;
+    width: 150px;
+    height: 200px;
+    // box-shadow: 0 0 3px red;
   }
 }
 </style>

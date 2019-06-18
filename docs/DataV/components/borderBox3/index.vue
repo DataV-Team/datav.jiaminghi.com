@@ -11,7 +11,9 @@
         :points="`22, 22 ${width - 4}, 22 ${width - 4}, ${height - 4} 22, ${height - 4} 22, 22`" />
     </svg>
 
-    <slot></slot>
+    <div class="border-box-content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -33,7 +35,6 @@ export default {
 .dv-border-box-3 {
   position: relative;
   box-sizing: border-box;
-  padding: 30px;
 
   .dv-border-svg-container {
     position: absolute;
@@ -54,6 +55,12 @@ export default {
 
   .dv-bb3-line2 {
     stroke-width: 1;
+  }
+
+  .border-box-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

@@ -45,7 +45,9 @@
       </polygon>
     </svg>
 
-    <slot></slot>
+    <div class="border-box-content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -66,7 +68,6 @@ export default {
 .dv-border-box-1 {
   position: relative;
   box-sizing: border-box;
-  padding: 0px;
 
   .border {
     position: absolute;
@@ -86,6 +87,12 @@ export default {
     right: 0px;
     bottom: 0px;
     transform: rotateX(180deg) rotateY(180deg);
+  }
+
+  .border-box-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

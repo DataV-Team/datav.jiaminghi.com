@@ -40,7 +40,6 @@ sidebarDepth: 2
 </div>
 
 <fold-box>
-<<< @/docs/guide/codeData/labelLineData/labelLineData1.js
 </fold-box>
 
 ### 标签行（矩形色块）
@@ -50,7 +49,6 @@ sidebarDepth: 2
 </div>
 
 <fold-box>
-<<< @/docs/guide/codeData/labelLineData/labelLineData2.js
 </fold-box>
 
 ### 基本属性
@@ -100,14 +98,11 @@ number|是|用于展示的数值|`String|Int`|`null`
 </div>
 
 <script>
-import labelLineData from './codeData/labelLineData/index.js'
 
 export default {
   data () {
     return {
       fullScreenContainerTag: `<full-screen-container>content</full-screen-container>`,
-
-      ...labelLineData,
 
       numberShowTag: `<number-show :number="9999" />`,
 

@@ -11,7 +11,9 @@
       <circle cx="11" :cy="height - 11" r="1" />
     </svg>
 
-    <slot></slot>
+    <div class="border-box-content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -33,7 +35,6 @@ export default {
 .dv-border-box-2 {
   position: relative;
   box-sizing: border-box;
-  padding: 30px;
 
   .dv-border-svg-container {
     position: absolute;
@@ -58,6 +59,12 @@ export default {
 
   .dv-bb2-line2 {
     stroke: fade(#fff, 60);
+  }
+
+  .border-box-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

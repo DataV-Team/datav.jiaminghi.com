@@ -55,21 +55,16 @@ module.exports = {
           }
         ],
         sidebar: {
-          // '/guide/': [
-          //   '',
-          //   'borderBox',
-          //   'decoration',
-          //   'seniorComponent',
-          //   'columnChart',
-          //   'polylineChart',
-          //   'pointChart',
-          //   'radarChart',
-          //   'ringChart',
-          //   'specialChart',
+          '/guide/': [
+            '',
+            'borderBox',
+            'decoration',
+            'charts',
+            'specialChart',
           //   'percent',
           //   'carousel',
           //   'other'
-          // ],
+          ],
           // '/axis/': [''],
           // '/config/': [''],
           '/dev/': ['']

@@ -12,7 +12,9 @@
       <polyline class="dv-bb7-line-width-5" :points="`0, ${height - 10} 0, ${height} 10, ${height}`" />
     </svg>
 
-    <slot></slot>
+    <div class="border-box-content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -38,7 +40,6 @@ export default {
   box-shadow: inset 0 0 40px fade(@color, 30);
   box-sizing: border-box;
   border: 1px solid @color;
-  padding: 10px;
 
   .dv-svg-container {
     position: absolute;
@@ -61,6 +62,12 @@ export default {
   .dv-bb7-line-width-5 {
     stroke: fade(gray, 50);
     stroke-width: 5;
+  }
+
+  .border-box-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

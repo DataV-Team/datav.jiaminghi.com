@@ -1,3 +1,5 @@
+import devcmp from './devcmp/index'
+
 import borderBox1 from './borderBox1/index'
 import borderBox2 from './borderBox2/index'
 import borderBox3 from './borderBox3/index'
@@ -13,17 +15,13 @@ import decoration4 from './decoration4/index'
 import decoration5 from './decoration5/index'
 import decoration6 from './decoration6/index'
 import decoration7 from './decoration7/index'
-import decoration8 from './decoration8/index'
+
+import charts from './charts/index.vue'
+
 import loading from './loading/index.vue'
 
 import capsuleChart from './capsuleChart/index.vue'
-import ringChart from './ringChart/index.vue'
-import polylineChart from './polylineChart/index.vue'
-import concentricArcChart from './concentricArcChart/index.vue'
 import arcRingChart from './arcRingChart/index.vue'
-import radarChart from './radarChart/index.vue'
-import columnChart from './columnChart/index.vue'
-import pointChart from './pointChart/index.vue'
 
 import numberShow from './numberShow/index.vue'
 import percentPond from './percentPond/index.vue'
@@ -32,12 +30,10 @@ import waterLevelPond from './waterLevelPond/index.vue'
 import scrollBoard from './scrollBoard/index.vue'
 
 import fullScreenContainer from './fullScreenContainer'
-import labelLine from './labelLine'
-import forSlot from './forSlot'
-
-import dvCaugeChart from './caugeChart'
 
 export default function (Vue) {
+  Vue.component('devcmp', devcmp)
+
   Vue.component('dvBorderBox1', borderBox1)
   Vue.component('dvBorderBox2', borderBox2)
   Vue.component('dvBorderBox3', borderBox3)
@@ -46,25 +42,20 @@ export default function (Vue) {
   Vue.component('dvBorderBox6', borderBox6)
   Vue.component('dvBorderBox7', borderBox7)
 
-  Vue.component('decoration1', decoration1)
-  Vue.component('decoration2', decoration2)
-  Vue.component('decoration3', decoration3)
-  Vue.component('decoration4', decoration4)
-  Vue.component('decoration5', decoration5)
-  Vue.component('decoration6', decoration6)
-  Vue.component('decoration7', decoration7)
-  Vue.component('decoration8', decoration8)
+  Vue.component('dvDecoration1', decoration1)
+  Vue.component('dvDecoration2', decoration2)
+  Vue.component('dvDecoration3', decoration3)
+  Vue.component('dvDecoration4', decoration4)
+  Vue.component('dvDecoration5', decoration5)
+  Vue.component('dvDecoration6', decoration6)
+  Vue.component('dvDecoration7', decoration7)
+
+  Vue.component('dvCharts', charts)
 
   Vue.component('loading', loading)
 
   Vue.component('capsuleChart', capsuleChart)
-  Vue.component('polylineChart', polylineChart)
-  Vue.component('ringChart', ringChart)
-  Vue.component('concentricArcChart', concentricArcChart)
   Vue.component('arcRingChart', arcRingChart)
-  Vue.component('radarChart', radarChart)
-  Vue.component('columnChart', columnChart)
-  Vue.component('pointChart', pointChart)
 
   Vue.component('numberShow', numberShow)
   Vue.component('percentPond', percentPond)
@@ -73,8 +64,4 @@ export default function (Vue) {
   Vue.component('scrollBoard', scrollBoard)
 
   Vue.component('fullScreenContainer', fullScreenContainer)
-  Vue.component('labelLine', labelLine)
-  Vue.component('forSlot', forSlot)
-
-  Vue.component('dvCaugeChart', dvCaugeChart)
 }
