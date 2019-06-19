@@ -1,41 +1,91 @@
 <template>
-  <div class="water-pond-level">
-    <svg v-if="render">
+  <div class="dv-flyline-chart" ref="dv-flyline-chart">
+    <svg :width="width" :height="height">
       <defs>
-        <linearGradient :id="gradientId" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop v-for="lc in svgBorderGradient" :key="lc[0]"
-            :offset="lc[0]"
-            :stop-color="lc[1]" />
-        </linearGradient>
+        <radialGradient
+          :id="gradientId"
+          cx="50%" cy="50%" r="50%"
+        >
+          <stop
+            offset="0%" stop-color="#fff"
+            stop-opacity="1"
+          />
+          <stop
+            offset="100%" stop-color="#fff"
+            stop-opacity="0"
+          />
+        </radialGradient>
       </defs>
-
-      <text
-        v-if="render"
-        :stroke="`url(#${gradientId})`"
-        :fill="`url(#${gradientId})`"
-        :x="render.area[0] / 2 + 8"
-        :y="render.area[1] / 2 + 8"
+      <g
+        v-for="(path, i) in paths"
+        :key="i"
       >
-        {{ details }}
-      </text>
+        <path
+          :ref="path.join(',')"
+          :d="`M${path[0].toString()} Q${path[1].toString()} ${path[2].toString()}`"
+          stroke="rgba(35,231,180, .1)"
+          fill="transparent"
+        />
 
-      <ellipse v-if="!shape || shape === 'round'"
-        :cx="render.area[0] / 2 + 8"
-        :cy="render.area[1] / 2 + 8"
-        :rx="render.area[0] / 2 + 5"
-        :ry="render.area[1] / 2 + 5"
-        :stroke="`url(#${gradientId})`" />
+        <path
+          v-if="lengths[i]"
+          :d="`M${path[0].toString()} Q${path[1].toString()} ${path[2].toString()}`"
+          stroke="red"
+          fill="transparent"
+          :mask="`url(#maskId${path.join(',')})`"
+        >
+          <animate
+            attributeName="stroke-dasharray"
+            :from="`0, ${lengths[i]}`"
+            :to="`${lengths[i]}, 0`"
+            :dur="times[i] || 0"
+            repeatCount="indefinite"
+          />
+        </path>
 
-      <rect v-else
-        x="2" y="2"
-        :rx="shape === 'roundRect' ? 10 : 0"
-        :ry="shape === 'roundRect' ? 10 : 0"
-        :width="render.area[0] + 12"
-        :height="render.area[1] + 12"
-        :stroke="`url(#${gradientId})`" />
+        <mask :id="`maskId${path.join(',')}`">
+          <circle cx="0" cy="0" r="100" :fill="`url(#${gradientId})`">
+            <animateMotion
+              :path="`M${path[0].toString()} Q${path[1].toString()} ${path[2].toString()}`"
+              repeatCount="indefinite"
+              rotate="auto"
+              :dur="times[i] || 0"
+            />
+          </circle>
+        </mask>
+
+        <!-- <image
+          :xlink:href="starImg"
+          :width="starWidth"
+          :height="starHeight"
+          :x="starWidth * -1"
+          :y="starHeight / -2"
+        >
+          <animateMotion
+            :path="`M${path[0].toString()} Q${path[1].toString()} ${path[2].toString()}`"
+            repeatCount="indefinite"
+            rotate="auto"
+            :dur="durs[i]"
+          />
+        </image> -->
+
+        <!-- <image
+          :xlink:href="starImg"
+          :width="starWidth"
+          :height="starHeight"
+          :x="starWidth * -1"
+          :y="starHeight / -2"
+        /> -->
+
+        <!-- <image
+          :xlink:href="stationImg"
+          :width="stationImgWidth"
+          :height="stationImgHeight"
+          :x="path[0][0] - stationImgWidth / 2"
+          :y="path[0][1] - stationImgHeight / 2"
+        /> -->
+      </g>
     </svg>
-
-    <canvas ref="water-pond-level" :style="`border-radius: ${radius};`" />
   </div>
 </template>
 
@@ -44,244 +94,139 @@ import { deepMerge } from '@jiaminghi/charts/lib/util/index'
 
 import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
 
-import CRender from '@jiaminghi/c-render'
+import { randomExtend } from '../../util/index'
 
 export default {
-  name: 'waterLevelPond',
+  name: 'PercentPond',
   props: {
-    config: Object,
-    default: {}
+    config: {
+      type: Object,
+      default: {}
+    }
   },
   data () {
     return {
-      gradientId: `water-level-pond-${(new Date()).getTime()}`,
+      maskId: `flyline-mask-id-${(new Date()).getTime()}`,
+      maskCircleId: `mask-circle-id-${(new Date()).getTime()}`,
+      gradientId: `gradient-id-${(new Date()).getTime()}`,
+
+      width: 0,
+      height: 0,
 
       defaultConfig: {
-        /**
-         * @description Shape of wanter level pond
-         * @type {String}
-         * @default shape = 'rect'
-         * @example shape = 'rect' | 'roundRect' | 'round'
-         */
-        shape: 'rect',
-        /**
-         * @description Data
-         * @type {Array<Number>}
-         * @default data = []
-         * @example data = [60, 40]
-         */
-        data: [],
-        /**
-         * @description Water wave number
-         * @type {Number}
-         * @default waveNum = 3
-         */
-        waveNum: 3,
-        /**
-         * @description Water wave height (px)
-         * @type {Number}
-         * @default waveHeight = 40
-         */
-        waveHeight: 40,
-        /**
-         * @description Wave opacity
-         * @type {Number}
-         * @default waveOpacity = 0.4
-         */
-        waveOpacity: 0.4,
-        /**
-         * @description Colors (Hex|rgb|rgba)
-         * @type {Array<String>}
-         * @default colors = ['#00BAFF', '#3DE7C9']
-         */
-        colors: ['#3DE7C9', '#00BAFF'],
-        /**
-         * @description Formatter
-         * @type {String}
-         * @default formatter = '{value}%'
-         */
-        formatter: '{value}%'
+        centerPoint: [0, 0],
+        points: [],
+        lineWidth: 1,
+        curvature: 5,
+        duration: [30, 30]
       },
 
-      mergedConfig: {},
+      mergedConfig: null,
 
-      render: null,
-
-      svgBorderGradient: [],
-
-      details: '',
-
-      waves: [],
-
-      animation: true
+      paths: [],
+      lengths: [],
+      times: []
+    }
+  },
+  watch: {
+    config () {
     }
   },
   computed: {
-    radius () {
-      const { shape } = this.mergedConfig
-
-      if (shape === 'round') return '50%'
-
-      if (shape === 'rect') return '0'
-
-      if (shape === 'roundRect') return '10px'
-
-      return '0'
-    },
-    shape () {
-      const { shape } = this.mergedConfig
-
-      if (!shape) return 'rect'
-
-      return shape
-    }
   },
   methods: {
-    init () {
-      const { initRender, config, calcData } = this
+    async init () {
+      const { initWH, config, calcData } = this
 
-      initRender()
+      await initWH()
 
       if (!config) return
 
       calcData()
     },
-    initRender () {
-      const { $refs } = this
+    async initWH () {
+      const { $nextTick, $refs } = this
 
-      this.render = new CRender($refs['water-pond-level'])
+      await $nextTick()
+
+      const dom = $refs['dv-flyline-chart']
+
+      this.width = dom.clientWidth
+      this.height = dom.clientHeight
     },
-    calcData () {
-      const { mergeConfig, calcSvgBorderGradient, calcDetails } = this
+    async calcData () {
+      const { mergeConfig, createFlylinePaths, calcLineLengths } = this
 
       mergeConfig()
 
-      calcSvgBorderGradient()
+      createFlylinePaths()
 
-      calcDetails()
+      await calcLineLengths()
 
-      const { addWave, animationWave } = this
+      const { calcTimes } = this
 
-      addWave()
-
-      animationWave()
+      calcTimes()
     },
     mergeConfig () {
-      const { config, defaultConfig } = this
+      let { config, defaultConfig } = this
 
-      this.mergedConfig = deepMerge(deepClone(defaultConfig, true), config)
+      this.mergedConfig = deepMerge(deepClone(defaultConfig, true), config || {})
     },
-    calcSvgBorderGradient () {
-      const { colors } = this.mergedConfig
+    createFlylinePaths () {
+      const { getPath, mergedConfig } = this
 
-      const colorNum = colors.length
+      const { centerPoint, points } = mergedConfig
 
-      const colorOffsetGap = 100 / (colorNum - 1)
-
-      this.svgBorderGradient = colors.map((c, i) => [colorOffsetGap * i, c])
+      this.paths = points.map(point => getPath(centerPoint, point))
     },
-    calcDetails () {
-      const { data, formatter } = this.mergedConfig
+    getPath (center, point) {
+      const { getControlPoint } = this
 
-      if (!data.length) return ''
+      const controlPoint = getControlPoint(center, point)
 
-      const maxValue = Math.max(...data)
-
-      this.details = formatter.replace('{value}', maxValue)
+      return [point, controlPoint, center]
     },
-    addWave () {
-      const { render, getWaveShapes, getWaveStyle, drawed } = this
+    getControlPoint ([sx, sy], [ex, ey]) {
+      const { getPointDistance, getKLinePointByx, mergedConfig } = this
 
-      render.delAllGraph()
+      const { curvature } = mergedConfig
 
-      this.waves = []
+      const [mx, my] = [(sx + ex) / 2, (sy + ey) / 2]
 
-      const shapes = getWaveShapes()
-      const style = getWaveStyle()
+      const k = (ey - sy) / (ex - sx)
 
-      this.waves = shapes.map(shape => render.add({
-        name: 'smoothline',
-        animationFrame: 150,
-        shape,
-        style,
-        drawed
-      }))
+      const k2 = -1 / k
+
+      const distance = getPointDistance([sx, sy], [ex, ey])
+
+      const targetLength = distance / curvature
+      const disDived = targetLength / 2
+
+      let [dx, dy] = [mx, my]
+
+      do {
+        dx += disDived
+        dy = getKLinePointByx(k2, [mx, my], dx)[1]
+      } while (getPointDistance([mx, my], [dx, dy]) < targetLength)
+
+      return [dx, dy]
     },
-    getWaveShapes () {
-      const { mergedConfig, render, mergeOffset } = this
+    getKLinePointByx (k, [lx, ly], x) {
+      const y = ly - k * lx + k * x
 
-      const { waveNum, waveHeight, data } = mergedConfig
-
-      const [w, h] = render.area
-
-      const pointsNum = waveNum * 4 + 4
-
-      const pointXGap = w / waveNum / 2
-
-      return data.map(v => {
-        let points = new Array(pointsNum).fill(0).map((foo, j) => {
-          const x = w - pointXGap * j
-
-          const startY = (1 - v / 100) * h
-
-          const y = j % 2 === 0 ? startY : startY - waveHeight
-
-          return [x, y]
-        })
-
-        points = points.map(p => mergeOffset(p, [pointXGap * 2, 0]))
-
-        return { points }
-      })
+      return [x, y]
     },
-    mergeOffset ([x, y], [ox, oy]) {
-      return [x + ox, y + oy]
+    async calcLineLengths () {
+      const { $nextTick, paths, $refs } = this
+
+      await $nextTick()
+
+      this.lengths = paths.map(path => $refs[path.join(',')][0].getTotalLength())
     },
-    getWaveStyle () {
-      const { render, mergedConfig } = this
+    calcTimes () {
+      const { duration, points } = this.mergedConfig
 
-      const h = render.area[1]
-
-      return {
-        gradientColor: mergedConfig.colors,
-        gradientType: 'linear',
-        gradientParams: [0, 0, 0, h],
-        gradientWith: 'fill',
-        opacity: mergedConfig.waveOpacity,
-        translate: [0, 0]
-      }
-    },
-    drawed ({ shape: { points } }, { ctx, area }) {
-      const firstPoint = points[0]
-      const lastPoint = points.slice(-1)[0]
-
-      const [w, h] = area
-
-      ctx.lineTo(lastPoint[0], h)
-      ctx.lineTo(firstPoint[0], h)
-
-      ctx.closePath()
-
-      ctx.fill()
-    },
-    async animationWave (repeat = 1) {
-      const { waves, render } = this
-
-      const w = render.area[0]
-
-      waves.forEach(graph => {
-        const reset = repeat % 2 === 0
-
-        graph.attr('style', { translate: [0, 0] })
-
-        graph.animation('style', {
-          translate: [w, 0]
-        }, true)
-      })
-
-      await render.launchAnimation()
-
-      this.animationWave(repeat + 1)
+      this.times = points.map(foo => randomExtend(...duration) / 10)
     }
   },
   mounted () {
@@ -293,15 +238,12 @@ export default {
 </script>
 
 <style lang="less">
-.water-pond-level {
-  position: relative;
+.dv-percent-pond {
+  display: flex;
+  flex-direction: column;
 
-  svg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    left: 0px;
+  polyline {
+    transition: all 0.3s;
   }
 
   text {
@@ -309,19 +251,6 @@ export default {
     font-weight: bold;
     text-anchor: middle;
     dominant-baseline: middle;
-  }
-
-  ellipse, rect {
-    fill: none;
-    stroke-width: 3;
-  }
-
-  canvas {
-    margin-top: 8px;
-    margin-left: 8px;
-    width: calc(~"100% - 16px");
-    height: calc(~"100% - 16px");
-    box-sizing: border-box;
   }
 }
 </style>

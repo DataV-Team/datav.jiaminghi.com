@@ -11,37 +11,37 @@ sidebarDepth: 2
 水位图有三种形态，多种配置，具体使用示例如下
 
 ```html
-<water-level-pond :level="level" :other-attribute="otherAttribute" />
+<dv-water-level-pond :level="level" :other-attribute="otherAttribute" />
 ```
 <click-to-copy :info="waterPondChartTag" />
 
 ### 基本水位图
 <div class="chart-container">
-  <water-level-pond :level="[60, 40]" class="chart" />
+  <dv-water-level-pond :level="[60, 40]" class="chart" />
 </div>
 
 ```html
-<water-pond-chart :level="[60, 40]" />
+<dv-water-pond-chart :level="[60, 40]" />
 ```
 <click-to-copy :info="waterPondChartTag1" />
 
 ### 矩形水位图
 <div class="chart-container">
-  <water-level-pond :level="[60, 40]" type="rect" :waveNum="2" :waveHeight="0.3" class="chart" />
+  <dv-water-level-pond :level="[60, 40]" type="rect" :waveNum="2" :waveHeight="0.3" class="chart" />
 </div>
 
 ```html
-<water-level-pond :level="[60, 40]" type="rect" :waveNum="2" :waveHeight="0.3" />
+<dv-water-level-pond :level="[60, 40]" type="rect" :waveNum="2" :waveHeight="0.3" />
 ```
 <click-to-copy :info="waterPondChartTag2" />
 
 ### 矩形水位图（圆角）
 <div class="chart-container">
-  <water-level-pond :level="[60, 40]" type="roundRect" borderColor="#3ce7c9" class="chart" />
+  <dv-water-level-pond :level="[60, 40]" type="roundRect" borderColor="#3ce7c9" class="chart" />
 </div>
 
 ```html
-<water-level-pond :level="[60, 40]" type="roundRect" borderColor="#3ce7c9" />
+<dv-water-level-pond :level="[60, 40]" type="roundRect" borderColor="#3ce7c9" />
 ```
 <click-to-copy :info="waterPondChartTag3" />
 
@@ -78,59 +78,6 @@ borderColor|否|边框色|`String`<sup>[6]</sup>|`inherit`
 [5] **waveHeight**应为一个不大于**1**的数值，即水位波峰高度占水位图高度的百分比
 
 [1] **borderColor**被设置时，水位图百分比文字颜色将与其一样
-
-## 百分比环
-
-百分比环也具有多种配置，具体使用示例如下
-
-```html
-<percent-arc :percent="66" :other-attribute="otherAttribute" />
-```
-<click-to-copy :info="percentArcTag" />
-
-### 基本百分比环
-<div class="chart-container">
-  <percent-arc :percent="66" class="chart2">66</percent-arc>
-</div>
-
-```html
-<percent-arc :percent="66">66</percent-arc>
-```
-<click-to-copy :info="percentArcTag1" />
-
-### 圆角百分比环
-<div class="chart-container">
-  <percent-arc :percent="66" arcType="round" :ringLineWidth="8" :arcLineWidth="15"
-  ringColor="#8537e7" :arcColor="['#2755fe', '#ff12cb']" class="chart2 c1">66</percent-arc>
-</div>
-
-```html
-<percent-arc :percent="66" arcType="round" :other-attribute="oAti">66</percent-arc>
-```
-<click-to-copy :info="percentArcTag2" />
-
-### 基本属性
-
-<full-width-table>
-属性|是否必须|作用|类型|默认值
-:--:|:--:|:--:|:--:|:--:
-percent|是|当前百分比|`Int`|`null`
-arcType|否|环类型（圆角/直角）|`String`|`butt`
-radius|否|环半径|`Int`<sup>[1]</sup>|`default`
-ringLineWidth|否|外圆环线条宽度|`Int`|`default`
-arcLineWidth|否|内环线条宽度|`Int`|`default`
-ringColor|否|外圆环颜色|`String`|`default`
-arcColor|否|内环颜色|`String|[String]`<sup>[2]</sup>|`default`
-</full-width-table>
-
-::: warning
-**arcColor**属性为`[String]`时，单个颜色必须为hex十六位色，使用其他类型颜色将引起渐变计算异常从而抛出致命错误
-:::
-
-### 注释
-[1] **radius**可设置环半径占容器宽高最大值的百分比
-
-[1] **arcColor**为`[String]`时，内环将应用其渐变色
 
 ## 进度池
 

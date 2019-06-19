@@ -34,6 +34,7 @@ import fullScreenContainer from './fullScreenContainer'
 export default function (Vue) {
   Vue.component('devcmp', devcmp)
 
+  // border box
   Vue.component('dvBorderBox1', borderBox1)
   Vue.component('dvBorderBox2', borderBox2)
   Vue.component('dvBorderBox3', borderBox3)
@@ -42,6 +43,7 @@ export default function (Vue) {
   Vue.component('dvBorderBox6', borderBox6)
   Vue.component('dvBorderBox7', borderBox7)
 
+  // decoration
   Vue.component('dvDecoration1', decoration1)
   Vue.component('dvDecoration2', decoration2)
   Vue.component('dvDecoration3', decoration3)
@@ -49,6 +51,11 @@ export default function (Vue) {
   Vue.component('dvDecoration5', decoration5)
   Vue.component('dvDecoration6', decoration6)
   Vue.component('dvDecoration7', decoration7)
+
+  // special chart
+  Vue.component('dvWaterLevelPond', waterLevelPond)
+  Vue.component('dvPercentPond', percentPond)
+
 
   Vue.component('dvCharts', charts)
 
@@ -58,9 +65,7 @@ export default function (Vue) {
   Vue.component('arcRingChart', arcRingChart)
 
   Vue.component('numberShow', numberShow)
-  Vue.component('percentPond', percentPond)
   Vue.component('percentArc', percentArc)
-  Vue.component('waterLevelPond', waterLevelPond)
   Vue.component('scrollBoard', scrollBoard)
 
   Vue.component('fullScreenContainer', fullScreenContainer)

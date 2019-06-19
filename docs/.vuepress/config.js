@@ -61,7 +61,7 @@ module.exports = {
             'decoration',
             'charts',
             'specialChart',
-          //   'percent',
+            // 'percent',
           //   'carousel',
           //   'other'
           ],

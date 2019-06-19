@@ -10,12 +10,23 @@ export default {
   data () {
     return {
       config: {
-        shape: 'roundRect',
-        data: [66, 50]
+        centerPoint: [350, 100],
+        points: [
+          [200, 250],
+          [20, 200],
+          [500, 150],
+          [50, 50],
+        ],
+        duration: [30, 40]
       }
     }
   },
   created () {
+    // setTimeout(() => {
+    //   this.config = {
+    //     value: 80
+    //   }
+    // }, 3000)
   }
 }
 </script>
@@ -31,8 +42,8 @@ export default {
   background-color: #282c34;
 
   .dev {
-    width: 150px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
     // box-shadow: 0 0 3px red;
   }
 }
