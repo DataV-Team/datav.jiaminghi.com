@@ -1,6 +1,6 @@
 <template>
   <div id="dev-container">
-    <devcmp class="dev" :config="config" />
+    <devcmp class="dev" :config="config" :debug="true" />
   </div>
 </template>
 

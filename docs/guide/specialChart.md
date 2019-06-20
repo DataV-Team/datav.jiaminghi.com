@@ -135,6 +135,10 @@ formatter|信息格式化|`String`|---|`'{value}%'`<sup>[2]</sup>
 
 [2] 自动使用`value`的值替换字符串中的`'{value}'`标记。
 
+### 飞线图
+
+大多数地图都提供了飞线
+
 
 <script>
 import waterLevelPond from './codeData/waterLevelPond/index.js'

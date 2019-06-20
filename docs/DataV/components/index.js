@@ -1,5 +1,6 @@
 import devcmp from './devcmp/index'
 
+// border box
 import borderBox1 from './borderBox1/index'
 import borderBox2 from './borderBox2/index'
 import borderBox3 from './borderBox3/index'
@@ -8,6 +9,7 @@ import borderBox5 from './borderBox5/index'
 import borderBox6 from './borderBox6/index'
 import borderBox7 from './borderBox7/index'
 
+// decoration
 import decoration1 from './decoration1/index'
 import decoration2 from './decoration2/index'
 import decoration3 from './decoration3/index'
@@ -16,7 +18,15 @@ import decoration5 from './decoration5/index'
 import decoration6 from './decoration6/index'
 import decoration7 from './decoration7/index'
 
+// charts
 import charts from './charts/index.vue'
+
+// special chart
+import waterLevelPond from './waterLevelPond/index.vue'
+import percentPond from './percentPond/index.vue'
+import flylineChart from './flylineChart'
+
+// other
 
 import loading from './loading/index.vue'
 
@@ -24,9 +34,7 @@ import capsuleChart from './capsuleChart/index.vue'
 import arcRingChart from './arcRingChart/index.vue'
 
 import numberShow from './numberShow/index.vue'
-import percentPond from './percentPond/index.vue'
 import percentArc from './percentArc/index.vue'
-import waterLevelPond from './waterLevelPond/index.vue'
 import scrollBoard from './scrollBoard/index.vue'
 
 import fullScreenContainer from './fullScreenContainer'
@@ -52,12 +60,15 @@ export default function (Vue) {
   Vue.component('dvDecoration6', decoration6)
   Vue.component('dvDecoration7', decoration7)
 
+  // charts
+  Vue.component('dvCharts', charts)
+
   // special chart
   Vue.component('dvWaterLevelPond', waterLevelPond)
   Vue.component('dvPercentPond', percentPond)
+  Vue.component('dvFlylineChart', flylineChart)
 
-
-  Vue.component('dvCharts', charts)
+  // other
 
   Vue.component('loading', loading)
 

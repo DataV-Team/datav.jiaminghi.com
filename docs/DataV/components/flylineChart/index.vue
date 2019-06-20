@@ -289,7 +289,7 @@ export default {
 </script>
 
 <style lang="less">
-.dv-percent-pond {
+.dv-flyline-chart {
   display: flex;
   flex-direction: column;
 
