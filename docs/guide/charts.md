@@ -13,27 +13,27 @@
 ## 示例
 
 <div class="demo-container">
-  <dv-charts :config="config" />
+  <dv-charts :option="option" style="width:100%;height:100%;" />
 </div>
 
 ```html
-<dv-charts :config="config" />
+<dv-charts :option="option" style="width:100%;height:100%;" />
 ```
 <click-to-copy :info="html" />
 
-<fold-box title="点击以展示/隐藏config数据">
+<fold-box title="点击以展示/隐藏option数据">
 <<< @/docs/guide/codeData/charts/demo.js
 </fold-box>
 
 <script>
-import config from './codeData/charts/demo.js'
+import option from './codeData/charts/demo.js'
 
 export default {
   data () {
     return {
-      config,
+      option,
 
-      html: '<dv-charts :config="config" />'
+      html: '<dv-charts :option="option" style="width:100%;height:100%;" />'
     }
   }
 }
@@ -45,10 +45,5 @@ export default {
   height: 300px;
   background-color: #282c34;
   border-radius: 6px;
-
-  .dv-charts-container {
-    width: 100%;
-    height: 100%;
-  }
 }
 </style>

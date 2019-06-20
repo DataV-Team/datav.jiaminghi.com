@@ -17,7 +17,7 @@ export default {
   name: 'Charts',
   mixins: [autoResize],
   props: {
-    config: {
+    option: {
       type: Object,
       default: {}
     }
@@ -31,12 +31,12 @@ export default {
     }
   },
   watch: {
-    config () {
-      let { chart, config } = this
+    option () {
+      let { chart, option } = this
 
-      if (!config) config = {}
+      if (!option) option = {}
 
-      chart.setOption(config)
+      chart.setOption(option)
     }
   },
   methods: {
@@ -46,13 +46,13 @@ export default {
       initChart()
     },
     initChart () {
-      const { $refs, chartRef, config } = this
+      const { $refs, chartRef, option } = this
 
       const chart = this.chart = new Charts($refs[chartRef])
 
-      if (!config) return
+      if (!option) return
 
-      chart.setOption(config)
+      chart.setOption(option)
     },
     onResize () {
       const { chart } = this
