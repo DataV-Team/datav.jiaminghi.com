@@ -8,6 +8,7 @@ import borderBox4 from './borderBox4/index'
 import borderBox5 from './borderBox5/index'
 import borderBox6 from './borderBox6/index'
 import borderBox7 from './borderBox7/index'
+import borderBox8 from './borderBox8/index'
 
 // decoration
 import decoration1 from './decoration1/index'
@@ -25,6 +26,7 @@ import charts from './charts/index.vue'
 import waterLevelPond from './waterLevelPond/index.vue'
 import percentPond from './percentPond/index.vue'
 import flylineChart from './flylineChart'
+import digitalFlop from './digitalFlop'
 
 // other
 
@@ -50,6 +52,7 @@ export default function (Vue) {
   Vue.component('dvBorderBox5', borderBox5)
   Vue.component('dvBorderBox6', borderBox6)
   Vue.component('dvBorderBox7', borderBox7)
+  Vue.component('dvBorderBox8', borderBox8)
 
   // decoration
   Vue.component('dvDecoration1', decoration1)
@@ -67,6 +70,7 @@ export default function (Vue) {
   Vue.component('dvWaterLevelPond', waterLevelPond)
   Vue.component('dvPercentPond', percentPond)
   Vue.component('dvFlylineChart', flylineChart)
+  Vue.component('dvDigitalFlop', digitalFlop)
 
   // other
 

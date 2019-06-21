@@ -149,7 +149,7 @@ export default {
       })
     },
     update () {
-      const { mergeConfig, getShape, getStyle, graph, mergedConfig } = this
+      const { mergeConfig, mergeShape, getShape, getStyle, graph, mergedConfig } = this
 
       mergeConfig()
 
@@ -160,11 +160,19 @@ export default {
       const shape = getShape()
       const style = getStyle()
 
+      mergeShape(graph, shape)
+
       graph.animationCurve = animationCurve
       graph.animationFrame = animationFrame
 
       graph.animation('style', style, true)
       graph.animation('shape', shape)
+    },
+    mergeShape (graph, shape) {
+      const cacheNum = graph.shape.number.length
+      const shapeNum = shape.number.length
+
+      if (cacheNum !== shapeNum) graph.shape.number = shape.number
     }
   },
   mounted () {

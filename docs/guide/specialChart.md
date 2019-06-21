@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # 特殊图表
 
-这里提供一些特殊图表，他们有的基于[Charts](http://charts.jiaminghi.com)封装，有的直接基于[CRender](http://crender.jiaminghi.com)开发。
+这里提供一些特殊图表，他们有的使用`SVG`开发，有的则基于[Charts](http://charts.jiaminghi.com)或[CRender](http://crender.jiaminghi.com)封装。
 
 ## 水位图
 
@@ -59,7 +59,7 @@ waveOpacity|波浪透明度|`Number`|---|`0.4`
 formatter|信息格式化|`String`|---|`'{value}%'`<sup>[4]</sup>
 </full-width-table>
 
-### 注释
+### 水位图注释
 
 [1] 可以有多个水位，但默认显示值最大的水位信息。
 
@@ -128,7 +128,7 @@ localGradient|局部渐变|`Boolean`|---|`false`
 formatter|信息格式化|`String`|---|`'{value}%'`<sup>[2]</sup>
 </full-width-table>
 
-### 注释
+### 进度池注释
 
 [1] 默认配色为`['#3DE7C9', '#00BAFF']`, 自动应用渐变色，若不想使用渐变色，请配置两个相同的颜色。
 
@@ -201,7 +201,7 @@ formatter|信息格式化|`String`|---|`'{value}%'`<sup>[2]</sup>
 
 `Relative Position is [0.10, 0.10]`
 
-组件默认使用相对坐标，应选用`Relative Position`，关闭相对坐标模式，则需要使用`Click Position`，如何开启和关闭相对坐标模式请查阅[config属性](/guide/specialChart.html#config属性)。
+组件默认使用相对坐标，应选用`Relative Position`，关闭相对坐标模式，则需要使用`Click Position`，如何开启和关闭相对坐标模式请查阅config属性。
 :::
 
 ### config属性
@@ -226,7 +226,7 @@ centerPointImg|中心点图片配置|`Object`|---|[centerPointImg](/guide/specia
 pointsImg|飞线点图片配置|`Object`|---|[pointsImg](/guide/specialChart.html#pointsImg属性)
 </full-width-table>
 
-### config相关注释
+### 进度池config相关注释
 
 [1] 飞线起始点数据的子元素可以为**数组**或**对象**，当为数组时，即点坐标数据；当为对象时，该对象包涵点坐标位置和文本信息。两种示例如下：
 
@@ -301,10 +301,86 @@ height|图片高度|`Number`|---|`15`
 url|图片url|`String`|---|`''`
 </full-width-table>
 
+## 数字翻牌器
+
+```html
+<dv-digital-flop :config="config" style="width:200px;height:50px;" />
+```
+<click-to-copy :info="digitalFlopTag" />
+
+### 基本示例
+
+<div class="chart-container" style="height: 150px;">
+  <for-digital-flop :data="digitalFlop1" />
+</div>
+
+<fold-box title="点击以展示/隐藏config数据">
+<<< @/docs/guide/codeData/digitalFlop/demo1.js
+</fold-box>
+
+### 浮点数
+
+<div class="chart-container" style="height: 150px;">
+  <for-digital-flop :data="digitalFlop2" />
+</div>
+
+<fold-box title="点击以展示/隐藏config数据">
+<<< @/docs/guide/codeData/digitalFlop/demo2.js
+</fold-box>
+
+### 多数值
+
+<div class="chart-container" style="height: 150px;">
+  <for-digital-flop :data="digitalFlop3" />
+</div>
+
+<fold-box title="点击以展示/隐藏config数据">
+<<< @/docs/guide/codeData/digitalFlop/demo3.js
+</fold-box>
+
+### config属性
+
+<full-width-table>
+属性|说明|类型|可选值|默认值
+:--:|:--:|:--:|:--:|:--:
+number|数字数值<sup>[1]</sup>|`Array<Number>`|---|`[]`
+content|内容模版<sup>[1]</sup>|`String`|---|`''`
+toFixed|小数位数|`Number`|---|`0`
+textAlign|水平对齐方式|`String`|[2]|`'center'`
+style|样式配置|`Object`|[CRender Style](http://crender.jiaminghi.com/guide/style.html)|[3]
+animationCurve|动效曲线|`String`|[Transition](http://transition.jiaminghi.com/curveTable/)|`'easeOutCubic'`
+animationFrame|动效帧数|`Number`|[4]|`50`
+</full-width-table>
+
+### 数字翻牌器注释
+
+[1] `number`中的元素将被用于替换`content`内容模版中的`{nt}`标记，其替换顺序与模版标记的顺序一一对应：
+
+```js
+const number = [1, 2, 3, 4]
+const content = '数字{nt},数字{nt},数字{nt},数字{nt}'
+// 实际显示效果：'数字1,数字2,数字3,数字4'
+```
+
+[2] `textAlign`用于设置文字的水平对齐方式，可选值为`'center'|'left'|'right'`，该值将覆盖`style`属性中的`textAlign`属性。
+
+[3] `style`是[CRender](http://crender.jiaminghi.com)中用于配置样式的类，可使用`fill`属性设置字体颜色、`stroke`属性设置字体描边颜色、`fontSize`属性设置文字大小，更多配置请查阅[CRender Style](http://crender.jiaminghi.com/guide/style.html)。
+
+```js
+// 数字翻牌器style默认配置
+style: {
+  fontSize: 30,
+  fill: '#3de7c9'
+}
+```
+
+[4] `animationFrame`用于配置动画过程的帧数即动画时长。
+
 <script>
 import waterLevelPond from './codeData/waterLevelPond/index.js'
 import percentPond from './codeData/percentPond/index.js'
 import flylineChart from './codeData/flylineChart/index.js'
+import digitalFlop from './codeData/digitalFlop/index.js'
 
 export default {
   data () {
@@ -313,10 +389,12 @@ export default {
       percentPondTag: '<dv-percent-pond :config="config" style="width:200px;height:100px;" />',
       flylineChartTag: '<dv-flyline-chart :config="config" style="width:100%;height:100%;" />',
       flylineChartTag2: '<dv-flyline-chart :config="config" :dev="true" style="width:200px;height:100px;" />',
+      digitalFlopTag: '<dv-digital-flop :config="config" style="width:100px;height:50px;" />',
 
       ...waterLevelPond,
       ...percentPond,
-      ...flylineChart
+      ...flylineChart,
+      ...digitalFlop
     }
   }
 }

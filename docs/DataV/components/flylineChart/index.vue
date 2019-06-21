@@ -483,7 +483,7 @@ export default {
       this.times = points.map(foo => randomExtend(...duration) / 10)
     },
     calcTexts () {
-      const { duration, points } = this.mergedConfig
+      const { points } = this.mergedConfig
 
       this.texts = points.map(({ text }) => text)
     },

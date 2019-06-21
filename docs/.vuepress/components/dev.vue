@@ -1,6 +1,6 @@
 <template>
   <div id="dev-container">
-    <devcmp class="dev" :config="config" :debug="true" />
+    <devcmp class="dev" :config="config" />
   </div>
 </template>
 
@@ -10,23 +10,18 @@ export default {
   data () {
     return {
       config: {
-        centerPoint: [350, 100],
-        points: [
-          [200, 250],
-          [20, 200],
-          [500, 150],
-          [50, 50],
-        ],
-        duration: [30, 40]
+        number: [0, 0],
+        content: '{nt}-{nt}'
       }
     }
   },
   created () {
-    // setTimeout(() => {
-    //   this.config = {
-    //     value: 80
-    //   }
-    // }, 3000)
+    setTimeout(() => {
+      this.config = {
+        number: [100, 200],
+        content: '{nt}-{nt}'
+      }
+    }, 3000)
   }
 }
 </script>
@@ -42,9 +37,9 @@ export default {
   background-color: #282c34;
 
   .dev {
-    width: 100%;
-    height: 100%;
-    // box-shadow: 0 0 3px red;
+    width: 200px;
+    height: 70px;
+    box-shadow: 0 0 3px red;
   }
 }
 </style>

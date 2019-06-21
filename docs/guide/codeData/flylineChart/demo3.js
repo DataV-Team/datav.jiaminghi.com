@@ -70,8 +70,6 @@ export default {
       text: '安阳'
     }
   ],
-  halo: {
-  },
   bgImgUrl: '/img/map.jpg',
   centerPointImg: {
     url: '/img/mapCenterPoint.png'
