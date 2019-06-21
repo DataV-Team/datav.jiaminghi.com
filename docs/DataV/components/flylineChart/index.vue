@@ -155,8 +155,11 @@ import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
 
 import { randomExtend } from '../../util/index'
 
+import autoResize from '../../mixins/autoResize.js'
+
 export default {
   name: 'PercentPond',
+  mixins: [autoResize],
   props: {
     config: {
       type: Object,
@@ -169,14 +172,12 @@ export default {
   },
   data () {
     return {
+      ref: 'dv-flyline-chart',
       unique: Math.random(),
       maskId: `flyline-mask-id-${(new Date()).getTime()}`,
       maskCircleId: `mask-circle-id-${(new Date()).getTime()}`,
       gradientId: `gradient-id-${(new Date()).getTime()}`,
       gradient2Id: `gradient2-id-${(new Date()).getTime()}`,
-
-      width: 0,
-      height: 0,
 
       defaultConfig: {
         /**
@@ -369,27 +370,16 @@ export default {
       calcData()
     }
   },
-  computed: {
-  },
   methods: {
-    async init () {
-      const { initWH, config, calcData } = this
-
-      await initWH()
-
-      if (!config) return
+    afterAutoResizeMixinInit () {
+      const { calcData } = this
 
       calcData()
     },
-    async initWH () {
-      const { $nextTick, $refs } = this
+    onResize () {
+      const { calcData } = this
 
-      await $nextTick()
-
-      const dom = $refs['dv-flyline-chart']
-
-      this.width = dom.clientWidth
-      this.height = dom.clientHeight
+      calcData()
     },
     async calcData () {
       const { mergeConfig, createFlylinePaths, calcLineLengths } = this
@@ -497,11 +487,6 @@ export default {
 
       console.warn(`dv-flyline-chart DEV: \n Click Position is [${offsetX}, ${offsetY}] \n Relative Position is [${relativeX}, ${relativeY}]`)
     }
-  },
-  mounted () {
-    const { init } = this
-
-    init()
   }
 }
 </script>

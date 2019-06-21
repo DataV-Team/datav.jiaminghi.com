@@ -29,14 +29,6 @@ module.exports = {
             link: '/guide/'
           },
           {
-            text: '坐标轴',
-            link: '/axis/'
-          },
-          {
-            text: '配置项',
-            link: '/config/'
-          },
-          {
             text: 'Demo',
             items: [
               {
@@ -77,14 +69,6 @@ module.exports = {
           {
             text: 'Guide',
             link: '/guide/'
-          },
-          {
-            text: 'Axis',
-            link: '/axis/'
-          },
-          {
-            text: 'Config',
-            link: '/config/'
           },
           {
             text: 'GitHub',
