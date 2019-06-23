@@ -1,20 +1,27 @@
 <template>
-  <div class="dv-digital-flop">
-    <canvas ref="digital-flop" />
+  <div class="dv-active-ring-chart">
+    <div class="active-ring-chart-container" ref="active-ring-chart" />
+    <div class="active-ring-info">
+      <dv-digital-flop :config="digitalFlop" />
+      <div class="active-ring-name">{{ ringName }}</div>
+    </div>
   </div>
 </template>
 
 <script>
-import CRender from '@jiaminghi/c-render'
+import Charts from '@jiaminghi/charts'
 
-import '@jiaminghi/charts/lib/extend/index'
+import dvDigitalFlop from '../digitalFlop'
 
 import { deepMerge } from '@jiaminghi/charts/lib/util/index'
 
 import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
 
 export default {
-  name: 'DigitalFlop',
+  name: 'ActiveRingChart',
+  components: {
+    dvDigitalFlop
+  },
   props: {
     config: {
       type: Object,
@@ -23,43 +30,52 @@ export default {
   },
   data () {
     return {
-      render: null,
-
       defaultConfig: {
         /**
-         * @description Number for digital flop
-         * @type {Array<Number>}
-         * @default number = []
-         * @example number = [10]
+         * @description Ring radius
+         * @type {String|Number}
+         * @default radius = '50%'
+         * @example radius = '50%' | 100
          */
-        number: [],
+        radius: '50%',
         /**
-         * @description Content formatter
-         * @type {String}
-         * @default content = ''
-         * @example content = '{nt}个'
+         * @description Active ring radius
+         * @type {String|Number}
+         * @default activeRadius = '55%'
+         * @example activeRadius = '55%' | 110
          */
-        content: '',
+        activeRadius: '55%',
         /**
-         * @description Number toFixed
+         * @description Ring data
+         * @type {Array}
+         * @default data = []
+         */
+        data: [],
+        /**
+         * @description Ring line width
          * @type {Number}
-         * @default toFixed = 0
+         * @default lineWidth = 20
          */
-        toFixed: 0,
+        lineWidth: 20,
         /**
-         * @description Text align
-         * @type {String}
-         * @default textAlign = 'center'
-         * @example textAlign = 'center' | 'left' | 'right'
+         * @description Active time gap (ms)
+         * @type {Number}
+         * @default activeTimeGap = 3000
          */
-        textAlign: 'center',
+        activeTimeGap: 3000,
         /**
-         * @description Text style configuration
-         * @type {Object} {CRender Class Style}
+         * @description Ring color (hex|rgb|rgba)
+         * @type {Array<String>}
+         * @default color = [Charts Default Color]
          */
-        style: {
-          fontSize: 30,
-          fill: '#3de7c9'
+        color: [],
+        /**
+         * @description Digital flop style
+         * @type {Object}
+         */
+        digitalFlopStyle: {
+          fontSize: 25,
+          fill: '#fff'
         },
         /**
          * @description CRender animationCurve
@@ -77,110 +93,204 @@ export default {
 
       mergedConfig: null,
 
-      graph: null
+      chart: null,
+
+      activeIndex: 0,
+
+      animationHandler: ''
+    }
+  },
+  computed: {
+    digitalFlop () {
+      const { mergedConfig, activeIndex } = this
+
+      if (!mergedConfig) return {}
+
+      const { digitalFlopStyle, data } = mergedConfig
+
+      const value = data.map(({ value }) => value)
+
+      const sum = value.reduce((all, v) => all + v, 0)
+
+      const percent = parseInt(value[activeIndex] / sum * 100)
+
+      return {
+        content: '{nt}%',
+        number: [percent],
+        style: digitalFlopStyle
+      }
+    },
+    ringName () {
+      const { mergedConfig, activeIndex } = this
+
+      if (!mergedConfig) return ''
+
+      return mergedConfig.data[activeIndex].name
     }
   },
   watch: {
     config () {
-      const { update } = this
+      const { animationHandler, mergeConfig, setRingOption } = this
 
-      update()
+      clearTimeout(animationHandler)
+
+      this.activeIndex = 0
+
+      mergeConfig()
+
+      setRingOption()
     }
   },
   methods: {
     init () {
-      const { initRender, mergeConfig, initGraph } = this
+      const { initChart, mergeConfig, setRingOption } = this
 
-      initRender()
+      initChart()
 
       mergeConfig()
 
-      initGraph()
+      setRingOption()
     },
-    initRender () {
+    initChart () {
       const { $refs } = this
 
-      this.render = new CRender($refs['digital-flop'])
+      this.chart = new Charts($refs['active-ring-chart'])
     },
     mergeConfig () {
       const { defaultConfig, config } = this
 
       this.mergedConfig = deepMerge(deepClone(defaultConfig, true), config || {})
     },
-    initGraph () {
-      const { getShape, getStyle, render, mergedConfig } = this
+    setRingOption () {
+      const { getRingOption, chart, ringAnimation } = this
 
-      const { animationCurve, animationFrame } = mergedConfig
+      const option = getRingOption()
 
-      const shape = getShape()
-      const style = getStyle()
+      chart.setOption(option)
 
-      this.graph = render.add({
-        name: 'numberText',
-        animationCurve,
-        animationFrame,
-        shape,
-        style
-      })
+      ringAnimation()
     },
-    getShape () {
-      const { number, content, toFixed, textAlign } = this.mergedConfig
+    getRingOption () {
+      const { mergedConfig, getRealRadius, chart } = this
 
-      const [w, h] = this.render.area
+      const radius = getRealRadius()
 
-      const position = [w / 2, h / 2]
-
-      if (textAlign === 'left') position[0] = 0
-      if (textAlign === 'right') position[0] = w
+      mergedConfig.data.forEach(dataItem => {
+        dataItem.radius = radius
+      })
 
       return {
-        number,
-        content,
-        toFixed,
-        position
+        series: [
+          {
+            type: 'pie',
+            ...mergedConfig,
+            outsideLabel: {
+              show: false
+            }
+          }
+        ]
       }
     },
-    getStyle () {
-      const { style, textAlign } = this.mergedConfig
+    getRealRadius (active = false) {
+      const { mergedConfig, chart } = this
 
-      return deepMerge(style, {
-        textAlign,
-        textBaseline: 'middle'
-      })
+      const { radius, activeRadius, lineWidth } = mergedConfig
+
+      const maxRadius = Math.min(...chart.render.area) / 2
+
+      const halfLineWidth = lineWidth / 2
+
+      let realRadius = active ? activeRadius : radius
+
+      if (typeof realRadius !== 'number') realRadius = parseInt(realRadius) / 100 * maxRadius
+
+      const insideRadius = realRadius - halfLineWidth
+      const outSideRadius = realRadius + halfLineWidth
+
+      return [insideRadius, outSideRadius]
     },
-    update () {
-      const { mergeConfig, getShape, getStyle, graph, mergedConfig } = this
+    ringAnimation () {
+      let { animation, activeIndex, getRingOption, chart, getRealRadius } = this
 
-      mergeConfig()
+      const radius = getRealRadius()
+      const active = getRealRadius(true)
 
-      if (!graph) return
+      const option = getRingOption()
 
-      const { animationCurve, animationFrame } = mergedConfig
+      const { data } = option.series[0]
 
-      const shape = getShape()
-      const style = getStyle()
+      data.forEach((dataItem, i) => {
+        if (i === activeIndex) {
+          dataItem.radius = active
+        } else {
+          dataItem.radius = radius
+        }
+      })
 
-      graph.animationCurve = animationCurve
-      graph.animationFrame = animationFrame
+      chart.setOption(option)
 
-      graph.animation('style', style, true)
-      graph.animation('shape', shape)
+      const { activeTimeGap } = option.series[0]
+
+      this.animationHandler = setTimeout(foo => {
+        activeIndex += 1
+
+        if (activeIndex >= data.length) activeIndex = 0
+
+        this.activeIndex = activeIndex
+
+        this.ringAnimation()
+      }, activeTimeGap);
     }
   },
   mounted () {
     const { init } = this
 
     init()
+  },
+  beforeDestroy () {
+    const { animationHandler } = this
+
+    clearTimeout(animationHandler)
   }
 }
 </script>
 
 <style lang="less">
-.dv-digital-flop {
+.dv-active-ring-chart {
+  position: relative;
 
-  canvas {
+  .active-ring-chart-container {
     width: 100%;
     height: 100%;
+  }
+
+  .active-ring-info {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .dv-digital-flop {
+      width: 100px;
+      height: 30px;
+    }
+
+    .active-ring-name {
+      width: 100px;
+      height: 30px;
+      color: #fff;
+      font-size: 25px;
+      text-align: center;
+      vertical-align: middle;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
 }
 </style>

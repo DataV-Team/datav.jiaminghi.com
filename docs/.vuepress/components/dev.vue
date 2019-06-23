@@ -10,16 +10,36 @@ export default {
   data () {
     return {
       config: {
-        number: [0, 0],
-        content: '{nt}-{nt}'
+        data: [
+          {
+            name: 'a',
+            value: 100
+          },
+          {
+            name: 'b',
+            value: 120
+          }
+        ]
       }
     }
   },
   created () {
     setTimeout(() => {
       this.config = {
-        number: [100, 200],
-        content: '{nt}-{nt}'
+        data: [
+          {
+            name: 'itemA',
+            value: 100
+          },
+          {
+            name: 'itemB',
+            value: 120
+          },
+          {
+            name: 'itemC',
+            value: 55
+          }
+        ]
       }
     }, 3000)
   }
@@ -37,8 +57,8 @@ export default {
   background-color: #282c34;
 
   .dev {
-    width: 200px;
-    height: 70px;
+    width: 100%;
+    height: 100%;
     box-shadow: 0 0 3px red;
   }
 }
