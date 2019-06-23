@@ -23,6 +23,7 @@ import decoration7 from './decoration7/index'
 import charts from './charts/index.vue'
 
 // special chart
+import activeRingChart from './activeRingChart'
 import waterLevelPond from './waterLevelPond/index.vue'
 import percentPond from './percentPond/index.vue'
 import flylineChart from './flylineChart'
@@ -71,6 +72,7 @@ export default function (Vue) {
   Vue.component('dvPercentPond', percentPond)
   Vue.component('dvFlylineChart', flylineChart)
   Vue.component('dvDigitalFlop', digitalFlop)
+  Vue.component('dvActiveRingChart', activeRingChart)
 
   // other
 

@@ -6,6 +6,13 @@ sidebarDepth: 2
 
 这里提供一些特殊图表，他们有的使用`SVG`开发，有的则基于[Charts](http://charts.jiaminghi.com)或[CRender](http://crender.jiaminghi.com)封装。
 
+## 动态环图
+
+```html
+<dv-active-ring-chart :config="config" style="width:200px;height:200px" />
+```
+<click-to-copy :info="activeRingChartTag" />
+
 ## 水位图
 
 水位图有三种形态，多种配置，具体使用示例如下：
@@ -390,6 +397,7 @@ export default {
       flylineChartTag: '<dv-flyline-chart :config="config" style="width:100%;height:100%;" />',
       flylineChartTag2: '<dv-flyline-chart :config="config" :dev="true" style="width:200px;height:100px;" />',
       digitalFlopTag: '<dv-digital-flop :config="config" style="width:100px;height:50px;" />',
+      activeRingChartTag: '<dv-active-ring-chart :config="config" style="width:200px;height:200px" />',
 
       ...waterLevelPond,
       ...percentPond,
