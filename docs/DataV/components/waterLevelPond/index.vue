@@ -307,6 +307,13 @@ export default {
     const { init } = this
 
     init()
+  },
+  beforeDestroy () {
+    const { calcData, render } = this
+
+    render.delAllGraph()
+
+    this.waves = []
   }
 }
 </script>
