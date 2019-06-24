@@ -3,7 +3,7 @@
     <div class="active-ring-chart-container" ref="active-ring-chart" />
     <div class="active-ring-info">
       <dv-digital-flop :config="digitalFlop" />
-      <div class="active-ring-name">{{ ringName }}</div>
+      <div class="active-ring-name" :style="fontSize">{{ ringName }}</div>
     </div>
   </div>
 </template>
@@ -126,6 +126,13 @@ export default {
       if (!mergedConfig) return ''
 
       return mergedConfig.data[activeIndex].name
+    },
+    fontSize () {
+      const { mergedConfig, activeIndex } = this
+
+      if (!mergedConfig) return ''
+
+      return `font-size: ${mergedConfig.digitalFlopStyle.fontSize}px;`
     }
   },
   watch: {
@@ -284,7 +291,6 @@ export default {
       width: 100px;
       height: 30px;
       color: #fff;
-      font-size: 25px;
       text-align: center;
       vertical-align: middle;
       text-overflow: ellipsis;

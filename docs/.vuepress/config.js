@@ -53,6 +53,10 @@ module.exports = {
             'decoration',
             'charts',
             'specialChart',
+            'waterLevelPond',
+            'percentPond',
+            'flylineChart',
+            'digitalFlop',
             // 'percent',
           //   'carousel',
           //   'other'

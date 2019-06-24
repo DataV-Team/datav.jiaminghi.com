@@ -1,0 +1,9 @@
+import activeRingChart1 from './demo1'
+import activeRingChart2 from './demo2'
+import activeRingChart3 from './demo3'
+
+export default {
+  activeRingChart1,
+  activeRingChart2,
+  activeRingChart3
+}
