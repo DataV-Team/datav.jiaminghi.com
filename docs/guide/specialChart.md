@@ -222,8 +222,8 @@ relative|使用相对坐标<sup>[7]</sup>|`Boolean`|`true|false`|`true`
 bgImgUrl|背景图url|`String`|---|`''`
 text|文本配置项|`Object`|---|[text](/guide/specialChart.html#text属性)
 halo|光晕环配置项|`Object`|---|[halo](/guide/specialChart.html#halo属性)
-centerPointImg|中心点图片配置|`Object`|---|[centerPointImg](/guide/specialChart.html#centerPointImg属性)
-pointsImg|飞线点图片配置|`Object`|---|[pointsImg](/guide/specialChart.html#pointsImg属性)
+centerPointImg|中心点图片配置|`Object`|---|[centerPointImg](/guide/specialChart.html#centerpointimg属性)
+pointsImg|飞线点图片配置|`Object`|---|[pointsImg](/guide/specialChart.html#pointsimg属性)
 </full-width-table>
 
 ### 进度池config相关注释
