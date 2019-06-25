@@ -52,7 +52,7 @@ module.exports = {
             'borderBox',
             'decoration',
             'charts',
-            'specialChart',
+            'activeRingChart',
             'waterLevelPond',
             'percentPond',
             'flylineChart',

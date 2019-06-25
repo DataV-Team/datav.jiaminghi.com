@@ -1,28 +1,25 @@
-# DataV Guide
+<h1 align="center"><a href="http://datav.jiaminghi.com">datav.jiaminghi.com</a></h1>
 
-## Vue 大屏数据展示组件库
-
-## Vue Large screen data display component library
+<p align="center">
+    <a href="https://github.com/jiaming743/datav.jiaminghi.com/blob/master/LICENSE"><img src="https://img.shields.io/github/license/jiaming743/datav.jiaminghi.com.svg" alt="LICENSE" /> </a>
+</p>
 
 ## Project setup
-```
+
+```shell
 yarn
 ```
 
 ## Compiles and hot-reloads for development
-```
+
+```shell
 yarn dev
 ```
 
 ## Compiles and minifies for production
-```
+
+```shell
 yarn build
 ```
 
-[文档官网](http://datav.jiaminghi.com/)
-
-[Document of official website](http://datav.jiaminghi.com/)
-
-[项目地址](https://github.com/jiaming743/DataV)
-
-[Project address](https://github.com/jiaming743/DataV)
+[DataV](https://github.com/jiaming743/DataV)

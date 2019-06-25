@@ -246,7 +246,7 @@ export default {
         this.activeIndex = activeIndex
 
         this.ringAnimation()
-      }, activeTimeGap);
+      }, activeTimeGap)
     }
   },
   mounted () {
