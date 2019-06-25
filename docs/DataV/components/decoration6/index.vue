@@ -50,7 +50,7 @@ export default {
     const rectWidth = 7
 
     return {
-      ref: `decoration-3-${(new Date()).getTime()}`,
+      ref: 'decoration-6',
 
       svgWH: [300, 35],
 
@@ -123,6 +123,9 @@ export default {
 
 <style lang="less">
 .dv-decoration-6 {
+  width: 100%;
+  height: 100%;
+
   svg {
     transform-origin: left top;
   }

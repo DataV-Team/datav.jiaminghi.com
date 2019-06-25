@@ -1,7 +1,7 @@
-import scrollBoardData1 from './scrollBoardData1'
-import scrollBoardData2 from './scrollBoardData2'
+import demo1 from './demo1'
+import demo2 from './demo2'
 
 export default {
-  scrollBoardData1,
-  scrollBoardData2
+  demo1,
+  demo2
 }

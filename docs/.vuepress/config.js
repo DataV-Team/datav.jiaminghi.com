@@ -15,7 +15,7 @@ module.exports = {
     '/EN/': {
       lang: 'en-US',
       title: 'DataV',
-      description: 'Vue Large screen data display component library'
+      description: 'Vue large screen data display component library'
     }
   },
   themeConfig: {
@@ -49,6 +49,8 @@ module.exports = {
         sidebar: {
           '/guide/': [
             '',
+            'fullScreenContainer',
+            'loading',
             'borderBox',
             'decoration',
             'charts',
@@ -57,12 +59,8 @@ module.exports = {
             'percentPond',
             'flylineChart',
             'digitalFlop',
-            // 'percent',
-          //   'carousel',
-          //   'other'
+            'scrollBoard',
           ],
-          // '/axis/': [''],
-          // '/config/': [''],
           '/dev/': ['']
         }
       },

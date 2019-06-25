@@ -68,6 +68,8 @@ export default {
 <style lang="less">
 .dv-charts-container {
   position: relative;
+  width: 100%;
+  height: 100%;
 
   .charts {
     width: 100%;

@@ -25,17 +25,23 @@ export default {
   mixins: [autoResize],
   data () {
     return {
-      ref: `border-box-5-${(new Date()).getTime()}`
+      ref: 'border-box-5'
     }
   },
-  props: ['reverse']
+  props: {
+    reverse: {
+      type: Boolean,
+      default: false
+    }
+  }
 }
 </script>
 
 <style lang="less">
 .dv-border-box-5 {
   position: relative;
-  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
 
   .dv-reverse {
     transform: rotate(180deg);

@@ -56,7 +56,7 @@ export default {
   name: 'BorderBox1',
   data () {
     return {
-      ref: `border-box-1-${(new Date()).getTime()}`,
+      ref: 'border-box-1',
 
       border: ['left-top', 'right-top', 'left-bottom', 'right-bottom']
     }
@@ -67,7 +67,8 @@ export default {
 <style lang="less">
 .dv-border-box-1 {
   position: relative;
-  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
 
   .border {
     position: absolute;

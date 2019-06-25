@@ -53,7 +53,7 @@ export default {
   mixins: [autoResize],
   data () {
     return {
-      ref: `decoration-3-${(new Date()).getTime()}`,
+      ref: 'decoration-5',
 
       line1Points: '',
       line2Points: '',
@@ -104,5 +104,7 @@ export default {
 
 <style lang="less">
 .dv-decoration-5 {
+  width: 100%;
+  height: 100%;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="dev-container">
-    <devcmp class="dev" :config="config" />
+    <devcmp class="dev" :config="config">正在加载中</devcmp>
   </div>
 </template>
 
@@ -10,37 +10,11 @@ export default {
   data () {
     return {
       config: {
-        data: [
-          {
-            name: 'a',
-            value: 100
-          },
-          {
-            name: 'b',
-            value: 120
-          }
-        ]
       }
     }
   },
   created () {
     setTimeout(() => {
-      this.config = {
-        data: [
-          {
-            name: 'itemA',
-            value: 100
-          },
-          {
-            name: 'itemB',
-            value: 120
-          },
-          {
-            name: 'itemC',
-            value: 55
-          }
-        ]
-      }
     }, 3000)
   }
 }

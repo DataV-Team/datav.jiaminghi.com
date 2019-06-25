@@ -31,7 +31,7 @@ export default {
   props: ['reverse'],
   data () {
     return {
-      ref: `decoration-3-${(new Date()).getTime()}`
+      ref: 'decoration-4'
     }
   }
 }
@@ -40,6 +40,8 @@ export default {
 <style lang="less">
 .dv-decoration-4 {
   position: relative;
+  width: 100%;
+  height: 100%;
 
   .container {
     display: flex;

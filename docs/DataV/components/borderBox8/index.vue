@@ -88,6 +88,8 @@ export default {
 <style lang="less">
 .dv-border-box-8 {
   position: relative;
+  width: 100%;
+  height: 100%;
 
   svg {
     position: absolute;

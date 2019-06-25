@@ -25,7 +25,7 @@ export default {
   mixins: [autoResize],
   data () {
     return {
-      ref: `border-box-3-${(new Date()).getTime()}`
+      ref: 'border-box-3'
     }
   }
 }
@@ -34,7 +34,8 @@ export default {
 <style lang="less">
 .dv-border-box-3 {
   position: relative;
-  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
 
   .dv-border-svg-container {
     position: absolute;

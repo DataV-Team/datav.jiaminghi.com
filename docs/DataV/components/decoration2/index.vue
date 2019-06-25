@@ -36,10 +36,15 @@ import autoResize from '../../mixins/autoResize.js'
 export default {
   name: 'Decoration2',
   mixins: [autoResize],
-  props: ['reverse'],
+  props: {
+    reverse: {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
     return {
-      ref: `decoration-2-${(new Date()).getTime()}`,
+      ref: 'decoration-2',
 
       x: 0,
       y: 0,
@@ -88,6 +93,8 @@ export default {
 <style lang="less">
 .dv-decoration-2 {
   display: flex;
+  width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }

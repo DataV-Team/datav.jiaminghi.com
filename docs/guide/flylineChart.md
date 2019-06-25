@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # 飞线图
 
-设置一个中心点，若干飞线点，即可得到动态飞线图，组件提供的[dev模式](/guide/specialChart.html#dev模式)可以帮你快速配置飞线点位置。
+设置一个中心点，若干飞线点，即可得到动态飞线图，组件提供的[dev模式](/guide/flylineChart.html#dev模式)可以帮你快速配置飞线点位置。
 
 ```html
 <dv-flyline-chart :config="config" style="width:100%;height:100%;" />
@@ -88,10 +88,10 @@ flylineRadius|飞线显示半径<sup>[5]</sup>|`Number`|---|`100`
 duration|飞线动画时长|`Array<Number>`|---|`[20, 30]`<sup>[6]</sup>
 relative|使用相对坐标<sup>[7]</sup>|`Boolean`|`true|false`|`true`
 bgImgUrl|背景图url|`String`|---|`''`
-text|文本配置项|`Object`|---|[text](/guide/specialChart.html#text属性)
-halo|光晕环配置项|`Object`|---|[halo](/guide/specialChart.html#halo属性)
-centerPointImg|中心点图片配置|`Object`|---|[centerPointImg](/guide/specialChart.html#centerpointimg属性)
-pointsImg|飞线点图片配置|`Object`|---|[pointsImg](/guide/specialChart.html#pointsimg属性)
+text|文本配置项|`Object`|---|[text](/guide/flylineChart.html#text属性)
+halo|光晕环配置项|`Object`|---|[halo](/guide/flylineChart.html#halo属性)
+centerPointImg|中心点图片配置|`Object`|---|[centerPointImg](/guide/flylineChart.html#centerpointimg属性)
+pointsImg|飞线点图片配置|`Object`|---|[pointsImg](/guide/flylineChart.html#pointsimg属性)
 </full-width-table>
 
 ## config相关注释

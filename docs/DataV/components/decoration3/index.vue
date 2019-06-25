@@ -37,7 +37,7 @@ export default {
     const pointSideLength = 7
 
     return {
-      ref: `decoration-3-${(new Date()).getTime()}`,
+      ref: 'decoration-3',
 
       svgWH: [300, 35],
 
@@ -98,6 +98,9 @@ export default {
 
 <style lang="less">
 .dv-decoration-3 {
+  width: 100%;
+  height: 100%;
+
   svg {
     transform-origin: left top;
   }

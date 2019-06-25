@@ -1,4 +1,5 @@
-import devcmp from './devcmp/index'
+import fullScreenContainer from './fullScreenContainer'
+import loading from './loading/index.vue'
 
 // border box
 import borderBox1 from './borderBox1/index'
@@ -18,32 +19,22 @@ import decoration4 from './decoration4/index'
 import decoration5 from './decoration5/index'
 import decoration6 from './decoration6/index'
 import decoration7 from './decoration7/index'
+import decoration8 from './decoration8/index'
 
 // charts
 import charts from './charts/index.vue'
 
-// special chart
 import activeRingChart from './activeRingChart'
 import waterLevelPond from './waterLevelPond/index.vue'
 import percentPond from './percentPond/index.vue'
 import flylineChart from './flylineChart'
 import digitalFlop from './digitalFlop'
-
-// other
-
-import loading from './loading/index.vue'
-
-import capsuleChart from './capsuleChart/index.vue'
-import arcRingChart from './arcRingChart/index.vue'
-
-import numberShow from './numberShow/index.vue'
-import percentArc from './percentArc/index.vue'
 import scrollBoard from './scrollBoard/index.vue'
 
-import fullScreenContainer from './fullScreenContainer'
-
 export default function (Vue) {
-  Vue.component('devcmp', devcmp)
+  Vue.component('dvFullScreenContainer', fullScreenContainer)
+
+  Vue.component('dvLoading', loading)
 
   // border box
   Vue.component('dvBorderBox1', borderBox1)
@@ -63,27 +54,16 @@ export default function (Vue) {
   Vue.component('dvDecoration5', decoration5)
   Vue.component('dvDecoration6', decoration6)
   Vue.component('dvDecoration7', decoration7)
+  Vue.component('dvDecoration8', decoration8)
 
   // charts
   Vue.component('dvCharts', charts)
 
-  // special chart
+  Vue.component('dvActiveRingChart', activeRingChart)
   Vue.component('dvWaterLevelPond', waterLevelPond)
   Vue.component('dvPercentPond', percentPond)
   Vue.component('dvFlylineChart', flylineChart)
   Vue.component('dvDigitalFlop', digitalFlop)
-  Vue.component('dvActiveRingChart', activeRingChart)
 
-  // other
-
-  Vue.component('loading', loading)
-
-  Vue.component('capsuleChart', capsuleChart)
-  Vue.component('arcRingChart', arcRingChart)
-
-  Vue.component('numberShow', numberShow)
-  Vue.component('percentArc', percentArc)
-  Vue.component('scrollBoard', scrollBoard)
-
-  Vue.component('fullScreenContainer', fullScreenContainer)
+  Vue.component('dvScrollBoard', scrollBoard)
 }

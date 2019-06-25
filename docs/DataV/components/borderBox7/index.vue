@@ -26,7 +26,7 @@ export default {
   mixins: [autoResize],
   data () {
     return {
-      ref: `border-box-7-${(new Date()).getTime()}`
+      ref: 'border-box-7'
     }
   }
 }
@@ -37,8 +37,9 @@ export default {
 
 .dv-border-box-7 {
   position: relative;
+  width: 100%;
+  height: 100%;
   box-shadow: inset 0 0 40px fade(@color, 30);
-  box-sizing: border-box;
   border: 1px solid @color;
 
   .dv-svg-container {
