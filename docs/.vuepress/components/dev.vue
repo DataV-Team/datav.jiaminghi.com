@@ -1,6 +1,7 @@
 <template>
   <div id="dev-container">
-    <dv-active-ring-chart class="dev" :config="config" />
+    <!-- <dv-active-ring-chart class="dev" :config="config" /> -->
+    <dv-scroll-ranking-board class="dev" :config="config" />
   </div>
 </template>
 
@@ -30,6 +31,14 @@ export default {
           {
             name: '新乡',
             value: 80
+          },
+          {
+            name: '信阳',
+            value: 45
+          },
+          {
+            name: '漯河',
+            value: 29
           }
         ]
       }
@@ -51,10 +60,11 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #282c34;
+  color: #fff;
 
   .dev {
-    width: 100%;
-    height: 100%;
+    width: 400px;
+    height: 300px;
     box-shadow: 0 0 3px red;
   }
 }

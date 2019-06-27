@@ -70,11 +70,11 @@ export default {
       text: '安阳'
     }
   ],
-  bgImgUrl: '/img/map.jpg',
+  bgImgUrl: '/img/flylineChart/map.jpg',
   centerPointImg: {
-    url: '/img/mapCenterPoint.png'
+    url: '/img/flylineChart/mapCenterPoint.png'
   },
   pointsImg: {
-    url: '/img/mapPoint.png'
+    url: '/img/flylineChart/mapPoint.png'
   }
 }

@@ -13,7 +13,7 @@ sidebarDepth: 2
 
 ## 基本示例
 
-<div class="chart-container" style="height: 600px;">
+<div class="chart-container">
   <dv-flyline-chart :config="flylineChart1" :dev="true" style="width:100%;height:100%;" />
 </div>
 
@@ -23,7 +23,7 @@ sidebarDepth: 2
 
 ## 附带图标
 
-<div class="chart-container" style="height: 600px;">
+<div class="chart-container">
   <dv-flyline-chart :config="flylineChart2" :dev="true" style="width:100%;height:100%;" />
 </div>
 
@@ -33,7 +33,7 @@ sidebarDepth: 2
 
 ## 附带文本
 
-<div class="chart-container" style="height: 600px;">
+<div class="chart-container">
   <dv-flyline-chart :config="flylineChart3" :dev="true" style="width:100%;height:100%;" />
 </div>
 
@@ -43,7 +43,7 @@ sidebarDepth: 2
 
 ## 凹聚飞线
 
-<div class="chart-container" style="height: 600px;">
+<div class="chart-container">
   <dv-flyline-chart :config="flylineChart4" :dev="true" style="width:100%;height:100%;" />
 </div>
 
@@ -184,10 +184,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 .chart-container {
   position: relative;
-  height: 300px;
+  height: 600px;
   background-color: #282c34;
   overflow: hidden;
   border-radius: 6px;

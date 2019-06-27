@@ -19,11 +19,11 @@ export default {
     [0.68, 0.17],
     [0.59, 0.10]
   ],
-  bgImgUrl: '/img/map.jpg',
+  bgImgUrl: '/img/flylineChart/map.jpg',
   centerPointImg: {
-    url: '/img/mapCenterPoint.png'
+    url: '/img/flylineChart/mapCenterPoint.png'
   },
   pointsImg: {
-    url: '/img/mapPoint.png'
+    url: '/img/flylineChart/mapPoint.png'
   }
 }

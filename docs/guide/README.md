@@ -44,7 +44,7 @@ Vue.use(dataV)
 
 ```js
 // 仅需个别组件时，建议按需引入
-import borderBox1 from '@jiaminghi/data-view/components'
+import borderBox1 from '@jiaminghi/data-view/components/borderBox1'
 
 Vue.component('dvBorderBox1', borderBox1)
 ```

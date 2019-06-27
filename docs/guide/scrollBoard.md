@@ -7,7 +7,7 @@ sidebarDepth: 2
 轮播表可以单条轮播也可以整页轮播，支持点击事件，展示数据使用**v-html**渲染，因此你可以传递`html`字符串，定制个性化元素。
 
 ```html
-<dv-scroll-board :config="config" />
+<dv-scroll-board :config="config" style="width:500px;height:220px" />
 ```
 
 <click-to-copy :info="scrollBoardTag" />
@@ -110,7 +110,7 @@ export default {
     return {
       ...scrollBoard,
 
-      scrollBoardTag: `<dv-scroll-board :config="config" />`,
+      scrollBoardTag: `<dv-scroll-board :config="config" style="width:500px;height:220px" />`,
     }
   },
   methods: {

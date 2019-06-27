@@ -4,7 +4,7 @@ module.exports = {
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }]
   ],
-  host: 'localhost',
+  host: '192.168.10.150',
   port: 5000,
   locales: {
     '/': {
@@ -58,8 +58,10 @@ module.exports = {
             'waterLevelPond',
             'percentPond',
             'flylineChart',
+            'conicalColumnChart',
             'digitalFlop',
             'scrollBoard',
+            'scrollRankingBoard'
           ],
           '/dev/': ['']
         }
