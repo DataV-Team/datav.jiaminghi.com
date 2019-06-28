@@ -157,7 +157,7 @@ export default {
 
       data = data.map(item => ({
         ...item,
-        percent: item.value / max,
+        percent: item.value / max
       }))
 
       mergedConfig.data = data
@@ -202,8 +202,6 @@ export default {
           textY
         }
       })
-
-      console.warn(this.column)
     }
   }
 }
