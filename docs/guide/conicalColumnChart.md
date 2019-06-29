@@ -46,7 +46,7 @@ textColor|文字颜色|`String`|---|`'#fff'`
 showValue|显示数值|`Boolean`|---|`false`
 </full-width-table>
 
-::: tip
+::: tip TIP
 将根据自动排序后的排名顺序使用**img**中的图片。
 :::
 

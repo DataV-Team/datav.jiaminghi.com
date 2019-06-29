@@ -1,7 +1,7 @@
 <template>
   <div id="dev-container">
     <!-- <dv-active-ring-chart class="dev" :config="config" /> -->
-    <dv-scroll-ranking-board class="dev" :config="config" />
+    <dv-decoration-10 class="dev" />
   </div>
 </template>
 
@@ -63,8 +63,8 @@ export default {
   color: #fff;
 
   .dev {
-    width: 400px;
-    height: 300px;
+    width: 100%;
+    height: 200px;
     box-shadow: 0 0 3px red;
   }
 }

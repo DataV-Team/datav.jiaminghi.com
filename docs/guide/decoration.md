@@ -83,7 +83,7 @@
 <click-to-copy :info="info6" />
 
 ## dv-decoration-7
-<div class="decoration-contaier">
+<div class="decoration-contaier font1">
   <dv-decoration-7 style="width:150px;height:30px;">Decoration</dv-decoration-7>
 </div>
 
@@ -112,6 +112,26 @@
 ```
 <click-to-copy :info="info8r" />
 
+## dv-decoration-9
+<div class="decoration-contaier font2">
+  <dv-decoration-9 style="width:150px;height:150px;">66%</dv-decoration-9>
+</div>
+
+```html
+<dv-decoration-9 style="width:150px;height:150px;">66%</dv-decoration-9>
+```
+<click-to-copy :info="info9" />
+
+## dv-decoration-10
+<div class="decoration-contaier font2">
+  <dv-decoration-10 style="width:90%;height:5px;" />
+</div>
+
+```html
+<dv-decoration-10 style="width:90%;height:5px;" />
+```
+<click-to-copy :info="info10" />
+
 <script>
   export default {
     data () {
@@ -127,6 +147,8 @@
         info7: `<dv-decoration-7 style="width:150px;height:30px;">Decoration</dv-decoration-7>`,
         info8: `<dv-decoration-8 style="width:300px;height:50px;" />`,
         info8r: `<dv-decoration-8 :reverse="true" style="width:300px;height:50px;" />`,
+        info9: `<dv-decoration-9 style="width:150px;height:150px;">66%</dv-decoration-9>`,
+        info10: `<dv-decoration-10 style="width:90%;height:5px;" />`
       }
     }
   }
@@ -142,11 +164,18 @@
   background-color: #282c34;
   overflow: hidden;
   color: #fff;
+}
 
-  .decoration {
-    color: #7ec699;
-    font-weight: bold;
-  }
+.font1 {
+  color: #7ec699;
+  font-weight: bold;
+}
+
+.font2 {
+  color: #7ec699;
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 0 0 3px #7acaec;
 }
 </style>
 

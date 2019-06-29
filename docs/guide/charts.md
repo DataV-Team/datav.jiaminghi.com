@@ -2,7 +2,7 @@
 
 图表组件基于[Charts](http://charts.jiaminghi.com)封装，只需要将对应图表`option`数据传入组件即可。
 
-::: tip
+::: tip TIP
 当窗口发生**resize**时，图表组件会重新计算宽高以便于自适应。
 :::
 

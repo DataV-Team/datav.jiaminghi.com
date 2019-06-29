@@ -106,6 +106,16 @@
 ```
 <click-to-copy :info="info8" />
 
+## dv-border-box-9
+<div class="border-box-contaier">
+  <dv-border-box-9>dv-border-box-9</dv-border-box-9>
+</div>
+
+```html
+<dv-border-box-9>dv-border-box-9</dv-border-box-9>
+```
+<click-to-copy :info="info9" />
+
 <script>
 export default {
   data () {
@@ -119,7 +129,8 @@ export default {
       info5Reverse: `<border-box-5 :reverse="true">dv-border-box-5</dv-border-box-5>`,
       info6: `<dv-border-box-6>dv-border-box-6</dv-border-box-6>`,
       info7: `<dv-border-box-7>dv-border-box-7</dv-border-box-7>`,
-      info8: `<dv-border-box-8>dv-border-box-8</dv-border-box-8>`
+      info8: `<dv-border-box-8>dv-border-box-8</dv-border-box-8>`,
+      info9: `<dv-border-box-9>dv-border-box-9</dv-border-box-9>`,
     }
   }
 }

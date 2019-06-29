@@ -60,7 +60,7 @@ sidebarDepth: 2
 ```
 <click-to-copy :info="flylineChartTag2" />
 
-::: tip
+::: tip TIP
 开启dev模式后，请打开浏览器控制台，然后点击飞线图组件中你想要设置的飞线的起始点位置或中心点位置，控制台会输出该点在组件中的位置信息：
 
 `dv-flyline-chart DEV:`

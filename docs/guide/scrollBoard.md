@@ -77,7 +77,7 @@ carousel|轮播方式|`String`|`'single'|'page'`|`'single'`
 
 [2] `align`可以配置每一列的对齐方式，可选值有`'left'|'center'|'right'`，默认值为`'left'`。
 
-::: tip
+::: tip TIP
 `columnWidth`与`align`允许尾部缺省：
 
 ```js
