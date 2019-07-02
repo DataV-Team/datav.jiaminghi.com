@@ -2,7 +2,7 @@ import fullScreenContainer from './fullScreenContainer'
 import loading from './loading/index.vue'
 
 // border box
-import borderBox1 from './borderBox1/index'
+import borderBox1 from './borderBox1/index.js'
 import borderBox2 from './borderBox2/index'
 import borderBox3 from './borderBox3/index'
 import borderBox4 from './borderBox4/index'
@@ -42,7 +42,8 @@ export default function (Vue) {
   Vue.component('dvLoading', loading)
 
   // border box
-  Vue.component('dvBorderBox1', borderBox1)
+  Vue.use(borderBox1)
+  // Vue.component('dvBorderBox1', borderBox1)
   Vue.component('dvBorderBox2', borderBox2)
   Vue.component('dvBorderBox3', borderBox3)
   Vue.component('dvBorderBox4', borderBox4)

@@ -1,5 +1,5 @@
 <template>
-  <div class="dv-border-box-1" :ref="ref">
+  <div class="dv-border-box-1">
     <svg
       width="150px"
       height="150px"
@@ -53,11 +53,9 @@
 
 <script>
 export default {
-  name: 'BorderBox1',
+  name: 'DvBorderBox1',
   data () {
     return {
-      ref: 'border-box-1',
-
       border: ['left-top', 'right-top', 'left-bottom', 'right-bottom']
     }
   }
