@@ -1,8 +1,8 @@
-import fullScreenContainer from './fullScreenContainer'
-import loading from './loading/index.vue'
+import fullScreenContainer from './fullScreenContainer/index'
+import loading from './loading/index'
 
 // border box
-import borderBox1 from './borderBox1/index.js'
+import borderBox1 from './borderBox1/index'
 import borderBox2 from './borderBox2/index'
 import borderBox3 from './borderBox3/index'
 import borderBox4 from './borderBox4/index'
@@ -25,55 +25,53 @@ import decoration9 from './decoration9/index'
 import decoration10 from './decoration10/index'
 
 // charts
-import charts from './charts/index.vue'
+import charts from './charts/index'
 
 import activeRingChart from './activeRingChart'
-import waterLevelPond from './waterLevelPond/index.vue'
-import percentPond from './percentPond/index.vue'
+import waterLevelPond from './waterLevelPond/index'
+import percentPond from './percentPond/index'
 import flylineChart from './flylineChart'
 import conicalColumnChart from './conicalColumnChart'
 import digitalFlop from './digitalFlop'
-import scrollBoard from './scrollBoard/index.vue'
-import scrollRankingBoard from './scrollRankingBoard/index.vue'
+import scrollBoard from './scrollBoard/index'
+import scrollRankingBoard from './scrollRankingBoard/index'
 
 export default function (Vue) {
-  Vue.component('dvFullScreenContainer', fullScreenContainer)
-
-  Vue.component('dvLoading', loading)
+  Vue.use(fullScreenContainer)
+  Vue.use(loading)
 
   // border box
   Vue.use(borderBox1)
-  // Vue.component('dvBorderBox1', borderBox1)
-  Vue.component('dvBorderBox2', borderBox2)
-  Vue.component('dvBorderBox3', borderBox3)
-  Vue.component('dvBorderBox4', borderBox4)
-  Vue.component('dvBorderBox5', borderBox5)
-  Vue.component('dvBorderBox6', borderBox6)
-  Vue.component('dvBorderBox7', borderBox7)
-  Vue.component('dvBorderBox8', borderBox8)
-  Vue.component('dvBorderBox9', borderBox9)
+  Vue.use(borderBox2)
+  Vue.use(borderBox3)
+  Vue.use(borderBox4)
+  Vue.use(borderBox5)
+  Vue.use(borderBox6)
+  Vue.use(borderBox7)
+  Vue.use(borderBox8)
+  Vue.use(borderBox9)
 
   // decoration
-  Vue.component('dvDecoration1', decoration1)
-  Vue.component('dvDecoration2', decoration2)
-  Vue.component('dvDecoration3', decoration3)
-  Vue.component('dvDecoration4', decoration4)
-  Vue.component('dvDecoration5', decoration5)
-  Vue.component('dvDecoration6', decoration6)
-  Vue.component('dvDecoration7', decoration7)
-  Vue.component('dvDecoration8', decoration8)
-  Vue.component('dvDecoration9', decoration9)
-  Vue.component('dvDecoration10', decoration10)
+  Vue.use(decoration1)
+  Vue.use(decoration2)
+  Vue.use(decoration3)
+  Vue.use(decoration4)
+  Vue.use(decoration5)
+  Vue.use(decoration6)
+  Vue.use(decoration7)
+  Vue.use(decoration8)
+  Vue.use(decoration9)
+  Vue.use(decoration10)
 
   // charts
-  Vue.component('dvCharts', charts)
+  Vue.use(charts)
 
-  Vue.component('dvActiveRingChart', activeRingChart)
-  Vue.component('dvWaterLevelPond', waterLevelPond)
-  Vue.component('dvPercentPond', percentPond)
-  Vue.component('dvFlylineChart', flylineChart)
-  Vue.component('dvConicalColumnChart', conicalColumnChart)
-  Vue.component('dvDigitalFlop', digitalFlop)
-  Vue.component('dvScrollBoard', scrollBoard)
-  Vue.component('dvScrollRankingBoard', scrollRankingBoard)
+  Vue.use(activeRingChart)
+  Vue.use(waterLevelPond)
+  Vue.use(percentPond)
+  Vue.use(flylineChart)
+  Vue.use(conicalColumnChart)
+  Vue.use(digitalFlop)
+  Vue.use(scrollBoard)
+  Vue.use(scrollRankingBoard)
 }
