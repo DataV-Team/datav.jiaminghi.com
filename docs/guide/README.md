@@ -18,17 +18,21 @@
 
 飞线图/水位图/轮播表/...
 
+::: tip TIP
+建议使用Chrome浏览器。
+:::
+
 ## 安装
 
 * npm安装
 
 ```sh
-npm install @jiaminghi/data-view -D
+npm install @jiaminghi/data-view
 ```
 
 * yarn安装
 ```sh
-yarn add @jiaminghi/data-view -D
+yarn add @jiaminghi/data-view
 ```
 
 ## 使用
@@ -42,9 +46,10 @@ Vue.use(dataV)
 
 ## 按需引入
 
-```js
-// 仅需个别组件时，建议按需引入
-import borderBox1 from '@jiaminghi/data-view/components/borderBox1'
+按需引入仅支持基于**ES module**的**tree shaking**，按需引入示例如下：
 
-Vue.component('dvBorderBox1', borderBox1)
+```js
+import { borderBox1 } from '@jiaminghi/data-view'
+
+Vue.use(borderBox1)
 ```

@@ -31,15 +31,6 @@ export default {
   background-color: #282c34;
   padding: 30px;
   overflow: hidden;
-
-  .component {
-    position: absolute;
-    width: 400px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-  }
+  color: #fff;
 }
 </style>

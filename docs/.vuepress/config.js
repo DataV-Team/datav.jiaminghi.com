@@ -29,8 +29,16 @@ module.exports = {
             link: '/guide/'
           },
           {
+            text: '支持',
+            link: '/support/'
+          },
+          {
             text: 'Demo',
             items: [
+              {
+                text: '施工养护综合数据',
+                link: 'http://datav.jiaminghi.com/demo/construction-data/index.html'
+              },
               {
                 text: '机电运维管理台',
                 link: 'http://datav.jiaminghi.com/demo/manage-desk/index.html'
