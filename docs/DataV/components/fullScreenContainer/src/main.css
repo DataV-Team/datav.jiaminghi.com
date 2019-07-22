@@ -1,8 +1,0 @@
-#dv-full-screen-container {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  overflow: hidden;
-  transform-origin: left top;
-  z-index: 999;
-}

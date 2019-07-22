@@ -11,16 +11,14 @@ export default {
       data: [ { name: 'itemA', value: 55 } ],
       center: ['50%', '55%'],
       axisLabel: {
-        formatter: '{value}%'
+        formatter: '{value}%',
+        style: {
+          fill: '#fff'
+        }
       },
       axisTick: {
         style: {
           stroke: '#fff'
-        }
-      },
-      axisLabel: {
-        style: {
-          fill: '#fff'
         }
       },
       animationCurve: 'easeInOutBack'
