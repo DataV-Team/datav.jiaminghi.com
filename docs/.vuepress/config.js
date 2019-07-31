@@ -51,7 +51,7 @@ module.exports = {
           },
           {
             text: 'GitHub',
-            link: 'https://github.com/jiaming743/DataV'
+            link: 'https://github.com/jiaming743/datav.jiaminghi.com'
           }
         ],
         sidebar: {
@@ -84,7 +84,7 @@ module.exports = {
           },
           {
             text: 'GitHub',
-            link: 'https://github.com/jiaming743/DataV'
+            link: 'https://github.com/jiaming743/datav.jiaminghi.com'
           }
         ],
         sidebar: {
