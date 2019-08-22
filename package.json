@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
+    "deploy": "node deploy/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -18,7 +19,9 @@
   "devDependencies": {
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
-    "vuepress": "^1.0.2"
+    "vuepress": "^1.0.2",
+    "@jiaminghi/fs": "^0.0.2",
+    "ftp": "^0.3.10"
   },
   "dependencies": {
     "@jiaminghi/charts": "*"
