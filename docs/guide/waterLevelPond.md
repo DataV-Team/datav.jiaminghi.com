@@ -48,11 +48,11 @@ sidebarDepth: 2
 :--:|:--:|:--:|:--:|:--:
 data|水位位置<sup>[1]</sup>|`Arrya<Number>`|---|`[]`
 shape|水位图形状|`String`|[2]|`'rect'`
-colors|水位图配色|`Array<String>`|`hex|rgb|rgba`|<sup>[3]</sup>
+colors|水位图配色|`Array<String>`|[3]|[4]
 waveNum|波浪数量|`Number`|---|`3`
 waveHeight|波浪高度|`Number`|---|`40`
 waveOpacity|波浪透明度|`Number`|---|`0.4`
-formatter|信息格式化|`String`|---|`'{value}%'`<sup>[4]</sup>
+formatter|信息格式化|`String`|---|`'{value}%'`<sup>[5]</sup>
 </full-width-table>
 
 ## 注释
@@ -61,9 +61,11 @@ formatter|信息格式化|`String`|---|`'{value}%'`<sup>[4]</sup>
 
 [2] 有三种形状可供选择：矩形`rect`、圆角矩形`roundRect`、圆形`round`。
 
-[3] 默认配色为`['#00BAFF', '#3DE7C9']`, 自动应用渐变色，若不想使用渐变色，请配置两个相同的颜色。
+[3] 颜色支持`hex|rgb|rgba|颜色关键字`等四种类型。
 
-[4] 自动使用最大的水位值替换字符串中的`'{value}'`标记。
+[4] 默认配色为`['#00BAFF', '#3DE7C9']`, 自动应用渐变色，若不想使用渐变色，请配置两个相同的颜色。
+
+[5] 自动使用最大的水位值替换字符串中的`'{value}'`标记。
 
 <script>
 import waterLevelPond from './codeData/waterLevelPond/index.js'

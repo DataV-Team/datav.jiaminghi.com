@@ -51,21 +51,23 @@ sidebarDepth: 2
 属性|说明|类型|可选值|默认值
 :--:|:--:|:--:|:--:|:--:
 value|进度池数值|`Number`|`0-100`|`0`
-colors|进度池配色|`Array<String>`|`hex|rgb|rgba`|<sup>[1]</sup>
+colors|进度池配色|`Array<String>`|[1]|[2]
 borderWidth|边框宽度|`Number`|---|`3`
 borderGap|边框间隙|`Number`|---|`3`
 lineDash|线条间隙|`Array<Number>`|---|`[5, 1]`
-textColor|文字颜色|`String`|`hex|rgb|rgba`|`#fff`
+textColor|文字颜色|`String`|[1]|`#fff`
 borderRadius|边框半径|`Number`|---|`5`
 localGradient|局部渐变|`Boolean`|---|`false`
-formatter|信息格式化|`String`|---|`'{value}%'`<sup>[2]</sup>
+formatter|信息格式化|`String`|---|`'{value}%'`<sup>[3]</sup>
 </full-width-table>
 
 ## 注释
 
-[1] 默认配色为`['#3DE7C9', '#00BAFF']`, 自动应用渐变色，若不想使用渐变色，请配置两个相同的颜色。
+[1] 颜色支持`hex|rgb|rgba|颜色关键字`等四种类型。
 
-[2] 自动使用`value`的值替换字符串中的`'{value}'`标记。
+[2] 默认配色为`['#3DE7C9', '#00BAFF']`, 自动应用渐变色，若不想使用渐变色，请配置两个相同的颜色。
+
+[3] 自动使用`value`的值替换字符串中的`'{value}'`标记。
 
 <script>
 import percentPond from './codeData/percentPond/index.js'
