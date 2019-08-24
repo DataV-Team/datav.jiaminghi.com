@@ -14,7 +14,7 @@
         <animate
           attributeName="fill"
           values="#4fd2dd;#235fa7;#4fd2dd"
-          dur=".5s"
+          dur="0.5s"
           begin="0s"
           repeatCount="indefinite"
         />
@@ -26,7 +26,7 @@
         <animate
           attributeName="fill"
           values="#235fa7;#4fd2dd;#235fa7"
-          dur=".5s"
+          dur="0.5s"
           begin="0s"
           repeatCount="indefinite"
         />
@@ -37,7 +37,7 @@
       >
         <animate
           attributeName="fill"
-          values="#4fd2dd;#235fa7;#transparent"
+          values="#4fd2dd;#235fa7;transparent"
           dur="1s"
           begin="0s"
           repeatCount="indefinite"
