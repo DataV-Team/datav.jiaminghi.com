@@ -52,6 +52,16 @@ sidebarDepth: 2
 <<< @/docs/guide/codeData/scrollBoard/demo4.js
 </fold-box>
 
+## 定制元素
+
+<div class="chart-container">
+  <dv-scroll-board :config="scrollBoard5" @click="clickHandler" style="width:500px;height:220px" />
+</div>
+
+<fold-box title="点击以展示/隐藏config数据">
+<<< @/docs/guide/codeData/scrollBoard/demo5.js
+</fold-box>
+
 ## config属性
 
 <full-width-table>

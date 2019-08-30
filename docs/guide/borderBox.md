@@ -120,6 +120,16 @@
 ```
 <click-to-copy :info="info9" />
 
+## dv-border-box-10
+<div class="border-box-contaier">
+  <dv-border-box-10>dv-border-box-10</dv-border-box-10>
+</div>
+
+```html
+<dv-border-box-10>dv-border-box-10</dv-border-box-10>
+```
+<click-to-copy :info="info10" />
+
 <script>
 export default {
   data () {
@@ -135,6 +145,7 @@ export default {
       info7: `<dv-border-box-7>dv-border-box-7</dv-border-box-7>`,
       info8: `<dv-border-box-8>dv-border-box-8</dv-border-box-8>`,
       info9: `<dv-border-box-9>dv-border-box-9</dv-border-box-9>`,
+      info10: `<dv-border-box-10>dv-border-box-10</dv-border-box-10>`,
     }
   }
 }

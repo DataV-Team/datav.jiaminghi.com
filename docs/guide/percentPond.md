@@ -45,6 +45,19 @@ sidebarDepth: 2
 <<< @/docs/guide/codeData/percentPond/demo4.js
 </fold-box>
 
+## 定制块隙长度
+<div class="chart-container" style="height: 150px;">
+  <dv-percent-pond class="hidden-text" :config="percentPond5" style="width:300px;height:40px;" />
+</div>
+
+<fold-box title="点击以展示/隐藏config数据">
+<<< @/docs/guide/codeData/percentPond/demo5.js
+</fold-box>
+
+::: tip TIP
+百分比标签已通过CSS`display:none`隐藏。
+:::
+
 ## config属性
 
 <full-width-table>
@@ -83,7 +96,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
 .chart-container {
   position: relative;
   height: 300px;
@@ -95,5 +108,11 @@ export default {
   align-items: center;
   color: #7ec699;
   font-weight: bold;
+
+  .hidden-text {
+    text {
+      display: none;
+    }
+  }
 }
 </style>

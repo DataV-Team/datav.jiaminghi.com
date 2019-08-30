@@ -63,6 +63,7 @@ module.exports = {
             'decoration',
             'charts',
             'activeRingChart',
+            'capsuleChart',
             'waterLevelPond',
             'percentPond',
             'flylineChart',
