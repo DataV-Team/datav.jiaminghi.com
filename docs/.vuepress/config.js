@@ -34,20 +34,7 @@ module.exports = {
           },
           {
             text: 'Demo',
-            items: [
-              {
-                text: '施工养护综合数据',
-                link: 'http://datav.jiaminghi.com/demo/construction-data/index.html'
-              },
-              {
-                text: '机电运维管理台',
-                link: 'http://datav.jiaminghi.com/demo/manage-desk/index.html'
-              },
-              {
-                text: '机电设备电子档案',
-                link: 'http://datav.jiaminghi.com/demo/electronic-file/index.html'
-              }
-            ]
+            link: '/demo/'
           },
           {
             text: 'GitHub',

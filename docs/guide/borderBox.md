@@ -138,7 +138,7 @@ export default {
       info2: `<dv-border-box-2>dv-border-box-2</dv-border-box-2>`,
       info3: `<dv-border-box-3>dv-border-box-3</dv-border-box-3>`,
       info4: `<dv-border-box-4>dv-border-box-4</dv-border-box-4>`,
-      info4Reverse: `<border-box-4 :reverse="true">dv-border-box-4</dv-border-box-4>`,
+      info4Reverse: `<dv-border-box-4 :reverse="true">dv-border-box-4</dv-border-box-4>`,
       info5: `<dv-border-box-5>dv-border-box-5</dv-border-box-5>`,
       info5Reverse: `<border-box-5 :reverse="true">dv-border-box-5</dv-border-box-5>`,
       info6: `<dv-border-box-6>dv-border-box-6</dv-border-box-6>`,

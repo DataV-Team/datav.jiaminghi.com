@@ -1,4 +1,4 @@
-<h1 align="center">Manage-Desk</h1>
+<h1 align="center">Electronic-File</h1>
 
 ## Project setup
 ```
@@ -14,4 +14,3 @@ yarn run dev
 ```
 yarn run build
 ```
-

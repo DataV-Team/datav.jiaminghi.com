@@ -1,4 +1,4 @@
-<h1 align="center">construction-data</h1>
+<h1 align="center">Construction-Data</h1>
 
 ## Project setup
 ```
