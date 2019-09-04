@@ -32,6 +32,16 @@ sidebarDepth: 2
 <<< @/docs/guide/codeData/scrollRankingBoard/demo2.js
 </fold-box>
 
+## 数值单位
+
+<div class="chart-container">
+  <dv-scroll-ranking-board :config="scrollRankingBoard3" style="width:500px;height:300px" />
+</div>
+
+<fold-box title="点击以展示/隐藏config数据">
+<<< @/docs/guide/codeData/scrollRankingBoard/demo3.js
+</fold-box>
+
 ## config属性
 
 <full-width-table>
@@ -41,6 +51,7 @@ data|表数据|`Array<Object>`|[data属性](/guide/scrollRankingBoard.html#data�
 rowNum|表行数|`Number`|---|`5`
 waitTime|轮播时间间隔(ms)|`Number`|---|`2000`
 carousel|轮播方式|`String`|`'single'|'page'`|`'single'`
+unit|数值单位|`String`|---|`''`
 </full-width-table>
 
 ## data属性
