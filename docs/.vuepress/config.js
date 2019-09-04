@@ -4,7 +4,7 @@ module.exports = {
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }]
   ],
-  host: '192.168.10.150',
+  host: 'localhost',
   port: 5000,
   locales: {
     '/': {
@@ -38,7 +38,16 @@ module.exports = {
           },
           {
             text: 'GitHub',
-            link: 'https://github.com/jiaming743/datav.jiaminghi.com'
+            items: [
+              {
+                text: '项目源码仓库',
+                link: 'https://github.com/jiaming743/datav'
+              },
+              {
+                text: '文档及Demo源码仓库',
+                link: 'https://github.com/jiaming743/datav.jiaminghi.com'
+              }
+            ]
           }
         ],
         sidebar: {
