@@ -1,6 +1,6 @@
 <template>
   <div id="dev-container">
-    <dv-border-box-10 class="dev" />
+    <dv-scroll-board :config="config" class="dev" style="width: 500px;height:200px" />
   </div>
 </template>
 
@@ -9,6 +9,11 @@ export default {
   name: 'dev',
   data () {
     return {
+      config: {
+        header: ['列1', '列2', '列3'],
+        data: [
+        ]
+      }
     }
   },
   created () {
