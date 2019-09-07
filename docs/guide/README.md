@@ -20,6 +20,12 @@
 
 ::: tip TIP
 建议使用Chrome浏览器。
+
+组件props均未设置`deep`监听，刷新props时，请直接生成**新的props**，请勿直接更新props下某一个属性，这样组件将无法刷新状态。
+
+`this.someProps.someAttr = ['foo', 'foo']`是无效的
+
+`this.someProps = { someAttr: ['foo', 'foo'] }`才是有效的
 :::
 
 ## 安装

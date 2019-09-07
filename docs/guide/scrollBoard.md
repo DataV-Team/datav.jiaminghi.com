@@ -6,6 +6,14 @@ sidebarDepth: 2
 
 轮播表可以单条轮播也可以整页轮播，支持点击事件，展示数据使用**v-html**渲染，因此你可以传递`html`字符串，定制个性化元素。
 
+::: tip TIP
+组件内部没有设置`deep`监听props，数据变更时，请生成新的props，不然组件将无法刷新状态
+
+`this.config.data = ['foo', 'foo']`是无效的
+
+`this.config = { data: ['foo', 'foo'] }`才是有效的
+:::
+
 ```html
 <dv-scroll-board :config="config" style="width:500px;height:220px" />
 ```
