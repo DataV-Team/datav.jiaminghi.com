@@ -59,3 +59,11 @@ import { borderBox1 } from '@jiaminghi/data-view'
 
 Vue.use(borderBox1)
 ```
+
+## UMD版
+
+`UMD`版可直接使用`script`标签引入，`UMD`版文件下载请移步[UMD](https://github.com/jiaming743/DataV/tree/master/dist)，引入后将自动把所有组件注册为**Vue全局组件**，引入`DataV`前请确保已引入`Vue`。
+
+<fold-box title="点击以展示/隐藏UMD版使用示例">
+<<< @/docs/guide/umdExample.html
+</fold-box>
