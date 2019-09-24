@@ -642,6 +642,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.5.5":
+  version "7.6.0"
+  resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.6.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.6.0.tgz#4fc1d642a9fd0299754e8b5de62c631cf5568205"
+  integrity sha1-T8HWQqn9Apl1Totd5ixjHPVWggU=
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.1.0", "@babel/template@^7.4.4":
   version "7.4.4"
   resolved "https://registry.npm.taobao.org/@babel/template/download/@babel/template-7.4.4.tgz#f4b88d1225689a08f5bc3a17483545be9e4ed237"
@@ -753,11 +760,12 @@
   dependencies:
     "@babel/polyfill" "^7.4.4"
 
-"@jiaminghi/data-view@^2.3.3":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@jiaminghi/data-view/-/data-view-2.3.3.tgz#712ac5c21a7b69384baa577633f6e2e4b5565a5a"
-  integrity sha512-GMaCRNrpVYTbQEZZgIi7cZpJVumDSy7bwC9pPofnunzY9N0UolivM4pCi2tDHJRp3VT0LUvaBi0oTTEohHbB+Q==
+"@jiaminghi/data-view@^2.4.4":
+  version "2.4.4"
+  resolved "https://registry.npm.taobao.org/@jiaminghi/data-view/download/@jiaminghi/data-view-2.4.4.tgz#b7c7fb45584d4639b6f08ba7397da23c8520a70a"
+  integrity sha1-t8f7RVhNRjm28IunOX2iPIUgpwo=
   dependencies:
+    "@babel/runtime" "^7.5.5"
     "@jiaminghi/charts" "*"
 
 "@jiaminghi/transition@*":
