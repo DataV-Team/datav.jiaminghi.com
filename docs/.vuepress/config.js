@@ -41,11 +41,11 @@ module.exports = {
             items: [
               {
                 text: '项目源码仓库',
-                link: 'https://github.com/jiaming743/datav'
+                link: 'https://github.com/DataV-Team/datav'
               },
               {
                 text: '文档及Demo源码仓库',
-                link: 'https://github.com/jiaming743/datav.jiaminghi.com'
+                link: 'https://github.com/DataV-Team/datav.jiaminghi.com'
               }
             ]
           }
