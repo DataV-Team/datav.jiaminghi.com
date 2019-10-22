@@ -41,7 +41,7 @@ module.exports = {
             items: [
               {
                 text: '项目源码仓库',
-                link: 'https://github.com/DataV-Team/datav'
+                link: 'https://github.com/DataV-Team/Datav'
               },
               {
                 text: '文档及Demo源码仓库',
