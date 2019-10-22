@@ -22,4 +22,4 @@ yarn dev
 yarn build
 ```
 
-[Datav](https://github.com/jiaming743/datav)
+[Datav](https://github.com/DataV-Team/Datav)
