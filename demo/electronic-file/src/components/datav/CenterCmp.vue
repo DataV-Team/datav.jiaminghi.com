@@ -37,7 +37,7 @@
 
       <LabelTag :config="labelConfig" />
     </div>
-  </dir>
+  </div>
 </template>
 
 <script>
