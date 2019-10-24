@@ -113,7 +113,7 @@ export default {
 
       const sum = value.reduce((all, v) => all + v, 0)
 
-      const percent = parseInt(value[activeIndex] / sum * 100)
+      const percent = parseInt(value[activeIndex] / sum * 100) || 0
 
       return {
         content: '{nt}%',
@@ -174,7 +174,7 @@ export default {
 
       const option = getRingOption()
 
-      chart.setOption(option)
+      chart.setOption(option, true)
 
       ringAnimation()
     },
@@ -236,7 +236,7 @@ export default {
         }
       })
 
-      chart.setOption(option)
+      chart.setOption(option, true)
 
       const { activeTimeGap } = option.series[0]
 

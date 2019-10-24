@@ -1,6 +1,6 @@
 <template>
   <div id="dev-container">
-    <dv-scroll-board :config="config" class="dev" style="width: 500px;height:200px" />
+    <dv-active-ring-chart :config="config" style="width:300px;height:300px" />
   </div>
 </template>
 
@@ -10,8 +10,27 @@ export default {
   data () {
     return {
       config: {
-        header: ['列1', '列2', '列3'],
         data: [
+          {
+            name: '周口',
+            value: 55
+          },
+          {
+            name: '南阳',
+            value: 120
+          },
+          {
+            name: '西峡',
+            value: 78
+          },
+          {
+            name: '驻马店',
+            value: 66
+          },
+          {
+            name: '新乡',
+            value: 80
+          }
         ]
       }
     }
