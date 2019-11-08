@@ -1,6 +1,6 @@
 # 装饰
 
-你可以使用装饰去点缀你的页面，以增强视觉效果，与边框组件相同，他们也是用**SVG**元素绘制的。
+你可以使用装饰去点缀你的页面，以增强视觉效果，与边框组件相同，他们也是用**SVG**元素绘制的。<react-page-btn />
 
 ## dv-decoration-1
 <div class="decoration-contaier">

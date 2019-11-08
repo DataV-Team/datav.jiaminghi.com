@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # 动态环图
 
-基于**Charts**封装。
+基于**Charts**封装。<react-page-btn />
 
 ```html
 <dv-active-ring-chart :config="config" style="width:300px;height:300px" />

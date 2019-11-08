@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # 锥形柱图
 
-锥形柱图是特殊的柱状图，他将根据数值大小，降序排列锥形柱，适合排名类数据展示。
+锥形柱图是特殊的柱状图，他将根据数值大小，降序排列锥形柱，适合排名类数据展示。<react-page-btn />
 
 ```html
 <dv-conical-column-chart :config="config" style="width:400px;height:200px;" />

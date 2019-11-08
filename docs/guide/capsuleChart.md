@@ -4,6 +4,7 @@ sidebarDepth: 2
 
 # 胶囊柱图
 
+<react-page-btn />
 
 ```html
 <dv-capsule-chart :config="config" style="width:300px;height:200px" />

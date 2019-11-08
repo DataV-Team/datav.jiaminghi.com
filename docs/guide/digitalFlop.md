@@ -4,6 +4,8 @@ sidebarDepth: 2
 
 # 数字翻牌器
 
+<react-page-btn />
+
 ```html
 <dv-digital-flop :config="config" style="width:200px;height:50px;" />
 ```

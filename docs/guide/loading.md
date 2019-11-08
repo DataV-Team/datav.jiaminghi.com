@@ -1,6 +1,6 @@
 # Loading加载
 
-数据尚未加载完成时，可以显示Loading效果，增强用户体验。
+数据尚未加载完成时，可以显示Loading效果，增强用户体验。<react-page-btn />
 
 <div class="chart-container">
   <dv-loading>Loading...</dv-loading>

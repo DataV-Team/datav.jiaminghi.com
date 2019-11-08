@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # 排名轮播表
 
-排名轮播表同轮播表类似，也可以选择单条轮播或整页轮播。
+排名轮播表同轮播表类似，也可以选择单条轮播或整页轮播。<react-page-btn />
 
 ```html
 <dv-scroll-ranking-board :config="config" style="width:500px;height:300px" />

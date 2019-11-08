@@ -4,6 +4,8 @@ sidebarDepth: 2
 
 # 水位图
 
+<react-page-btn />
+
 水位图有三种形态，多种配置，具体使用示例如下：
 
 ```html
