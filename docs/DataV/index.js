@@ -15,6 +15,7 @@ import borderBox7 from './components/borderBox7/index'
 import borderBox8 from './components/borderBox8/index'
 import borderBox9 from './components/borderBox9/index'
 import borderBox10 from './components/borderBox10/index'
+import borderBox11 from './components/borderBox11/index'
 
 // decoration
 import decoration1 from './components/decoration1/index'
@@ -59,6 +60,7 @@ export default function (Vue) {
   Vue.use(borderBox8)
   Vue.use(borderBox9)
   Vue.use(borderBox10)
+  Vue.use(borderBox11)
 
   // decoration
   Vue.use(decoration1)
