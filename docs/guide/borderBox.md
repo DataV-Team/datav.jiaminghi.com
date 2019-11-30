@@ -1,3 +1,7 @@
+---
+sidebarDepth: 2
+---
+
 # 边框
 
 边框均由**SVG**元素绘制，体积轻量不失真，它们的使用极为方便。<react-page-btn />
@@ -130,6 +134,24 @@
 ```
 <click-to-copy :info="info10" />
 
+## dv-border-box-11
+<div class="border-box-contaier">
+  <dv-border-box-11 title="dv-border-box-11" >dv-border-box-11</dv-border-box-11>
+</div>
+
+```html
+<dv-border-box-11 title="dv-border-box-11">dv-border-box-11</dv-border-box-11>
+```
+<click-to-copy :info="info11" />
+
+### 特殊配置
+<full-width-table>
+属性|说明|类型|可选值|默认值
+:--:|:--:|:--:|:--:|:--:
+title|边框标题|`String`|`-`|`''`
+titleWidth|标题宽度|`Number`|`-`|`250`
+</full-width-table>
+
 <script>
 export default {
   data () {
@@ -146,6 +168,7 @@ export default {
       info8: `<dv-border-box-8>dv-border-box-8</dv-border-box-8>`,
       info9: `<dv-border-box-9>dv-border-box-9</dv-border-box-9>`,
       info10: `<dv-border-box-10>dv-border-box-10</dv-border-box-10>`,
+      info11: `<dv-border-box-11 title="dv-border-box-11">dv-border-box-11</dv-border-box-11>`,
     }
   }
 }

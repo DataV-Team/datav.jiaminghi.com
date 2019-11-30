@@ -2,20 +2,21 @@
   <div class="dv-border-box-11" :ref="ref">
     <svg class="dv-border-svg-container" :width="width" :height="height">
       <defs>
-        <filter id="outer-glow" height="150%" width="150%" x="-25%" y="-25%">
+        <filter :id="filterId" height="150%" width="150%" x="-25%" y="-25%">
           <feMorphology operator="dilate" radius="2" in="SourceAlpha" result="thicken" />
           <feGaussianBlur in="thicken" stdDeviation="3" result="blurred" />
-          <feFlood flood-color="#1f33a2" result="glowColor" />
-          <feComposite in="glowColor" in2="blurred" operator="in" result="softGlow_colored" />
+          <feFlood :flood-color="mergedColor[1]" result="glowColor" />
+          <feComposite in="glowColor" in2="blurred" operator="in" result="softGlowColored" />
           <feMerge>
-            <feMergeNode in="softGlow_colored"/>
+            <feMergeNode in="softGlowColored"/>
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
         </filter>
       </defs>
 
       <polyline
-        filter="url(#outer-glow)"
+        :stroke="mergedColor[0]"
+        :filter="`url(#${filterId})`"
         :points="`
           ${(width - titleWidth) / 2}, 30
           20, 30 7, 50 7, ${50 + (height - 167) / 2}
@@ -32,7 +33,7 @@
       />
 
       <polygon
-        stroke="#8aaafb"
+        :stroke="mergedColor[0]"
         fill="transparent"
         :points="`
           ${(width + titleWidth) / 2 - 5}, 30 ${(width + titleWidth) / 2 - 21}, 11
@@ -41,7 +42,7 @@
       />
 
       <polygon
-        stroke="#8aaafb"
+        :stroke="mergedColor[0]"
         fill="transparent"
         :points="`
           ${(width - titleWidth) / 2 + 5}, 30 ${(width - titleWidth) / 2 + 22}, 49
@@ -50,9 +51,9 @@
       />
 
       <polygon
-        stroke="#8aaafb"
-        fill="rgba(23, 67, 116, 0.3)"
-        filter="url(#outer-glow)"
+        :stroke="mergedColor[0]"
+        :fill="fade(mergedColor[1] || defaultColor[1], 30)"
+        :filter="`url(#${filterId})`"
         :points="`
           ${(width + titleWidth) / 2 - 11}, 37 ${(width + titleWidth) / 2 - 32}, 11
           ${(width - titleWidth) / 2 + 23}, 11 ${(width - titleWidth) / 2 + 11}, 23
@@ -61,64 +62,113 @@
       />
 
       <polygon
-        filter="url(#outer-glow)"
-        fill="#273bc4"
+        :filter="`url(#${filterId})`"
+        :fill="mergedColor[0]"
         opacity="1"
         :points="`
           ${(width - titleWidth) / 2 - 10}, 37 ${(width - titleWidth) / 2 - 31}, 37
           ${(width - titleWidth) / 2 - 25}, 46 ${(width - titleWidth) / 2 - 4}, 46
         `"
-      />
+      >
+        <animate
+          attributeName="opacity"
+          values="1;0.7;1"
+          dur="2s"
+          begin="0s"
+          repeatCount="indefinite"
+        />
+      </polygon>
+
 
       <polygon
-        filter="url(#outer-glow)"
-        fill="#273bc4"
+        :filter="`url(#${filterId})`"
+        :fill="mergedColor[0]"
         opacity="0.7"
         :points="`
           ${(width - titleWidth) / 2 - 40}, 37 ${(width - titleWidth) / 2 - 61}, 37
           ${(width - titleWidth) / 2 - 55}, 46 ${(width - titleWidth) / 2 - 34}, 46
         `"
-      />
+      >
+        <animate
+          attributeName="opacity"
+          values="0.7;0.4;0.7"
+          dur="2s"
+          begin="0s"
+          repeatCount="indefinite"
+        />
+      </polygon>
 
       <polygon
-        filter="url(#outer-glow)"
-        fill="#273bc4"
+        :filter="`url(#${filterId})`"
+        :fill="mergedColor[0]"
         opacity="0.5"
         :points="`
           ${(width - titleWidth) / 2 - 70}, 37 ${(width - titleWidth) / 2 - 91}, 37
           ${(width - titleWidth) / 2 - 85}, 46 ${(width - titleWidth) / 2 - 64}, 46
         `"
-      />
+      >
+        <animate
+          attributeName="opacity"
+          values="0.5;0.2;0.5"
+          dur="2s"
+          begin="0s"
+          repeatCount="indefinite"
+        />
+      </polygon>
 
       <polygon
-        filter="url(#outer-glow)"
-        fill="#273bc4"
+        :filter="`url(#${filterId})`"
+        :fill="mergedColor[0]"
         opacity="1"
         :points="`
           ${(width + titleWidth) / 2 + 30}, 37 ${(width + titleWidth) / 2 + 9}, 37
           ${(width + titleWidth) / 2 + 3}, 46 ${(width + titleWidth) / 2 + 24}, 46
         `"
-      />
+      >
+        <animate
+          attributeName="opacity"
+          values="1;0.7;1"
+          dur="2s"
+          begin="0s"
+          repeatCount="indefinite"
+        />
+      </polygon>
 
       <polygon
-        filter="url(#outer-glow)"
-        fill="#273bc4"
+        :filter="`url(#${filterId})`"
+        :fill="mergedColor[0]"
         opacity="0.7"
         :points="`
           ${(width + titleWidth) / 2 + 60}, 37 ${(width + titleWidth) / 2 + 39}, 37
           ${(width + titleWidth) / 2 + 33}, 46 ${(width + titleWidth) / 2 + 54}, 46
         `"
-      />
+      >
+        <animate
+          attributeName="opacity"
+          values="0.7;0.4;0.7"
+          dur="2s"
+          begin="0s"
+          repeatCount="indefinite"
+        />
+      </polygon>
 
       <polygon
-        filter="url(#outer-glow)"
-        fill="#273bc4"
+        :filter="`url(#${filterId})`"
+        :fill="mergedColor[0]"
         opacity="0.5"
         :points="`
           ${(width + titleWidth) / 2 + 90}, 37 ${(width + titleWidth) / 2 + 69}, 37
           ${(width + titleWidth) / 2 + 63}, 46 ${(width + titleWidth) / 2 + 84}, 46
         `"
-      />
+      >
+        <animate
+          attributeName="opacity"
+          values="0.5;0.2;0.5"
+          dur="2s"
+          begin="0s"
+          repeatCount="indefinite"
+        />
+      </polygon>
 
       <text
         :x="`${width / 2}`"
@@ -128,12 +178,12 @@
         text-anchor="middle"
         dominant-baseline="middle"
       >
-        全球能源占比和国家分布
+        {{ title }}
       </text>
 
       <polygon
-        fill="#8aaafb"
-        filter="url(#outer-glow)"
+        :fill="mergedColor[0]"
+        :filter="`url(#${filterId})`"
         :points="`
           7, ${53 + (height - 167) / 2} 11, ${57 + (height - 167) / 2}
           11, ${133 + (height - 167) / 2} 7, ${137 + (height - 167) / 2}
@@ -141,8 +191,8 @@
       />
 
       <polygon
-        fill="#8aaafb"
-        filter="url(#outer-glow)"
+        :fill="mergedColor[0]"
+        :filter="`url(#${filterId})`"
         :points="`
           ${width - 7}, ${53 + (height - 167) / 2} ${width - 11}, ${57 + (height - 167) / 2}
           ${width - 11}, ${133 + (height - 167) / 2} ${width - 7}, ${137 + (height - 167) / 2}
@@ -159,13 +209,23 @@
 <script>
 import autoResize from '../../../mixin/autoResize'
 
+import { deepMerge } from '@jiaminghi/charts/lib/util/index'
+
+import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
+
+import { fade } from '@jiaminghi/color'
+
 export default {
   name: 'DvBorderBox11',
   mixins: [autoResize],
   props: {
+    color: {
+      type: Array,
+      default: () => ([])
+    },
     titleWidth: {
       type: Number,
-      default: 260
+      default: 250
     },
     title: {
       type: String,
@@ -173,9 +233,35 @@ export default {
     }
   },
   data () {
+    const timestamp = Date.now()
     return {
-      ref: 'border-box-11'
+      ref: 'border-box-11',
+      filterId: `borderr-box-11-filterId-${timestamp}`,
+
+      defaultColor: ['#8aaafb', '#1f33a2'],
+
+      mergedColor: []
     }
+  },
+  watch: {
+    color () {
+      const { mergeColor } = this
+
+      mergeColor()
+    }
+  },
+  methods: {
+    mergeColor () {
+      const { color, defaultColor } = this
+
+      this.mergedColor = deepMerge(deepClone(defaultColor, true), color || [])
+    },
+    fade
+  },
+  mounted () {
+    const { mergeColor } = this
+
+    mergeColor()
   }
 }
 </script>
@@ -192,25 +278,11 @@ export default {
     height: 100%;
     top: 0px;
     left: 0px;
-    box-shadow: 0 0 3px red;
 
     polyline {
       fill: none;
       stroke-width: 1;
-      stroke: #8aaafb;
     }
-
-    circle {
-      fill: #fff;
-    }
-  }
-
-  .dv-bb2-line1 {
-    stroke: #fff;
-  }
-
-  .dv-bb2-line2 {
-    stroke: fade(#fff, 60);
   }
 
   .border-box-content {
