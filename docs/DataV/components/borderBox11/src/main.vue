@@ -51,10 +51,85 @@
 
       <polygon
         stroke="#8aaafb"
-        fill="transparent"
+        fill="rgba(23, 67, 116, 0.3)"
+        filter="url(#outer-glow)"
         :points="`
+          ${(width + titleWidth) / 2 - 11}, 37 ${(width + titleWidth) / 2 - 32}, 11
+          ${(width - titleWidth) / 2 + 23}, 11 ${(width - titleWidth) / 2 + 11}, 23
+          ${(width - titleWidth) / 2 + 33}, 49 ${(width + titleWidth) / 2 - 22}, 49
         `"
       />
+
+      <polygon
+        filter="url(#outer-glow)"
+        fill="#273bc4"
+        opacity="1"
+        :points="`
+          ${(width - titleWidth) / 2 - 10}, 37 ${(width - titleWidth) / 2 - 31}, 37
+          ${(width - titleWidth) / 2 - 25}, 46 ${(width - titleWidth) / 2 - 4}, 46
+        `"
+      />
+
+      <polygon
+        filter="url(#outer-glow)"
+        fill="#273bc4"
+        opacity="0.7"
+        :points="`
+          ${(width - titleWidth) / 2 - 40}, 37 ${(width - titleWidth) / 2 - 61}, 37
+          ${(width - titleWidth) / 2 - 55}, 46 ${(width - titleWidth) / 2 - 34}, 46
+        `"
+      />
+
+      <polygon
+        filter="url(#outer-glow)"
+        fill="#273bc4"
+        opacity="0.5"
+        :points="`
+          ${(width - titleWidth) / 2 - 70}, 37 ${(width - titleWidth) / 2 - 91}, 37
+          ${(width - titleWidth) / 2 - 85}, 46 ${(width - titleWidth) / 2 - 64}, 46
+        `"
+      />
+
+      <polygon
+        filter="url(#outer-glow)"
+        fill="#273bc4"
+        opacity="1"
+        :points="`
+          ${(width + titleWidth) / 2 + 30}, 37 ${(width + titleWidth) / 2 + 9}, 37
+          ${(width + titleWidth) / 2 + 3}, 46 ${(width + titleWidth) / 2 + 24}, 46
+        `"
+      />
+
+      <polygon
+        filter="url(#outer-glow)"
+        fill="#273bc4"
+        opacity="0.7"
+        :points="`
+          ${(width + titleWidth) / 2 + 60}, 37 ${(width + titleWidth) / 2 + 39}, 37
+          ${(width + titleWidth) / 2 + 33}, 46 ${(width + titleWidth) / 2 + 54}, 46
+        `"
+      />
+
+      <polygon
+        filter="url(#outer-glow)"
+        fill="#273bc4"
+        opacity="0.5"
+        :points="`
+          ${(width + titleWidth) / 2 + 90}, 37 ${(width + titleWidth) / 2 + 69}, 37
+          ${(width + titleWidth) / 2 + 63}, 46 ${(width + titleWidth) / 2 + 84}, 46
+        `"
+      />
+
+      <text
+        :x="`${width / 2}`"
+        y="32"
+        fill="#fff"
+        font-size="18"
+        text-anchor="middle"
+        dominant-baseline="middle"
+      >
+        全球能源占比和国家分布
+      </text>
 
       <polygon
         fill="#8aaafb"
@@ -90,7 +165,7 @@ export default {
   props: {
     titleWidth: {
       type: Number,
-      default: 200
+      default: 260
     },
     title: {
       type: String,
