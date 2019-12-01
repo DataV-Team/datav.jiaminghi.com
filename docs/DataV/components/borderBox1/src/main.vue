@@ -54,6 +54,12 @@
 <script>
 export default {
   name: 'DvBorderBox1',
+  props: {
+    color: {
+      type: Array,
+      default: () => ([])
+    }
+  },
   data () {
     return {
       border: ['left-top', 'right-top', 'left-bottom', 'right-bottom']
