@@ -34,13 +34,13 @@
       </defs>
 
       <use
-        stroke="#235fa7"
+        :stroke="mergedColor[0]"
         stroke-width="1"
         :xlink:href="`#${path}`"
       />
 
       <use
-        stroke="#4fd2dd"
+        :stroke="mergedColor[1]"
         stroke-width="3"
         :xlink:href="`#${path}`"
         :mask="`url(#${mask})`"
@@ -64,16 +64,30 @@
 <script>
 import autoResize from '../../../mixin/autoResize'
 
+import { deepMerge } from '@jiaminghi/charts/lib/util/index'
+
+import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
+
 export default {
   name: 'DvBorderBox8',
   mixins: [autoResize],
+  props: {
+    color: {
+      type: Array,
+      default: () => ([])
+    }
+  },
   data () {
     const timestamp = Date.now()
     return {
       ref: 'border-box-8',
       path: `border-box-8-path-${timestamp}`,
       gradient: `border-box-8-gradient-${timestamp}`,
-      mask: `border-box-8-mask-${timestamp}`
+      mask: `border-box-8-mask-${timestamp}`,
+
+      defaultColor: ['#235fa7', '#4fd2dd'],
+
+      mergedColor: []
     }
   },
   computed: {
@@ -82,6 +96,25 @@ export default {
 
       return (width + height - 5) * 2
     }
+  },
+  watch: {
+    color () {
+      const { mergeColor } = this
+
+      mergeColor()
+    }
+  },
+  methods: {
+    mergeColor () {
+      const { color, defaultColor } = this
+
+      this.mergedColor = deepMerge(deepClone(defaultColor, true), color || [])
+    }
+  },
+  mounted () {
+    const { mergeColor } = this
+
+    mergeColor()
   }
 }
 </script>
