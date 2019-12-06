@@ -1,6 +1,29 @@
+---
+sidebarDepth: 2
+---
+
 # 装饰
 
 你可以使用装饰去点缀你的页面，以增强视觉效果，与边框组件相同，他们也是用**SVG**元素绘制的。<react-page-btn />
+
+## 自定义颜色
+所有装饰均支持自定义颜色，配置项及示例如下。
+
+```html
+<dv-decoration-1 :color="['red', 'green']" />
+```
+
+<full-width-table>
+属性|说明|类型|可选值|默认值
+:--:|:--:|:--:|:--:|:--:
+color|自定义颜色|`string[]`|`-`|`-`
+</full-width-table>
+
+::: tip TIP
+`color`属性支持配置两个颜色，一主一副。
+
+颜色类型可以为颜色关键字、十六进制色、RGB及RGBA。
+:::
 
 ## dv-decoration-1
 <div class="decoration-contaier">
@@ -122,6 +145,13 @@
 ```
 <click-to-copy :info="info9" />
 
+### 特殊配置
+<full-width-table>
+属性|说明|类型|可选值|默认值
+:--:|:--:|:--:|:--:|:--:
+dur|单次动画时长(秒)|`Number`|`-`|`3`
+</full-width-table>
+
 ## dv-decoration-10
 <div class="decoration-contaier font2">
   <dv-decoration-10 style="width:90%;height:5px;" />
@@ -131,6 +161,16 @@
 <dv-decoration-10 style="width:90%;height:5px;" />
 ```
 <click-to-copy :info="info10" />
+
+## dv-decoration-11
+<div class="decoration-contaier font1">
+  <dv-decoration-11 style="width:200px;height:60px;">dv-decoration-11</dv-decoration-11>
+</div>
+
+```html
+<dv-decoration-11 style="width:200px;height:60px;">dv-decoration-11</dv-decoration-11>
+```
+<click-to-copy :info="info11" />
 
 <script>
   export default {
@@ -148,7 +188,8 @@
         info8: `<dv-decoration-8 style="width:300px;height:50px;" />`,
         info8r: `<dv-decoration-8 :reverse="true" style="width:300px;height:50px;" />`,
         info9: `<dv-decoration-9 style="width:150px;height:150px;">66%</dv-decoration-9>`,
-        info10: `<dv-decoration-10 style="width:90%;height:5px;" />`
+        info10: `<dv-decoration-10 style="width:90%;height:5px;" />`,
+        info11: `<dv-decoration-11 style="width:200px;height:60px;">dv-decoration-11</dv-decoration-11>`
       }
     }
   }

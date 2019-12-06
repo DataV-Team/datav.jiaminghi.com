@@ -86,6 +86,7 @@ headerHeight|表头高度|`Number`|---|`35`
 columnWidth|列宽度|`Array<Number>`|[1]|`[]`
 align|列对齐方式|`Array<String>`|[2]|`[]`
 index|显示行号|`Boolean`|`true|false`|`false`
+indexHeader|行号表头|`String`|`-`|`'#'`
 carousel|轮播方式|`String`|`'single'|'page'`|`'single'`
 </full-width-table>
 

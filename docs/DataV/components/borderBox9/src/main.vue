@@ -3,8 +3,40 @@
     <svg class="dv-svg-container" :width="width" :height="height">
       <defs>
         <linearGradient :id="gradientId" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" :stop-color="mergedColor[0]" />
-          <stop offset="100%" :stop-color="mergedColor[1]" />
+          <animate
+            attributeName="x1"
+            values="0%;100%;0%"
+            dur="10s"
+            begin="0s"
+            repeatCount="indefinite"
+          />
+
+          <animate
+            attributeName="x2"
+            values="100%;0%;100%"
+            dur="10s"
+            begin="0s"
+            repeatCount="indefinite"
+          />
+
+          <stop offset="0%" :stop-color="mergedColor[0]">
+            <animate
+              attributeName="stop-color"
+              :values="`${mergedColor[0]};${mergedColor[1]};${mergedColor[0]}`"
+              dur="10s"
+              begin="0s"
+              repeatCount="indefinite"
+            />
+          </stop>
+          <stop offset="100%" :stop-color="mergedColor[1]">
+            <animate
+              attributeName="stop-color"
+              :values="`${mergedColor[1]};${mergedColor[0]};${mergedColor[1]}`"
+              dur="10s"
+              begin="0s"
+              repeatCount="indefinite"
+            />
+          </stop>
         </linearGradient>
 
         <mask :id="maskId">

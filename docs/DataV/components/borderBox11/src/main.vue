@@ -171,6 +171,7 @@
       </polygon>
 
       <text
+        class="dv-border-box-11-title"
         :x="`${width / 2}`"
         y="32"
         fill="#fff"

@@ -1,6 +1,7 @@
 <template>
   <div id="dev-container">
-    <dv-border-box-11 style="width:100%;height:300px" />
+    <dv-decoration-11 style="width:150px;height:60px" />
+    <!-- <dv-border-box-12 :color="['red', 'blue']" style="width:500px;height:200px" /> -->
   </div>
 </template>
 

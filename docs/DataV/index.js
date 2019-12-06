@@ -16,6 +16,8 @@ import borderBox8 from './components/borderBox8/index'
 import borderBox9 from './components/borderBox9/index'
 import borderBox10 from './components/borderBox10/index'
 import borderBox11 from './components/borderBox11/index'
+import borderBox12 from './components/borderBox12/index'
+import borderBox13 from './components/borderBox13/index'
 
 // decoration
 import decoration1 from './components/decoration1/index'
@@ -28,6 +30,7 @@ import decoration7 from './components/decoration7/index'
 import decoration8 from './components/decoration8/index'
 import decoration9 from './components/decoration9/index'
 import decoration10 from './components/decoration10/index'
+import decoration11 from './components/decoration11/index'
 
 // charts
 import charts from './components/charts/index'
@@ -61,6 +64,8 @@ export default function (Vue) {
   Vue.use(borderBox9)
   Vue.use(borderBox10)
   Vue.use(borderBox11)
+  Vue.use(borderBox12)
+  Vue.use(borderBox13)
 
   // decoration
   Vue.use(decoration1)
@@ -73,6 +78,7 @@ export default function (Vue) {
   Vue.use(decoration8)
   Vue.use(decoration9)
   Vue.use(decoration10)
+  Vue.use(decoration11)
 
   // charts
   Vue.use(charts)

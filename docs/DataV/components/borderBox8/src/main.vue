@@ -24,7 +24,7 @@
         <mask :id="mask">
           <circle cx="0" cy="0" r="150" :fill="`url(#${gradient})`">
             <animateMotion
-              dur="3s"
+              :dur="`${dur}s`"
               :path="`M2.5, 2.5 L${width - 2.5}, 2.5 L${width - 2.5}, ${height - 2.5} L2.5, ${height - 2.5} L2.5, 2.5`"
               rotate="auto"
               repeatCount="indefinite"
@@ -49,7 +49,7 @@
           attributeName="stroke-dasharray"
           :from="`0, ${length}`"
           :to="`${length}, 0`"
-          dur="3s"
+          :dur="`${dur}s`"
           repeatCount="indefinite"
         />
       </use>
@@ -75,6 +75,10 @@ export default {
     color: {
       type: Array,
       default: () => ([])
+    },
+    dur: {
+      type: Number,
+      default: 3
     }
   },
   data () {
