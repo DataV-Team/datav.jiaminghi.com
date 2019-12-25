@@ -52,6 +52,7 @@ rowNum|表行数|`Number`|---|`5`
 waitTime|轮播时间间隔(ms)|`Number`|---|`2000`
 carousel|轮播方式|`String`|`'single'|'page'`|`'single'`
 unit|数值单位|`String`|---|`''`
+sort|自动排序|`Boolean`|---|`true`
 </full-width-table>
 
 ## data属性
@@ -62,6 +63,10 @@ unit|数值单位|`String`|---|`''`
 name|名称|`String`|---|---
 value|数值|`Number`|---|---
 </full-width-table>
+
+::: tip TIP
+`name`属性使用`v-html`进行渲染，因此你可以使用`html标签`来定制个性化的name展示效果。
+:::
 
 <script>
 import scrollRankingBoard from './codeData/scrollRankingBoard/index.js'
