@@ -1,6 +1,6 @@
 <template>
   <div id="dev-container">
-    <dv-flyline-chart-enhanced :config="config" style="width:100%;height:500px" />
+    <dv-flyline-chart-enhanced :config="config" style="width:690px;height:600px" />
   </div>
 </template>
 
@@ -12,18 +12,34 @@ export default {
       config: {
         points: [
           {
-            name: 'P1',
-            coordinate: [0.3, 0.3]
+            name: '驻马店',
+            coordinate: [0.3, 0.3],
           },
           {
-            name: 'P2',
-            coordinate: [0.5, 0.5]
+            name: '南阳',
+            coordinate: [0.5, 0.5],
+            halo: { show: false }
           }
-        ]
+        ],
+        lines: [
+          {
+            source: '驻马店',
+            target: '南阳'
+          }
+        ],
+        halo: {
+          show: true
+        },
+        icon: {
+          show: true,
+          src: '/img/flylineChart/mapPoint.png'
+        },
+        text: {
+          show: true
+        },
+        bgImgSrc: '/img/flylineChart/map.jpg'
       }
     }
-  },
-  async mounted () {
   }
 }
 </script>
@@ -31,7 +47,7 @@ export default {
 <style lang="less">
 #dev-container {
   width: 100%;
-  height: 500px;
+  height: 600px;
   box-shadow: 0 0 3px green;
   display: flex;
   justify-content: center;

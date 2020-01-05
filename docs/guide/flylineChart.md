@@ -4,6 +4,10 @@ sidebarDepth: 2
 
 # 飞线图
 
+::: tip TIP
+建议使用[飞线图增强版](/guide/flylineChartEnhanced)。
+:::
+
 设置一个中心点，若干飞线点，即可得到动态飞线图，组件提供的[dev模式](/guide/flylineChart.html#dev模式)可以帮你快速配置飞线点位置。<react-page-btn />
 
 ```html
