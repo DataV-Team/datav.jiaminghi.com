@@ -1,6 +1,6 @@
 <template>
   <div id="dev-container">
-    <dv-flyline-chart-enhanced :config="config" style="width:690px;height:600px" />
+    <dv-active-ring-chart :config="config" style="width:300px;height:300px" />
   </div>
 </template>
 
@@ -10,34 +10,34 @@ export default {
   data () {
     return {
       config: {
-        points: [
+        radius: '40%',
+        activeRadius: '45%',
+        data: [
           {
-            name: '驻马店',
-            coordinate: [0.3, 0.3],
+            name: '周口',
+            value: 55
           },
           {
             name: '南阳',
-            coordinate: [0.5, 0.5],
-            halo: { show: false }
-          }
-        ],
-        lines: [
+            value: 120
+          },
           {
-            source: '驻马店',
-            target: '南阳'
+            name: '西峡',
+            value: 78
+          },
+          {
+            name: '驻马店',
+            value: 66
+          },
+          {
+            name: '新乡',
+            value: 80
           }
         ],
-        halo: {
-          show: true
+        digitalFlopStyle: {
+          fontSize: 20
         },
-        icon: {
-          show: true,
-          src: '/img/flylineChart/mapPoint.png'
-        },
-        text: {
-          show: true
-        },
-        bgImgSrc: '/img/flylineChart/map.jpg'
+        digitalFlopToFixed: 3
       }
     }
   }
