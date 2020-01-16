@@ -10,34 +10,24 @@ export default {
   data () {
     return {
       config: {
-        radius: '40%',
-        activeRadius: '45%',
+        color: ['#e8dd82','#ff34a3','#c716e8','#4ae814','#100de8','#e80700','#797B7F','#CFB2A9','#DE9325','#7FAE90','#9FDABF','#E98F6F','#6AB0B8','#334B5C','#fc0503'],
+        lineWidth: 30,
+        radius: '55%',
+        activeRadius: '60%',
+        digitalFlopToFixed: 2,
         data: [
-          {
-            name: '周口',
-            value: 55
-          },
-          {
-            name: '南阳',
-            value: 120
-          },
-          {
-            name: '西峡',
-            value: 78
-          },
-          {
-            name: '驻马店',
-            value: 66
-          },
-          {
-            name: '新乡',
-            value: 80
-          }
-        ],
-        digitalFlopStyle: {
-          fontSize: 20
-        },
-        digitalFlopToFixed: 3
+          { value: 1799, name: "公安"},
+          { value: 1789, name: "人社"},
+          { value: 1043, name: "医保"},
+          { value: 787, name: "住建"},
+          { value: 587, name: "总工会"},
+          { value: 251, name: "档案"},
+          { value: 136, name: "民政"},
+          { value: 46, name: "卫健"},
+          { value: 35, name: "残联"},
+          { value: 19, name: "公安1"},
+          { value: 7, name: "粮食"}
+        ]
       }
     }
   }
