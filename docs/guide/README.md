@@ -48,7 +48,38 @@
 <<< @/docs/guide/vueDemo/update.vue
 </fold-box>
 
+## 创建Vue项目
+
+组件库依赖vue，要想使用它，创建一个Vue项目当然是必须的，如果已有Vue项目或使用UMD版开发可跳过此步骤。
+
+**安装Vue/Cli**
+
+* npm安装
+
+```
+npm i -g @vue/cli
+```
+
+* yarn安装
+
+```
+yarn global add @vue/cli
+```
+
+**创建Vue项目**
+
+```
+vue create datav-project
+```
+
+[Vue/Cli官网](https://cli.vuejs.org/zh/)
+
 ## 安装
+
+```sh
+cd datav-project
+```
+在Vue项目下进行组件库安装。
 
 * npm安装
 
@@ -57,6 +88,7 @@ npm install @jiaminghi/data-view
 ```
 
 * yarn安装
+
 ```sh
 yarn add @jiaminghi/data-view
 ```
