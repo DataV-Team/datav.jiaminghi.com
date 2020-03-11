@@ -35,14 +35,10 @@
 ::: danger 状态更新
 避免你的组件更新了数据后，状态却不刷新，也就是没变化，请务必看这里
 
-组件props均未设置`deep`监听，刷新props时，请直接生成**新的props**，请勿直接更新props下某一个属性，这样组件将无法刷新状态。
-
-`this.someProps.someAttr = ['foo', 'foo']`是无效的
-
-`this.someProps = { someAttr: ['foo', 'foo'] }`才是有效的
+组件props均未设置`deep`监听，刷新props时，请直接生成**新的props对象**（基础数据类型除外），或完成赋值操作后使用ES6拓展运算符生成新的props对象（`this.someProps = { ...this.someProps }`）。
 :::
 
-**建议的更新数据的方式**
+**具体更新数据示例**
 
 <fold-box title="点击以展示/隐藏示例">
 <<< @/docs/guide/vueDemo/update.vue
