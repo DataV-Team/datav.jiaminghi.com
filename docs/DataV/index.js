@@ -1,3 +1,10 @@
+/*
+ * @Description: 请输入当前文件描述
+ * @Author: xiao xin (834529118@qq.com)
+ * @Date: 2020-03-09 14:35:25
+ * @LastEditors: xiao xin (834529118@qq.com)
+ * @LastEditTime: 2020-03-19 16:23:49
+ */
 /**
  * IMPORT COMPONENTS
  */
@@ -45,6 +52,7 @@ import conicalColumnChart from './components/conicalColumnChart'
 import digitalFlop from './components/digitalFlop'
 import scrollBoard from './components/scrollBoard/index'
 import scrollRankingBoard from './components/scrollRankingBoard/index'
+import barChart3D from './components/barChart3D/index'
 
 /**
  * USE COMPONENTS
@@ -94,4 +102,5 @@ export default function (Vue) {
   Vue.use(digitalFlop)
   Vue.use(scrollBoard)
   Vue.use(scrollRankingBoard)
+  Vue.use(barChart3D)
 }

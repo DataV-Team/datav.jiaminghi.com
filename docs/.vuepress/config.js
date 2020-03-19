@@ -67,7 +67,8 @@ module.exports = {
             'conicalColumnChart',
             'digitalFlop',
             'scrollBoard',
-            'scrollRankingBoard'
+            'scrollRankingBoard',
+            'barChart3D'
           ],
           '/dev/': ['']
         }
