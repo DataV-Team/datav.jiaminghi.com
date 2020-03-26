@@ -298,9 +298,9 @@ export default {
       this.initD3();
     },
     mergeConfig () {
-      this.mergedConfig = defalutConfig
-      // const { config } = this
-      // this.mergedConfig = deepMerge(deepClone(defalutConfig, true), config || {})
+      // this.mergedConfig = defalutConfig
+      const { config } = this
+      this.mergedConfig = deepMerge(deepClone(defalutConfig, true), config || {})
     }
   },
   mounted() {
