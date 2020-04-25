@@ -14,6 +14,13 @@
         </filter>
       </defs>
 
+      <polygon :fill="backgroundColor" :points="`
+        20, 32 ${width * 0.5 - titleWidth / 2}, 32 ${width * 0.5 - titleWidth / 2 + 20}, 53
+        ${width * 0.5 + titleWidth / 2 - 20}, 53 ${width * 0.5 + titleWidth / 2}, 32
+        ${width - 20}, 32 ${width - 8}, 48 ${width - 8}, ${height - 25} ${width - 20}, ${height - 8}
+        20, ${height - 8} 8, ${height - 25} 8, 50
+      `" />
+
       <polyline
         :stroke="mergedColor[0]"
         :filter="`url(#${filterId})`"
@@ -231,13 +238,17 @@ export default {
     title: {
       type: String,
       default: ''
+    },
+    backgroundColor: {
+      type: String,
+      default: 'transparent'
     }
   },
   data () {
     const timestamp = Date.now()
     return {
       ref: 'border-box-11',
-      filterId: `borderr-box-11-filterId-${timestamp}`,
+      filterId: `border-box-11-filterId-${timestamp}`,
 
       defaultColor: ['#8aaafb', '#1f33a2'],
 
