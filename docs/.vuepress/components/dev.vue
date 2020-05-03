@@ -13,7 +13,7 @@ export default {
       config: {
         number: [10, 20],
         content: '{nt}个\n{nt}个',
-        rowGap: 10
+        rowGap: 10,
         style: {
           fontSize: 20,
         }
