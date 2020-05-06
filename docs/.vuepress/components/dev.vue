@@ -1,6 +1,6 @@
 <template>
   <div id="dev-container">
-    <dv-digital-flop :config="config" />
+    <dv-border-box-8 style="width: 500px;height:300px" />
   </div>
 </template>
 

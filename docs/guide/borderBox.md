@@ -149,6 +149,17 @@ backgroundColor|背景色|`string`|`-`|`-`
 dur|单次动画时长(秒)|`Number`|`-`|`3`
 </full-width-table>
 
+## dv-border-box-8(reverse)
+<div class="border-box-contaier">
+  <dv-border-box-8 :reverse="true">dv-border-box-8</dv-border-box-8>
+</div>
+
+```html
+<dv-border-box-8 :reverse="true">dv-border-box-8</dv-border-box-8>
+```
+<click-to-copy :info="info8Reverse" />
+
+
 ## dv-border-box-9
 <div class="border-box-contaier">
   <dv-border-box-9>dv-border-box-9</dv-border-box-9>
@@ -221,6 +232,7 @@ export default {
       info6: `<dv-border-box-6>dv-border-box-6</dv-border-box-6>`,
       info7: `<dv-border-box-7>dv-border-box-7</dv-border-box-7>`,
       info8: `<dv-border-box-8>dv-border-box-8</dv-border-box-8>`,
+      info8Reverse: `<dv-border-box-8 :reverse="true">dv-border-box-8</dv-border-box-8>`,
       info9: `<dv-border-box-9>dv-border-box-9</dv-border-box-9>`,
       info10: `<dv-border-box-10>dv-border-box-10</dv-border-box-10>`,
       info11: `<dv-border-box-11 title="dv-border-box-11">dv-border-box-11</dv-border-box-11>`,
