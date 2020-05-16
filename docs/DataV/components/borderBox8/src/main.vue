@@ -70,6 +70,8 @@ import { deepMerge } from '@jiaminghi/charts/lib/util/index'
 
 import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
 
+import { getUuid } from '../../../util'
+
 export default {
   name: 'DvBorderBox8',
   mixins: [autoResize],
@@ -92,12 +94,12 @@ export default {
     }
   },
   data () {
-    const timestamp = Date.now()
+    const uuid = getUuid();
     return {
       ref: 'border-box-8',
-      path: `border-box-8-path-${timestamp}`,
-      gradient: `border-box-8-gradient-${timestamp}`,
-      mask: `border-box-8-mask-${timestamp}`,
+      path: `border-box-8-path-${uuid}`,
+      gradient: `border-box-8-gradient-${uuid}`,
+      mask: `border-box-8-mask-${uuid}`,
 
       defaultColor: ['#235fa7', '#4fd2dd'],
 

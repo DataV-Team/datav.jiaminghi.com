@@ -92,6 +92,8 @@ import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
 
 import { fade } from '@jiaminghi/color'
 
+import { getUuid } from '../../../util'
+
 export default {
   name: 'DvDecoration9',
   mixins: [autoResize],
@@ -106,11 +108,11 @@ export default {
     }
   },
   data () {
-    const timestamp = Date.now()
+    const uuid = getUuid();
     return {
       ref: 'decoration-9',
 
-      polygonId: `decoration-9-polygon-${timestamp}`,
+      polygonId: `decoration-9-polygon-${uuid}`,
 
       svgWH: [100, 100],
 

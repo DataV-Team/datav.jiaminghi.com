@@ -130,6 +130,8 @@ import { deepMerge } from '@jiaminghi/charts/lib/util/index'
 
 import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
 
+import { getUuid } from '../../../util'
+
 export default {
   name: 'DvBorderBox9',
   mixins: [autoResize],
@@ -144,12 +146,12 @@ export default {
     }
   },
   data () {
-    const timestamp = Date.now()
+    const uuid = getUuid();
     return {
       ref: 'border-box-9',
 
-      gradientId: `border-box-9-gradient-${timestamp}`,
-      maskId: `border-box-9-mask-${timestamp}`,
+      gradientId: `border-box-9-gradient-${uuid}`,
+      maskId: `border-box-9-mask-${uuid}`,
 
       defaultColor: ['#11eefd', '#0078d2'],
 

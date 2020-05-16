@@ -46,6 +46,8 @@ import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
 
 import CRender from '@jiaminghi/c-render'
 
+import { getUuid } from '../../../util'
+
 export default {
   name: 'DvWaterLevelPond',
   props: {
@@ -53,9 +55,9 @@ export default {
     default: () => ({})
   },
   data () {
-    const timestamp = Date.now()
+    const uuid = getUuid();
     return {
-      gradientId: `water-level-pond-${timestamp}`,
+      gradientId: `water-level-pond-${uuid}`,
 
       defaultConfig: {
         /**

@@ -62,6 +62,9 @@ import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
 
 import { fade } from '@jiaminghi/color'
 
+import { getUuid } from '../../../util'
+
+
 export default {
   name: 'DvDecoration11',
   mixins: [autoResize],
@@ -72,7 +75,7 @@ export default {
     }
   },
   data () {
-    const timestamp = Date.now()
+    const uuid = getUuid();
     return {
       ref: 'decoration-11',
 

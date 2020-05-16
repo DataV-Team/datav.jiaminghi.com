@@ -159,6 +159,8 @@ import { randomExtend, getPointDistance } from '../../../util/index'
 
 import autoResize from '../../../mixin/autoResize'
 
+import { getUuid } from '../../../util'
+
 export default {
   name: 'DvFlylineChartEnhanced',
   mixins: [autoResize],
@@ -173,12 +175,12 @@ export default {
     }
   },
   data () {
-    const timestamp = Date.now()
+    const uuid = getUuid();
     return {
       ref: 'dv-flyline-chart-enhanced',
       unique: Math.random(),
-      flylineGradientId: `flyline-gradient-id-${timestamp}`,
-      haloGradientId: `halo-gradient-id-${timestamp}`,
+      flylineGradientId: `flyline-gradient-id-${uuid}`,
+      haloGradientId: `halo-gradient-id-${uuid}`,
       /**
        * @description Type Declaration
        * 

@@ -48,6 +48,8 @@ import { deepMerge } from '@jiaminghi/charts/lib/util/index'
 
 import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
 
+import { getUuid } from '../../../util'
+
 export default {
   name: 'DvPercentPond',
   props: {
@@ -57,10 +59,10 @@ export default {
     }
   },
   data () {
-    const timestamp = Date.now()
+    const uuid = getUuid();
     return {
-      gradientId1: `percent-pond-gradientId1-${timestamp}`,
-      gradientId2: `percent-pond-gradientId2-${timestamp}`,
+      gradientId1: `percent-pond-gradientId1-${uuid}`,
+      gradientId2: `percent-pond-gradientId2-${uuid}`,
 
       width: 0,
       height: 0,
