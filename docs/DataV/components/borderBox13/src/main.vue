@@ -47,6 +47,8 @@ import { deepMerge } from '@jiaminghi/charts/lib/util/index'
 
 import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
 
+import { getUuid } from '../../../util'
+
 export default {
   name: 'DvBorderBox13',
   mixins: [autoResize],
@@ -61,7 +63,7 @@ export default {
     }
   },
   data () {
-    const timestamp = +new Date()
+    const uuid = getUuid();
     return {
       ref: 'border-box-13',
 

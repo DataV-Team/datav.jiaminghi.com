@@ -9,6 +9,8 @@ import autoResize from '../../../mixin/autoResize'
 
 import Charts from '@jiaminghi/charts'
 
+import { getUuid } from '../../../util'
+
 export default {
   name: 'DvCharts',
   mixins: [autoResize],
@@ -19,10 +21,10 @@ export default {
     }
   },
   data () {
-    const timestamp = Date.now()
+    const uuid = getUuid();
     return {
-      ref: `charts-container-${timestamp}`,
-      chartRef: `chart-${timestamp}`,
+      ref: `charts-container-${uuid}`,
+      chartRef: `chart-${uuid}`,
 
       chart: null
     }

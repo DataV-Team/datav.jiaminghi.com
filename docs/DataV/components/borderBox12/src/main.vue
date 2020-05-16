@@ -99,6 +99,8 @@ import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
 
 import { fade } from '@jiaminghi/color'
 
+import { getUuid } from '../../../util'
+
 export default {
   name: 'DvBorderBox12',
   mixins: [autoResize],
@@ -113,10 +115,10 @@ export default {
     }
   },
   data () {
-    const timestamp = +new Date()
+    const uuid = getUuid();
     return {
       ref: 'border-box-12',
-      filterId: `borderr-box-12-filterId-${timestamp}`,
+      filterId: `borderr-box-12-filterId-${uuid}`,
 
       defaultColor: ['#2e6099', '#7ce7fd'],
 
