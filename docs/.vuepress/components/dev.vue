@@ -1,6 +1,6 @@
 <template>
   <div id="dev-container">
-    <dv-active-ring-chart :config="config" style="width:300px;height:300px" />
+    <dv-water-level-pond :config="config" style="width: 100px;height:200px" />
   </div>
 </template>
 
@@ -10,8 +10,19 @@ export default {
   name: 'dev',
   data () {
     return {
-      config: { data: [ { name: '周口', value: 16984 }, { name: '南阳', value: 48872 }, { name: '西峡', value: 17366 }, { name: '驻马店', value: 6101 }, { name: '新乡', value: 3197 }, { name: '郑州', value: 97 } ], showValue: true, fontSize: 14, digitalFlopToFixed: 2 }
+      config:{
+        data: [55],
+        shape: 'round',
+        waveHeight: 30,
+        waveNum: 2,
+        colors:['#34b6d2', '#34a6d2']
+      },
     }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.show = 2
+    }, 2000);
   }
 }
 </script>

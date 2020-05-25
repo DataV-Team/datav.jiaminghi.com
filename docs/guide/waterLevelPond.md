@@ -20,7 +20,7 @@ sidebarDepth: 2
 </div>
 
 <fold-box title="点击以展示/隐藏config数据">
-<<< @/docs/guide/codeData/waterLevelPond/demo2.js
+<<< @/docs/guide/codeData/waterLevelPond/demo1.js
 </fold-box>
 
 ## 圆角水位图
