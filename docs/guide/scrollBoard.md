@@ -88,6 +88,7 @@ align|列对齐方式|`Array<String>`|[2]|`[]`
 index|显示行号|`Boolean`|`true|false`|`false`
 indexHeader|行号表头|`String`|`-`|`'#'`
 carousel|轮播方式|`String`|`'single'|'page'`|`'single'`
+hoverPause|悬浮暂停轮播|`Boolean`|---|`true`
 </full-width-table>
 
 ## config相关注释
@@ -120,6 +121,10 @@ ceil|单元格数据|`Array<Array>`|---|`[]`
 rowIndex|行索引|`Number`|---|---
 columnIndex|列索引|`Number`|---|---
 </full-width-table>
+
+## mouseover事件
+
+当鼠标悬浮在某个单元格上时（表头不支持），轮播表将抛出一个`mouseover`事件，包含被悬浮单元格的相关数据（与click事件数据相同）。
 
 <script>
 import scrollBoard from './codeData/scrollBoard/index.js'
