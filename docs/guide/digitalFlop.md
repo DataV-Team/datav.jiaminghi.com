@@ -41,6 +41,16 @@ sidebarDepth: 2
 <<< @/docs/guide/codeData/digitalFlop/demo3.js
 </fold-box>
 
+## 千分位分隔符
+
+<div class="chart-container" style="height: 150px;">
+  <for-digital-flop :data="digitalFlop4" />
+</div>
+
+<fold-box title="点击以展示/隐藏config数据">
+<<< @/docs/guide/codeData/digitalFlop/demo4.js
+</fold-box>
+
 ## config属性
 
 <full-width-table>
@@ -52,8 +62,9 @@ toFixed|小数位数|`Number`|---|`0`
 textAlign|水平对齐方式|`String`|[2]|`'center'`
 rowGap|行间距|`Number`|[3]|`0`
 style|样式配置|`Object`|[CRender Style](http://crender.jiaminghi.com/guide/style.html)|[4]
+formatter|格式化数字|`Function`|[5]|`undefined`
 animationCurve|动效曲线|`String`|[Transition](http://transition.jiaminghi.com/curveTable/)|`'easeOutCubic'`
-animationFrame|动效帧数|`Number`|[5]|`50`
+animationFrame|动效帧数|`Number`|[6]|`50`
 </full-width-table>
 
 ## 注释
@@ -80,7 +91,9 @@ style: {
 }
 ```
 
-[5] `animationFrame`用于配置动画过程的帧数即动画时长。
+[5] 当需要格式化数字时，例如数字千分位插入逗号分隔符，可以使用`formatter`来达到效果，`number`属性中的每一个数值元素都将被传递给`formatter`，返回值将代替原有数值，可参见示例。
+
+[6] `animationFrame`用于配置动画过程的帧数即动画时长。
 
 <script>
 import digitalFlop from './codeData/digitalFlop/index.js'

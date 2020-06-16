@@ -1,6 +1,6 @@
 <template>
   <div id="dev-container">
-    <dv-scroll-board @click="handle" :config="config" style="width: 400px;height:200px" />
+    <dv-scroll-board :config="config" style="width: 400px;height:200px" />
   </div>
 </template>
 
@@ -11,7 +11,6 @@ export default {
   data () {
     return {
       config:{
-        header: ['列1', '列2', '列3'],
         data: [
           ['行1列1', '行1列2', '行1列3'],
           ['行2列1', '行2列2', '行2列3'],
@@ -23,14 +22,27 @@ export default {
           ['行8列1', '行8列2', '行8列3'],
           ['行9列1', '行9列2', '行9列3'],
           ['行10列1', '行10列2', '行10列3']
-        ],
+        ]
       },
     }
   },
-  methods: {
-    handle (data) {
-      console.warn(data)
-    }
+  mounted () {
+    setTimeout(() => {
+      this.config = {
+        data: [
+          ['x行1列1', '行1列2', '行1列3'],
+          ['x行2列1', '行2列2', '行2列3'],
+          ['x行3列1', '行3列2', '行3列3'],
+          ['x行4列1', '行4列2', '行4列3'],
+          ['x行5列1', '行5列2', '行5列3'],
+          ['x行6列1', '行6列2', '行6列3'],
+          ['x行7列1', '行7列2', '行7列3'],
+          ['x行8列1', '行8列2', '行8列3'],
+          ['x行9列1', '行9列2', '行9列3'],
+          ['x行10列1', '行10列2', '行10列3']
+        ]
+      }
+    }, 5000)
   }
 }
 </script>

@@ -152,10 +152,20 @@ export default {
       })
 
       const value = data.map(({ value }) => value)
+      
+      const min = Math.min(...value) || 0
+
+      // abs of min
+      const minAbs = Math.abs(min)
 
       const max = Math.max(...value) || 0
 
-      data = data.map((row, i) => ({ ...row, ranking: i + 1, percent: row.value / max * 100 }))
+      // abs of max
+      const maxAbs = Math.abs(max)
+
+      const total = max + minAbs
+
+      data = data.map((row, i) => ({ ...row, ranking: i + 1, percent: (row.value + minAbs) / total * 100 }))
 
       const rowLength = data.length
 
