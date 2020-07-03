@@ -1,6 +1,6 @@
 <template>
   <div id="dev-container">
-    <dv-digital-flop :config="config" style="width: 400px;height:200px" />
+    <dv-scroll-board :config="config" style="width: 400px;height:200px" />
   </div>
 </template>
 
@@ -11,8 +11,11 @@ export default {
   data () {
     return {
       config:{
-        number: [0],
-        content: '{nt}个'
+        header: ['列1', '列2'],
+        // data: [['1',0],['1',0],['1',0],['1',0],['1',0],['1',0]],
+        data: [[1,0],[1,0],[1,0],[1,0],[1,0],[1,0]],
+        rowNum: 4,
+        index: true,
       },
     }
   },
