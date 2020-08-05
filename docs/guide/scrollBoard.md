@@ -126,6 +126,19 @@ columnIndex|列索引|`Number`|---|---
 
 当鼠标悬浮在某个单元格上时（表头不支持），轮播表将抛出一个`mouseover`事件，包含被悬浮单元格的相关数据（与click事件数据相同）。
 
+## updateRows方法<Badge>alpha</Badge>
+
+如果想要不断**追加**行数据，又不想从头开始轮播，可以使用此方法更新行数据，不会导致从头轮播，也可以设置下次滚动的起始行。
+
+```javascript
+/**
+ * @param {string[][]} rows 更新后的行数据
+ * @param {number} index 下次滚动的起始行 （可缺省）
+ */
+scrollBoard.updateRows(rows, index)
+```
+
+
 <script>
 import scrollBoard from './codeData/scrollBoard/index.js'
 
