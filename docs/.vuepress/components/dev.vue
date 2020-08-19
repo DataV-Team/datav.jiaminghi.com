@@ -28,7 +28,19 @@ export default {
       console.warn(args)
     }
   },
-  mounted () {
+  async mounted () {
+    const scrollBoard = this.$refs['scrollBoard']
+    let rows = this.config.data
+    let index = 6
+
+    while (true) {
+      await new Promise(resolve => setTimeout(resolve, 3000))
+
+      index++
+      rows.push([`行${index}列1`, `行${index}列2`, `行${index}列3`])
+
+      scrollBoard.updateRows(rows)
+    }
   }
 }
 </script>
