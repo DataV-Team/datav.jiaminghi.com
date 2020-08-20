@@ -9,7 +9,7 @@
       <div class="ranking-info">
         <div class="rank">No.{{ item.ranking }}</div>
         <div class="info-name" v-html="item.name" />
-        <div class="ranking-value">{{ item.value + mergedConfig.unit }}</div>
+        <div class="ranking-value">{{ mergedConfig.valueFormatter ? mergedConfig.valueFormatter(item) : item.value + mergedConfig.unit }}</div>
       </div>
 
       <div class="ranking-column">
@@ -82,7 +82,13 @@ export default {
          * @type {Boolean}
          * @default sort = true
          */
-        sort: true
+        sort: true,
+        /**
+         * @description Value formatter
+         * @type {Function}
+         * @default valueFormatter = null
+         */
+        valueFormatter: null
       },
 
       mergedConfig: null,
@@ -232,7 +238,7 @@ export default {
       if (!animationHandler) return
 
       clearTimeout(animationHandler)
-    }
+    },
   },
   destroyed () {
     const { stopAnimation } = this

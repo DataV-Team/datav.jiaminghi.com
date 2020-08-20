@@ -42,6 +42,16 @@ sidebarDepth: 2
 <<< @/docs/guide/codeData/scrollRankingBoard/demo3.js
 </fold-box>
 
+## 数值格式化
+
+<div class="chart-container">
+  <dv-scroll-ranking-board :config="scrollRankingBoard4" style="width:500px;height:300px" />
+</div>
+
+<fold-box title="点击以展示/隐藏config数据">
+<<< @/docs/guide/codeData/scrollRankingBoard/demo4.js
+</fold-box>
+
 ## config属性
 
 <full-width-table>
@@ -53,6 +63,7 @@ waitTime|轮播时间间隔(ms)|`Number`|---|`2000`
 carousel|轮播方式|`String`|`'single'|'page'`|`'single'`
 unit|数值单位|`String`|---|`''`
 sort|自动排序|`Boolean`|---|`true`
+valueFormatter|数值格式化|`Function`|---|`undefined`
 </full-width-table>
 
 ## data属性
@@ -62,6 +73,17 @@ sort|自动排序|`Boolean`|---|`true`
 :--:|:--:|:--:|:--:|:--:
 name|名称|`String`|---|---
 value|数值|`Number`|---|---
+</full-width-table>
+
+## valueFormatter参数属性
+
+<full-width-table>
+属性|说明|类型|可选值|默认值
+:--:|:--:|:--:|:--:|:--:
+name|名称|`String`|---|---
+value|数值|`Number`|---|---
+percent|百分比|`Number`|---|---
+ranking|排名|`Number`|---|---
 </full-width-table>
 
 ::: tip TIP
