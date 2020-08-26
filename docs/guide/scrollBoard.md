@@ -135,7 +135,30 @@ columnIndex|列索引|`Number`|---|---
  * @param {string[][]} rows 更新后的行数据
  * @param {number} index 下次滚动的起始行 （可缺省）
  */
-scrollBoard.updateRows(rows, index)
+function updateRows(rows, index) {
+  // ...
+}
+```
+
+```vue
+<template>
+  <dv-scroll-board :config="config" ref="scrollBoard" />
+</template>
+
+<script>
+export default {
+  data () {
+    return () {
+      config: {}
+    }
+  },
+  methods () {
+    doUpdate () {
+      this.$refs['scrollBoard'].updateRows(rows, index)
+    }
+  }
+}
+</script>
 ```
 
 
