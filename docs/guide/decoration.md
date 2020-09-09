@@ -45,6 +45,13 @@ color|自定义颜色|`string[]`|`-`|`-`
 ```
 <click-to-copy :info="info2" />
 
+### 配置
+<full-width-table>
+属性|说明|类型|可选值|默认值
+:--:|:--:|:--:|:--:|:--:
+dur|单次动画时长(秒)|`Number`|`-`|`6`
+</full-width-table>
+
 ## dv-decoration-2(reverse)
 <div class="decoration-contaier">
   <dv-decoration-2 :reverse="true" style="width:5px;height:150px;" />
@@ -75,6 +82,13 @@ color|自定义颜色|`string[]`|`-`|`-`
 ```
 <click-to-copy :info="info4" />
 
+### 配置
+<full-width-table>
+属性|说明|类型|可选值|默认值
+:--:|:--:|:--:|:--:|:--:
+dur|单次动画时长(秒)|`Number`|`-`|`3`
+</full-width-table>
+
 ## dv-decoration-4(reverse)
 <div class="decoration-contaier">
   <dv-decoration-4 :reverse="true" style="width:250px;height:5px;" />
@@ -94,6 +108,13 @@ color|自定义颜色|`string[]`|`-`|`-`
 <dv-decoration-5 style="width:300px;height:40px;" />
 ```
 <click-to-copy :info="info5" />
+
+### 配置
+<full-width-table>
+属性|说明|类型|可选值|默认值
+:--:|:--:|:--:|:--:|:--:
+dur|单次动画时长(秒)|`Number`|`-`|`1.2`
+</full-width-table>
 
 ## dv-decoration-6
 <div class="decoration-contaier">
@@ -145,7 +166,7 @@ color|自定义颜色|`string[]`|`-`|`-`
 ```
 <click-to-copy :info="info9" />
 
-### 特殊配置
+### 配置
 <full-width-table>
 属性|说明|类型|可选值|默认值
 :--:|:--:|:--:|:--:|:--:
@@ -172,6 +193,24 @@ dur|单次动画时长(秒)|`Number`|`-`|`3`
 ```
 <click-to-copy :info="info11" />
 
+## dv-decoration-12
+<div class="decoration-contaier font1">
+  <dv-decoration-12 style="width:150px;height:150px;" />
+</div>
+
+```html
+<dv-decoration-12 style="width:150px;height:150px;" />
+```
+<click-to-copy :info="info12" />
+
+### 配置
+<full-width-table>
+属性|说明|类型|可选值|默认值
+:--:|:--:|:--:|:--:|:--:
+scanDur|扫描动画时长(秒)|`Number`|`-`|`3`
+haloDur|光晕动画时长(秒)|`Number`|`-`|`2`
+</full-width-table>
+
 <script>
   export default {
     data () {
@@ -189,7 +228,8 @@ dur|单次动画时长(秒)|`Number`|`-`|`3`
         info8r: `<dv-decoration-8 :reverse="true" style="width:300px;height:50px;" />`,
         info9: `<dv-decoration-9 style="width:150px;height:150px;">66%</dv-decoration-9>`,
         info10: `<dv-decoration-10 style="width:90%;height:5px;" />`,
-        info11: `<dv-decoration-11 style="width:200px;height:60px;">dv-decoration-11</dv-decoration-11>`
+        info11: `<dv-decoration-11 style="width:200px;height:60px;">dv-decoration-11</dv-decoration-11>`,
+        info12: `<dv-decoration-12 style="width:150px;height:150px;" />`
       }
     }
   }
