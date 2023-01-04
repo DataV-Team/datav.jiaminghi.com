@@ -15,6 +15,9 @@ import borderBox7 from './components/borderBox7/index'
 import borderBox8 from './components/borderBox8/index'
 import borderBox9 from './components/borderBox9/index'
 import borderBox10 from './components/borderBox10/index'
+import borderBox11 from './components/borderBox11/index'
+import borderBox12 from './components/borderBox12/index'
+import borderBox13 from './components/borderBox13/index'
 
 // decoration
 import decoration1 from './components/decoration1/index'
@@ -27,6 +30,8 @@ import decoration7 from './components/decoration7/index'
 import decoration8 from './components/decoration8/index'
 import decoration9 from './components/decoration9/index'
 import decoration10 from './components/decoration10/index'
+import decoration11 from './components/decoration11/index'
+import decoration12 from './components/decoration12/index'
 
 // charts
 import charts from './components/charts/index'
@@ -36,6 +41,7 @@ import capsuleChart from './components/capsuleChart'
 import waterLevelPond from './components/waterLevelPond/index'
 import percentPond from './components/percentPond/index'
 import flylineChart from './components/flylineChart'
+import flylineChartEnhanced from './components/flylineChartEnhanced'
 import conicalColumnChart from './components/conicalColumnChart'
 import digitalFlop from './components/digitalFlop'
 import scrollBoard from './components/scrollBoard/index'
@@ -59,6 +65,9 @@ export default function (Vue) {
   Vue.use(borderBox8)
   Vue.use(borderBox9)
   Vue.use(borderBox10)
+  Vue.use(borderBox11)
+  Vue.use(borderBox12)
+  Vue.use(borderBox13)
 
   // decoration
   Vue.use(decoration1)
@@ -71,6 +80,8 @@ export default function (Vue) {
   Vue.use(decoration8)
   Vue.use(decoration9)
   Vue.use(decoration10)
+  Vue.use(decoration11)
+  Vue.use(decoration12)
 
   // charts
   Vue.use(charts)
@@ -80,6 +91,7 @@ export default function (Vue) {
   Vue.use(waterLevelPond)
   Vue.use(percentPond)
   Vue.use(flylineChart)
+  Vue.use(flylineChartEnhanced)
   Vue.use(conicalColumnChart)
   Vue.use(digitalFlop)
   Vue.use(scrollBoard)

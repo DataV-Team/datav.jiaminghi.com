@@ -4,6 +4,8 @@ sidebarDepth: 2
 
 # 数字翻牌器
 
+<react-page-btn />
+
 ```html
 <dv-digital-flop :config="config" style="width:200px;height:50px;" />
 ```
@@ -39,6 +41,16 @@ sidebarDepth: 2
 <<< @/docs/guide/codeData/digitalFlop/demo3.js
 </fold-box>
 
+## 千分位分隔符
+
+<div class="chart-container" style="height: 150px;">
+  <for-digital-flop :data="digitalFlop4" />
+</div>
+
+<fold-box title="点击以展示/隐藏config数据">
+<<< @/docs/guide/codeData/digitalFlop/demo4.js
+</fold-box>
+
 ## config属性
 
 <full-width-table>
@@ -48,9 +60,11 @@ number|数字数值<sup>[1]</sup>|`Array<Number>`|---|`[]`
 content|内容模版<sup>[1]</sup>|`String`|---|`''`
 toFixed|小数位数|`Number`|---|`0`
 textAlign|水平对齐方式|`String`|[2]|`'center'`
-style|样式配置|`Object`|[CRender Style](http://crender.jiaminghi.com/guide/style.html)|[3]
+rowGap|行间距|`Number`|[3]|`0`
+style|样式配置|`Object`|[CRender Style](http://crender.jiaminghi.com/guide/style.html)|[4]
+formatter|格式化数字|`Function`|[5]|`undefined`
 animationCurve|动效曲线|`String`|[Transition](http://transition.jiaminghi.com/curveTable/)|`'easeOutCubic'`
-animationFrame|动效帧数|`Number`|[4]|`50`
+animationFrame|动效帧数|`Number`|[6]|`50`
 </full-width-table>
 
 ## 注释
@@ -65,7 +79,9 @@ const content = '数字{nt},数字{nt},数字{nt},数字{nt}'
 
 [2] `textAlign`用于设置文字的水平对齐方式，可选值为`'center'|'left'|'right'`，该值将覆盖`style`属性中的`textAlign`属性。
 
-[3] `style`是[CRender](http://crender.jiaminghi.com)中用于配置样式的类，可使用`fill`属性设置字体颜色、`stroke`属性设置字体描边颜色、`fontSize`属性设置文字大小，更多配置请查阅[CRender Style](http://crender.jiaminghi.com/guide/style.html)。
+[3] 当使用`\n`进行换行的时候，`rowGap`可以控制行间距。
+
+[4] `style`是[CRender](http://crender.jiaminghi.com)中用于配置样式的类，可使用`fill`属性设置字体颜色、`stroke`属性设置字体描边颜色、`fontSize`属性设置文字大小，更多配置请查阅[CRender Style](http://crender.jiaminghi.com/guide/style.html)。
 
 ```js
 // 数字翻牌器style默认配置
@@ -75,7 +91,9 @@ style: {
 }
 ```
 
-[4] `animationFrame`用于配置动画过程的帧数即动画时长。
+[5] 当需要格式化数字时，例如数字千分位插入逗号分隔符，可以使用`formatter`来达到效果，`number`属性中的每一个数值元素都将被传递给`formatter`，返回值将代替原有数值，可参见示例。
+
+[6] `animationFrame`用于配置动画过程的帧数即动画时长。
 
 <script>
 import digitalFlop from './codeData/digitalFlop/index.js'

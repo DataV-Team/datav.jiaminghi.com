@@ -12,7 +12,9 @@
   "keywords": [
     "vue",
     "dataview",
-    "charts"
+    "charts",
+    "MIT",
+    "开源"
   ],
   "author": "JiaMing <743192023@qq.com>",
   "license": "MIT",
@@ -24,6 +26,6 @@
     "vuepress": "1.0.3"
   },
   "dependencies": {
-    "@jiaminghi/charts": "^0.2.5"
+    "@jiaminghi/charts": "^0.2.15"
   }
 }

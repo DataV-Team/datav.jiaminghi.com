@@ -54,6 +54,12 @@ export default {
          */
         textAlign: 'center',
         /**
+         * @description rowGap
+         * @type {Number}
+         @default rowGap = 0
+         */
+        rowGap: 0,
+        /**
          * @description Text style configuration
          * @type {Object} {CRender Class Style}
          */
@@ -61,6 +67,11 @@ export default {
           fontSize: 30,
           fill: '#3de7c9'
         },
+        /**
+         * @description Number formatter
+         * @type {Null|Function}
+         */
+        formatter: undefined,
         /**
          * @description CRender animationCurve
          * @type {String}
@@ -124,7 +135,7 @@ export default {
       })
     },
     getShape () {
-      const { number, content, toFixed, textAlign } = this.mergedConfig
+      const { number, content, toFixed, textAlign, rowGap, formatter } = this.mergedConfig
 
       const [w, h] = this.renderer.area
 
@@ -137,7 +148,9 @@ export default {
         number,
         content,
         toFixed,
-        position
+        position,
+        rowGap,
+        formatter
       }
     },
     getStyle () {
@@ -150,6 +163,8 @@ export default {
     },
     update () {
       const { mergeConfig, mergeShape, getShape, getStyle, graph, mergedConfig } = this
+
+      graph.animationEnd()
 
       mergeConfig()
 

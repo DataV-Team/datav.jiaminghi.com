@@ -4,6 +4,8 @@ sidebarDepth: 2
 
 # 进度池
 
+<react-page-btn />
+
 ```html
 <dv-percent-pond :config="config" style="width:200px;height:100px;" />
 ```

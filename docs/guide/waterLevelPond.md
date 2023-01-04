@@ -4,6 +4,8 @@ sidebarDepth: 2
 
 # 水位图
 
+<react-page-btn />
+
 水位图有三种形态，多种配置，具体使用示例如下：
 
 ```html
@@ -18,7 +20,7 @@ sidebarDepth: 2
 </div>
 
 <fold-box title="点击以展示/隐藏config数据">
-<<< @/docs/guide/codeData/waterLevelPond/demo2.js
+<<< @/docs/guide/codeData/waterLevelPond/demo1.js
 </fold-box>
 
 ## 圆角水位图

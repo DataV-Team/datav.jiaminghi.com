@@ -4,6 +4,7 @@ sidebarDepth: 2
 
 # 胶囊柱图
 
+<react-page-btn />
 
 ```html
 <dv-capsule-chart :config="config" style="width:300px;height:200px" />
@@ -41,6 +42,16 @@ sidebarDepth: 2
 <<< @/docs/guide/codeData/capsuleChart/demo3.js
 </fold-box>
 
+## 显示数值
+
+<div class="chart-container">
+<dv-capsule-chart :config="capsuleChart4" style="width:300px;height:200px" />
+</div>
+
+<fold-box title="点击以展示/隐藏config数据">
+<<< @/docs/guide/codeData/capsuleChart/demo4.js
+</fold-box>
+
 ## config属性
 
 <full-width-table>
@@ -49,6 +60,7 @@ sidebarDepth: 2
 data|柱数据|`Array<Object>`|[data属性](/guide/capsuleChart.html#data属性)|`[]`
 unit|单位|`String`|---|`''`
 colors|环颜色|`Array<String>`|[1]|[2]
+showValue|显示数值|`Boolean`|---|`false`
 </full-width-table>
 
 ## config注释

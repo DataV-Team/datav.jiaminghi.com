@@ -8,8 +8,8 @@
     >
       <div class="ranking-info">
         <div class="rank">No.{{ item.ranking }}</div>
-        <div class="info-name">{{ item.name }}</div>
-        <div class="ranking-value">{{ item.value + mergedConfig.unit }}</div>
+        <div class="info-name" v-html="item.name" />
+        <div class="ranking-value">{{ mergedConfig.valueFormatter ? mergedConfig.valueFormatter(item) : item.value + mergedConfig.unit }}</div>
       </div>
 
       <div class="ranking-column">
@@ -76,7 +76,19 @@ export default {
          * @default unit = ''
          * @example unit = 'ton'
          */
-        unit: ''
+        unit: '',
+        /**
+         * @description Auto sort by value
+         * @type {Boolean}
+         * @default sort = true
+         */
+        sort: true,
+        /**
+         * @description Value formatter
+         * @type {Function}
+         * @default valueFormatter = null
+         */
+        valueFormatter: null
       },
 
       mergedConfig: null,
@@ -89,7 +101,9 @@ export default {
 
       animationIndex: 0,
 
-      animationHandler: ''
+      animationHandler: '',
+
+      updater: 0
     }
   },
   watch: {
@@ -135,19 +149,29 @@ export default {
       this.mergedConfig = deepMerge(deepClone(defaultConfig, true), config || {})
     },
     calcRowsData () {
-      let { data, rowNum } = this.mergedConfig
+      let { data, rowNum, sort } = this.mergedConfig
 
-      data.sort(({ value: a }, { value: b }) => {
+      sort && data.sort(({ value: a }, { value: b }) => {
         if (a > b) return -1
         if (a < b) return 1
         if (a === b) return 0
       })
 
       const value = data.map(({ value }) => value)
+      
+      const min = Math.min(...value) || 0
+
+      // abs of min
+      const minAbs = Math.abs(min)
 
       const max = Math.max(...value) || 0
 
-      data = data.map((row, i) => ({ ...row, ranking: i + 1, percent: row.value / max * 100 }))
+      // abs of max
+      const maxAbs = Math.abs(max)
+
+      const total = max + minAbs
+
+      data = data.map((row, i) => ({ ...row, ranking: i + 1, percent: (row.value + minAbs) / total * 100 }))
 
       const rowLength = data.length
 
@@ -172,7 +196,7 @@ export default {
       if (!onresize) this.heights = new Array(data.length).fill(avgHeight)
     },
     async animation (start = false) {
-      let { avgHeight, animationIndex, mergedConfig, rowsData, animation } = this
+      let { avgHeight, animationIndex, mergedConfig, rowsData, animation, updater } = this
 
       const { waitTime, carousel, rowNum } = mergedConfig
 
@@ -180,17 +204,21 @@ export default {
 
       if (rowNum >= rowLength) return
 
-      if (start) await new Promise(resolve => setTimeout(resolve, waitTime))
+      if (start) {
+        await new Promise(resolve => setTimeout(resolve, waitTime))
+        if (updater !== this.updater) return
+      }
 
       const animationNum = carousel === 'single' ? 1 : rowNum
 
       let rows = rowsData.slice(animationIndex)
       rows.push(...rowsData.slice(0, animationIndex))
 
-      this.rows = rows
+      this.rows = rows.slice(0, rowNum + 1)
       this.heights = new Array(rowLength).fill(avgHeight)
 
       await new Promise(resolve => setTimeout(resolve, 300))
+      if (updater !== this.updater) return
 
       this.heights.splice(0, animationNum, ...new Array(animationNum).fill(0))
 
@@ -203,12 +231,14 @@ export default {
       this.animationHandler = setTimeout(animation, waitTime - 300)
     },
     stopAnimation () {
-      const { animationHandler } = this
+      const { animationHandler, updater } = this
+
+      this.updater = (updater + 1) % 999999
 
       if (!animationHandler) return
 
       clearTimeout(animationHandler)
-    }
+    },
   },
   destroyed () {
     const { stopAnimation } = this

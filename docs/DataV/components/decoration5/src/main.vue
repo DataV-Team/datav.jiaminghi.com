@@ -3,7 +3,7 @@
     <svg :width="width" :height="height">
       <polyline
         fill="transparent"
-        stroke="#3f96a5"
+        :stroke="mergedColor[0]"
         stroke-width="3"
         :points="line1Points"
       >
@@ -12,7 +12,7 @@
           attributeType="XML"
           :from="`0, ${line1Length / 2}, 0, ${line1Length / 2}`"
           :to="`0, 0, ${line1Length}, 0`"
-          dur="1.2s"
+          :dur="`${dur}s`"
           begin="0s"
           calcMode="spline"
           keyTimes="0;1"
@@ -22,7 +22,7 @@
       </polyline>
       <polyline
         fill="transparent"
-        stroke="#3f96a5"
+        :stroke="mergedColor[1]"
         stroke-width="2"
         :points="line2Points"
       >
@@ -31,7 +31,7 @@
           attributeType="XML"
           :from="`0, ${line2Length / 2}, 0, ${line2Length / 2}`"
           :to="`0, 0, ${line2Length}, 0`"
-          dur="1.2s"
+          :dur="`${dur}s`"
           begin="0s"
           calcMode="spline"
           keyTimes="0;1"
@@ -48,9 +48,23 @@ import autoResize from '../../../mixin/autoResize'
 
 import { getPolylineLength } from '@jiaminghi/charts/lib/util'
 
+import { deepMerge } from '@jiaminghi/charts/lib/util/index'
+
+import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
+
 export default {
   name: 'DvDecoration5',
   mixins: [autoResize],
+  props: {
+    color: {
+      type: Array,
+      default: () => ([])
+    },
+    dur: {
+      type: Number,
+      default: 1.2
+    }
+  },
   data () {
     return {
       ref: 'decoration-5',
@@ -59,7 +73,18 @@ export default {
       line2Points: '',
 
       line1Length: 0,
-      line2Length: 0
+      line2Length: 0,
+
+      defaultColor: ['#3f96a5', '#3f96a5'],
+
+      mergedColor: []
+    }
+  },
+  watch: {
+    color () {
+      const { mergeColor } = this
+
+      mergeColor()
     }
   },
   methods: {
@@ -97,7 +122,17 @@ export default {
       const { calcSVGData } = this
 
       calcSVGData()
+    },
+    mergeColor () {
+      const { color, defaultColor } = this
+
+      this.mergedColor = deepMerge(deepClone(defaultColor, true), color || [])
     }
+  },
+  mounted () {
+    const { mergeColor } = this
+
+    mergeColor()
   }
 }
 </script>

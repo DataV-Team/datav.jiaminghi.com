@@ -4,7 +4,7 @@ sidebarDepth: 2
 
 # 动态环图
 
-基于**Charts**封装。
+基于**Charts**封装。<react-page-btn />
 
 ```html
 <dv-active-ring-chart :config="config" style="width:300px;height:300px" />
@@ -42,6 +42,16 @@ sidebarDepth: 2
 <<< @/docs/guide/codeData/activeRingChart/demo3.js
 </fold-box>
 
+## 显示原始值
+
+<div class="chart-container fontsize">
+  <dv-active-ring-chart :config="activeRingChart4" style="width:300px;height:300px;" />
+</div>
+
+<fold-box title="点击以展示/隐藏config数据">
+<<< @/docs/guide/codeData/activeRingChart/demo4.js
+</fold-box>
+
 ## config属性
 
 <full-width-table>
@@ -54,8 +64,11 @@ lineWidth|环线条宽度|`Number`|---|`20`
 activeTimeGap|切换间隔(ms)|`Number`|---|`3000`
 color|环颜色|`Array<String>`|[1]|`[]`
 digitalFlopStyle|数字翻牌器样式|`Object`|---|[2]
+digitalFlopToFixed|数字翻牌器小数位数|`Number`|---|`0`
+digitalFlopUnit|数字翻牌器单位|`String`|---|`''`
 animationCurve|动效曲线|`String`|[Transition](http://transition.jiaminghi.com/curveTable/)|`'easeOutCubic'`
 animationFrame|动效帧数|`Number`|[3]|`50`
+showOriginValue|显示原始值|`Boolean`|---|`false`
 </full-width-table>
 
 ## config注释

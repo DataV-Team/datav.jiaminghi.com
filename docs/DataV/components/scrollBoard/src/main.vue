@@ -4,7 +4,7 @@
       <div
         class="header-item"
         v-for="(headerItem, i) in header"
-        :key="headerItem + i"
+        :key="`${headerItem}${i}`"
         :style="`
           height: ${mergedConfig.headerHeight}px;
           line-height: ${mergedConfig.headerHeight}px;
@@ -23,7 +23,7 @@
       <div
         class="row-item"
         v-for="(row, ri) in rows"
-        :key="row.toString() + row.scroll"
+        :key="`${row.toString()}${row.scroll}`"
         :style="`
           height: ${heights[ri]}px;
           line-height: ${heights[ri]}px;
@@ -33,11 +33,13 @@
         <div
           class="ceil"
           v-for="(ceil, ci) in row.ceils"
-          :key="ceil + ri + ci"
+          :key="`${ceil}${ri}${ci}`"
           :style="`width: ${widths[ci]}px;`"
           :align="aligns[ci]"
           v-html="ceil"
-          @click="emitEvent(ri, ci, row, ceil)"
+          @click="emitEvent('click', ri, ci, row, ceil)"
+          @mouseenter="handleHover(true, ri, ci, row, ceil)"
+          @mouseleave="handleHover(false)"
         />
 
       </div>
@@ -135,12 +137,25 @@ export default {
          */
         index: false,
         /**
+         * @description index Header
+         * @type {String}
+         * @default indexHeader = '#'
+         */
+        indexHeader: '#',
+        /**
          * @description Carousel type
          * @type {String}
          * @default carousel = 'single'
          * @example carousel = 'single' | 'page'
          */
-        carousel: 'single'
+        carousel: 'single',
+        /**
+         * @description Pause scroll when mouse hovered
+         * @type {Boolean}
+         * @default hoverPause = true
+         * @example hoverPause = true | false
+         */
+        hoverPause: true
       },
 
       mergedConfig: null,
@@ -161,7 +176,11 @@ export default {
 
       animationIndex: 0,
 
-      animationHandler: ''
+      animationHandler: '',
+
+      updater: 0,
+
+      needCalc: false
     }
   },
   watch: {
@@ -170,10 +189,24 @@ export default {
 
       stopAnimation()
 
+      this.animationIndex = 0
+
       calcData()
     }
   },
   methods: {
+    handleHover(enter, ri, ci, row, ceil){
+      const { mergedConfig, emitEvent, stopAnimation, animation } = this
+
+      if (enter) emitEvent('mouseover', ri, ci, row, ceil)
+      if (!mergedConfig.hoverPause) return
+
+      if (enter) {
+        stopAnimation()
+      } else {
+        animation(true)
+      }
+    },
     afterAutoResizeMixinInit () {
       const { calcData } = this
 
@@ -215,7 +248,7 @@ export default {
       this.mergedConfig = deepMerge(deepClone(defaultConfig, true), config || {})
     },
     calcHeaderData () {
-      let { header, index } = this.mergedConfig
+      let { header, index, indexHeader} = this.mergedConfig
 
       if (!header.length) {
         this.header = []
@@ -225,7 +258,7 @@ export default {
 
       header = [...header]
 
-      if (index) header.unshift('#')
+      if (index) header.unshift(indexHeader)
 
       this.header = header
     },
@@ -236,7 +269,7 @@ export default {
         data = data.map((row, i) => {
           row = [...row]
 
-          const indexTag = `<span class="index" style="background-color: ${headerBGC};">${i + 1}</spand>`
+          const indexTag = `<span class="index" style="background-color: ${headerBGC};">${i + 1}</span>`
 
           row.unshift(indexTag)
 
@@ -304,7 +337,15 @@ export default {
       this.aligns = deepMerge(aligns, align)
     },
     async animation (start = false) {
-      let { avgHeight, animationIndex, mergedConfig, rowsData, animation } = this
+      const { needCalc, calcHeights, calcRowsData } = this
+
+      if (needCalc) {
+        calcRowsData()
+        calcHeights()
+        this.needCalc = false
+      }
+
+      let { avgHeight, animationIndex, mergedConfig, rowsData, animation, updater } = this
 
       const { waitTime, carousel, rowNum } = mergedConfig
 
@@ -312,17 +353,21 @@ export default {
 
       if (rowNum >= rowLength) return
 
-      if (start) await new Promise(resolve => setTimeout(resolve, waitTime))
+      if (start) {
+        await new Promise(resolve => setTimeout(resolve, waitTime))
+        if (updater !== this.updater) return
+      }
 
       const animationNum = carousel === 'single' ? 1 : rowNum
 
       let rows = rowsData.slice(animationIndex)
       rows.push(...rowsData.slice(0, animationIndex))
 
-      this.rows = rows
+      this.rows = rows.slice(0, carousel === 'page' ? rowNum * 2 : rowNum + 1)
       this.heights = new Array(rowLength).fill(avgHeight)
 
       await new Promise(resolve => setTimeout(resolve, 300))
+      if (updater !== this.updater) return
 
       this.heights.splice(0, animationNum, ...new Array(animationNum).fill(0))
 
@@ -335,21 +380,36 @@ export default {
       this.animationHandler = setTimeout(animation, waitTime - 300)
     },
     stopAnimation () {
-      const { animationHandler } = this
+      const { animationHandler, updater } = this
+
+      this.updater = (updater + 1) % 999999
 
       if (!animationHandler) return
 
       clearTimeout(animationHandler)
     },
-    emitEvent (ri, ci, row, ceil) {
+    emitEvent (type, ri, ci, row, ceil) {
       const { ceils, rowIndex } = row
 
-      this.$emit('click', {
+      this.$emit(type, {
         row: ceils,
         ceil,
         rowIndex,
         columnIndex: ci
       })
+    },
+    updateRows(rows, animationIndex) {
+      const { mergedConfig, animationHandler, animation } = this
+
+      this.mergedConfig = {
+        ...mergedConfig,
+        data: [...rows]
+      }
+
+      this.needCalc = true
+
+      if (typeof animationIndex === 'number') this.animationIndex = animationIndex
+      if (!animationHandler) animation(true)
     }
   },
   destroyed () {
